@@ -1,0 +1,8 @@
+using Google.Developers;
+
+namespace Com.Google.Android.Gms.Common.Api
+{
+	public class Status : JavaObjWrapper
+	{
+	}
+}
