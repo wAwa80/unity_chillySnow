@@ -9,6 +9,6 @@ public sealed class RestorePurchasesButton : MonoBehaviour
 
 	private void OnClick()
 	{
-		Juice.store.RestorePurchases();
+		//Juice.store.RestorePurchases();
 	}
 }

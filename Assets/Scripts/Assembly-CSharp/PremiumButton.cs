@@ -32,7 +32,7 @@ public sealed class PremiumButton : MonoBehaviour
 		button = GetComponent<Button>();
 		button.onClick.AddListener(OnClick);
 		image = base.transform.GetChild(0).GetComponent<Image>();
-		Juice.store.RegisterProductBoughtEvent(OnProductBought);
+		//Juice.store.RegisterProductBoughtEvent(OnProductBought);
 	}
 
 	private void OnClick()
@@ -44,7 +44,7 @@ public sealed class PremiumButton : MonoBehaviour
 	{
 		if (product == Settings.Get().premium || product == Settings.Get().premiumDeal)
 		{
-			Juice.store.UnregisterProductBoughtEvent(OnProductBought);
+			//Juice.store.UnregisterProductBoughtEvent(OnProductBought);
 			Module<Ads>.GetInstance().ForceNoFuckingAds();
 			Object.DestroyImmediate(base.gameObject);
 		}

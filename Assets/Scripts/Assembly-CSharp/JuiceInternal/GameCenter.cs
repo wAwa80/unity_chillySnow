@@ -1,4 +1,4 @@
-using GooglePlayGames;
+//using GooglePlayGames;
 using UnityEngine;
 
 namespace JuiceInternal
@@ -10,7 +10,7 @@ namespace JuiceInternal
 		protected override void OnSetup()
 		{
 			Module<GameCenter>.LogMessage("Activating Play Games Platform");
-			PlayGamesPlatform.Activate();
+			//PlayGamesPlatform.Activate();
 			Module<GameCenter>.LogMessage("Play Games Platform activated");
 		}
 

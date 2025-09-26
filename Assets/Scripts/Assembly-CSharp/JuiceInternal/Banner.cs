@@ -62,10 +62,10 @@ namespace JuiceInternal
 			Log.Message("Ads - Banner", $"{eventName} event received");
 		}
 
-		private void LogEvent(string eventName, IronSourceError error)
-		{
-			Log.Message("Ads - Banner", $"{eventName} event received with error \"{error.getDescription()}\" (Code {error.getCode()} - Error {error.getErrorCode()})");
-		}
+		//private void LogEvent(string eventName, IronSourceError error)
+		//{
+		//	Log.Message("Ads - Banner", $"{eventName} event received with error \"{error.getDescription()}\" (Code {error.getCode()} - Error {error.getErrorCode()})");
+		//}
 
 		private void Awake()
 		{
@@ -77,13 +77,13 @@ namespace JuiceInternal
 			if (!turnedOn && !Ads.forceNoFuckingAds && !Module<Premium>.GetInstance().IsPremium())
 			{
 				turnedOn = true;
-				IronSourceEvents.onBannerAdLoadedEvent += OnBannerLoaded;
-				IronSourceEvents.onBannerAdLoadFailedEvent += OnBannerFailedToLoad;
-				IronSourceEvents.onBannerAdScreenPresentedEvent += OnBannerShown;
-				IronSourceEvents.onBannerAdClickedEvent += OnBannerClicked;
-				IronSourceEvents.onBannerAdScreenDismissedEvent += OnBannerClosed;
-				IronSourceEvents.onBannerAdLeftApplicationEvent += OnBannerLeftApplication;
-				IronSource.Agent.loadBanner(IronSourceBannerSize.BANNER, IronSourceBannerPosition.BOTTOM);
+				//IronSourceEvents.onBannerAdLoadedEvent += OnBannerLoaded;
+				//IronSourceEvents.onBannerAdLoadFailedEvent += OnBannerFailedToLoad;
+				//IronSourceEvents.onBannerAdScreenPresentedEvent += OnBannerShown;
+				//IronSourceEvents.onBannerAdClickedEvent += OnBannerClicked;
+				//IronSourceEvents.onBannerAdScreenDismissedEvent += OnBannerClosed;
+				//IronSourceEvents.onBannerAdLeftApplicationEvent += OnBannerLeftApplication;
+				//IronSource.Agent.loadBanner(IronSourceBannerSize.BANNER, IronSourceBannerPosition.BOTTOM);
 			}
 		}
 
@@ -92,14 +92,14 @@ namespace JuiceInternal
 			if (turnedOn)
 			{
 				turnedOn = false;
-				IronSourceEvents.onBannerAdLoadedEvent -= OnBannerLoaded;
-				IronSourceEvents.onBannerAdLoadFailedEvent -= OnBannerFailedToLoad;
-				IronSourceEvents.onBannerAdScreenPresentedEvent -= OnBannerShown;
-				IronSourceEvents.onBannerAdClickedEvent -= OnBannerClicked;
-				IronSourceEvents.onBannerAdScreenDismissedEvent -= OnBannerClosed;
-				IronSourceEvents.onBannerAdLeftApplicationEvent -= OnBannerLeftApplication;
-				base.enabled = false;
-				IronSource.Agent.destroyBanner();
+				//IronSourceEvents.onBannerAdLoadedEvent -= OnBannerLoaded;
+				//IronSourceEvents.onBannerAdLoadFailedEvent -= OnBannerFailedToLoad;
+				//IronSourceEvents.onBannerAdScreenPresentedEvent -= OnBannerShown;
+				//IronSourceEvents.onBannerAdClickedEvent -= OnBannerClicked;
+				//IronSourceEvents.onBannerAdScreenDismissedEvent -= OnBannerClosed;
+				//IronSourceEvents.onBannerAdLeftApplicationEvent -= OnBannerLeftApplication;
+				//base.enabled = false;
+				//IronSource.Agent.destroyBanner();
 				if (currentBackground != null)
 				{
 					Object.Destroy(currentBackground);
@@ -127,10 +127,10 @@ namespace JuiceInternal
 			base.enabled = true;
 		}
 
-		private void OnBannerFailedToLoad(IronSourceError error)
-		{
-			LogEvent("OnBannerFailedToLoad", error);
-		}
+		//private void OnBannerFailedToLoad(IronSourceError error)
+		//{
+		//	LogEvent("OnBannerFailedToLoad", error);
+		//}
 
 		private void OnBannerShown()
 		{

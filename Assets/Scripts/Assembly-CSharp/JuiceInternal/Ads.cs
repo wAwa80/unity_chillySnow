@@ -26,7 +26,7 @@ namespace JuiceInternal
 
 		protected override void OnGameStarted()
 		{
-			IronSource.Agent.setConsent(GDPR.perosnalizedAdsConsent);
+			//IronSource.Agent.setConsent(GDPR.perosnalizedAdsConsent);
 			Module<Store>.GetInstance().RegisterProductBoughtEvent(OnPurchased);
 			if (GDPR.termsConsent)
 			{
@@ -36,14 +36,14 @@ namespace JuiceInternal
 
 		private void OnPersonalizedAdsConsentChanged(bool consent)
 		{
-			IronSource.Agent.setConsent(consent);
+			//IronSource.Agent.setConsent(consent);
 		}
 
 		private void OnTermsConsentChanged(bool consent)
 		{
 			if (consent)
 			{
-				IronSource.Agent.setConsent(GDPR.perosnalizedAdsConsent);
+				//IronSource.Agent.setConsent(GDPR.perosnalizedAdsConsent);
 				Initialize();
 			}
 		}
@@ -53,14 +53,14 @@ namespace JuiceInternal
 			Module<Ads>.LogMessage("Initializing...");
 			if (Settings.Get().debug)
 			{
-				IronSource.Agent.setAdaptersDebug(enabled: true);
-				IronSource.Agent.validateIntegration();
+				//IronSource.Agent.setAdaptersDebug(enabled: true);
+				//IronSource.Agent.validateIntegration();
 			}
-			MetaData metaData = new MetaData("gdpr");
-			metaData.Set("consent", "true");
-			Advertisement.SetMetaData(metaData);
-			IronSource.Agent.init(Settings.Get().ironSourceAndroidAppID);
-			IronSource.Agent.shouldTrackNetworkState(track: true);
+			//MetaData metaData = new MetaData("gdpr");
+			//metaData.Set("consent", "true");
+			//Advertisement.SetMetaData(metaData);
+			//IronSource.Agent.init(Settings.Get().ironSourceAndroidAppID);
+			//IronSource.Agent.shouldTrackNetworkState(track: true);
 			Object.DontDestroyOnLoad(Object.Instantiate(Resources.Load<GameObject>("IronSourceEventsPrefab")));
 			if (Module<Premium>.GetInstance().IsPremium() || forceNoFuckingAds)
 			{
@@ -97,7 +97,7 @@ namespace JuiceInternal
 		{
 			if (initialized)
 			{
-				IronSource.Agent.onApplicationPause(isPaused);
+				//IronSource.Agent.onApplicationPause(isPaused);
 			}
 		}
 	}

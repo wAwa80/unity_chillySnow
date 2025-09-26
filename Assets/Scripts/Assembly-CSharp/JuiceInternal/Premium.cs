@@ -16,8 +16,8 @@ namespace JuiceInternal
 
 		protected override void OnSetup()
 		{
-			isPremium = Store.IsOwned(Settings.Get().premium) || Store.IsOwned(Settings.Get().premiumDeal);
-			ticks = PlayerPrefs.GetInt("0612790575264219705", 0);
+            //isPremium = Store.IsOwned(Settings.Get().premium) || Store.IsOwned(Settings.Get().premiumDeal);
+            ticks = PlayerPrefs.GetInt("0612790575264219705", 0);
 		}
 
 		protected override void OnGameStarted()
@@ -38,7 +38,7 @@ namespace JuiceInternal
 
 		public void Buy()
 		{
-			Module<Store>.GetInstance().Buy(Settings.Get().premium);
+			//Module<Store>.GetInstance().Buy(Settings.Get().premium);
 		}
 
 		public void TryShowDeal()

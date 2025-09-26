@@ -5,7 +5,7 @@ using UnityEngine.Purchasing;
 
 namespace JuiceInternal
 {
-	public sealed class Store : Module<Store>, IStoreListener
+	public sealed class Store : Module<Store> //, IStoreListener
 	{
 		private class ProductBoughtEvent : UnityEvent<string, bool>
 		{
@@ -19,9 +19,9 @@ namespace JuiceInternal
 
 		private static bool dataLoaded;
 
-		private IStoreController m_StoreController;
+		//private IStoreController m_StoreController;
 
-		private IExtensionProvider m_StoreExtensionProvider;
+		//private IExtensionProvider m_StoreExtensionProvider;
 
 		private ProductBoughtEvent OnProductBought = new ProductBoughtEvent();
 
@@ -69,14 +69,14 @@ namespace JuiceInternal
 		protected override void OnSetup()
 		{
 			LoadData();
-			ConfigurationBuilder configurationBuilder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
-			Settings settings = Settings.Get();
+            //ConfigurationBuilder configurationBuilder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
+            Settings settings = Settings.Get();
 			string[] consumableProducts = settings.consumableProducts;
 			foreach (string text in consumableProducts)
 			{
 				if (!string.IsNullOrEmpty(text))
 				{
-					configurationBuilder.AddProduct(text, ProductType.Consumable);
+					//configurationBuilder.AddProduct(text, ProductType.Consumable);
 					Module<Store>.LogMessage(string.Format("Added consumable product \"{0}\" : {1}", text, (!IsOwned(text)) ? "NOT OWNED" : "OWNED"));
 				}
 			}
@@ -85,7 +85,7 @@ namespace JuiceInternal
 			{
 				if (!string.IsNullOrEmpty(text2))
 				{
-					configurationBuilder.AddProduct(text2, ProductType.NonConsumable);
+					//configurationBuilder.AddProduct(text2, ProductType.NonConsumable);
 					Module<Store>.LogMessage(string.Format("Added non consumable product \"{0}\" : {1}", text2, (!IsOwned(text2)) ? "NOT OWNED" : "OWNED"));
 				}
 			}
@@ -94,12 +94,12 @@ namespace JuiceInternal
 			{
 				if (!string.IsNullOrEmpty(text3))
 				{
-					configurationBuilder.AddProduct(text3, ProductType.Subscription);
+					//configurationBuilder.AddProduct(text3, ProductType.Subscription);
 					Module<Store>.LogMessage(string.Format("Added subscription product \"{0}\" : {1}", text3, (!IsOwned(text3)) ? "NOT OWNED" : "OWNED"));
 				}
 			}
 			Module<Store>.LogMessage("Configuring Unity IAP");
-			UnityPurchasing.Initialize(this, configurationBuilder);
+			//UnityPurchasing.Initialize(this, configurationBuilder);
 		}
 
 		public void RegisterProductBoughtEvent(UnityAction<string, bool> callback)
@@ -112,31 +112,31 @@ namespace JuiceInternal
 			OnProductBought.RemoveListener(callback);
 		}
 
-		public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
-		{
-			Module<Store>.LogMessage("Unity IAP Initialized successfully");
-			m_StoreController = controller;
-			m_StoreExtensionProvider = extensions;
-			Product[] all = controller.products.all;
-			foreach (Product product in all)
-			{
-				if (product.hasReceipt && !OWNED_PRODUCTS.Contains(product.definition.id))
-				{
-					OnProductPurchased(product.definition.id);
-				}
-			}
-			initialized = true;
-		}
+		//public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
+		//{
+		//	Module<Store>.LogMessage("Unity IAP Initialized successfully");
+		//	m_StoreController = controller;
+		//	m_StoreExtensionProvider = extensions;
+		//	Product[] all = controller.products.all;
+		//	foreach (Product product in all)
+		//	{
+		//		if (product.hasReceipt && !OWNED_PRODUCTS.Contains(product.definition.id))
+		//		{
+		//			OnProductPurchased(product.definition.id);
+		//		}
+		//	}
+		//	initialized = true;
+		//}
 
 		public bool IsInitialized()
 		{
-			return m_StoreController != null;
+			return false;// m_StoreController != null;
 		}
 
-		public void OnInitializeFailed(InitializationFailureReason error)
-		{
-			Module<Store>.LogDebugWarning($"Failed to properly initialize Unity IAP. Reason was \"{error.ToString()}\"");
-		}
+		//public void OnInitializeFailed(InitializationFailureReason error)
+		//{
+		//	Module<Store>.LogDebugWarning($"Failed to properly initialize Unity IAP. Reason was \"{error.ToString()}\"");
+		//}
 
 		public void Buy(string productID)
 		{
@@ -145,21 +145,21 @@ namespace JuiceInternal
 				Module<Store>.LogDebugWarning($"Cannot buy product \"{productID}\" while the store is not initialized");
 				return;
 			}
-			Product product = m_StoreController.products.WithID(productID);
-			if (product == null || !product.availableToPurchase)
-			{
-				Module<Store>.LogDebugWarning($"Uknown or unavailable product \"{productID}\"");
-				return;
-			}
-			Module<Store>.LogMessage($"Purchasing product \"{productID}\"");
-			if (Settings.Get().debug)
-			{
-				OnProductPurchased(productID);
-			}
-			else
-			{
-				m_StoreController.InitiatePurchase(product);
-			}
+			//Product product = m_StoreController.products.WithID(productID);
+			//if (product == null || !product.availableToPurchase)
+			//{
+			//	Module<Store>.LogDebugWarning($"Uknown or unavailable product \"{productID}\"");
+			//	return;
+			//}
+			//Module<Store>.LogMessage($"Purchasing product \"{productID}\"");
+			//if (Settings.Get().debug)
+			//{
+			//	OnProductPurchased(productID);
+			//}
+			//else
+			//{
+			//	m_StoreController.InitiatePurchase(product);
+			//}
 		}
 
 		public void RestorePurchases()
@@ -171,11 +171,11 @@ namespace JuiceInternal
 			else if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.OSXPlayer)
 			{
 				Module<Store>.LogMessage("Purchase restore request received");
-				IAppleExtensions extension = m_StoreExtensionProvider.GetExtension<IAppleExtensions>();
-				extension.RestoreTransactions(delegate(bool result)
-				{
-					Module<Store>.LogMessage($"Restoring pruchases : \"{result}\"");
-				});
+				//IAppleExtensions extension = m_StoreExtensionProvider.GetExtension<IAppleExtensions>();
+				//extension.RestoreTransactions(delegate(bool result)
+				//{
+				//	Module<Store>.LogMessage($"Restoring pruchases : \"{result}\"");
+				//});
 			}
 			else
 			{
@@ -183,13 +183,13 @@ namespace JuiceInternal
 			}
 		}
 
-		public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
-		{
-			string id = args.purchasedProduct.definition.id;
-			OnProductPurchased(id);
-			Module<Analytics>.GetInstance().SendDesignEvent("IAP:Purchased:" + id);
-			return PurchaseProcessingResult.Complete;
-		}
+		//public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
+		//{
+		//	string id = args.purchasedProduct.definition.id;
+		//	OnProductPurchased(id);
+		//	Module<Analytics>.GetInstance().SendDesignEvent("IAP:Purchased:" + id);
+		//	return PurchaseProcessingResult.Complete;
+		//}
 
 		private void OnProductPurchased(string productID)
 		{
@@ -202,35 +202,36 @@ namespace JuiceInternal
 			OnProductBought.Invoke(productID, arg1: true);
 		}
 
-		public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
-		{
-			if (failureReason == PurchaseFailureReason.UserCancelled)
-			{
-				Module<Analytics>.GetInstance().SendDesignEvent("IAP:Canceled:" + product.definition.id);
-			}
-			else
-			{
-				Module<Store>.LogDebugWarning($"Failed to buy product \"{product.definition.storeSpecificId}\" for reason \"{failureReason}\"");
-			}
-		}
+		//public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
+		//{
+		//	if (failureReason == PurchaseFailureReason.UserCancelled)
+		//	{
+		//		Module<Analytics>.GetInstance().SendDesignEvent("IAP:Canceled:" + product.definition.id);
+		//	}
+		//	else
+		//	{
+		//		Module<Store>.LogDebugWarning($"Failed to buy product \"{product.definition.storeSpecificId}\" for reason \"{failureReason}\"");
+		//	}
+		//}
 
 		public string GetLocalizedProductPrice(string productID)
 		{
-			if (m_StoreController == null)
-			{
-				return null;
-			}
-			Product product = m_StoreController.products.WithID(productID);
-			if (product == null)
-			{
-				return null;
-			}
-			string localizedPriceString = product.metadata.localizedPriceString;
-			if (string.IsNullOrEmpty(localizedPriceString))
-			{
-				return "-,--";
-			}
-			return localizedPriceString;
+			return null;
+			//if (m_StoreController == null)
+			//{
+			//	return null;
+			//}
+			//Product product = m_StoreController.products.WithID(productID);
+			//if (product == null)
+			//{
+			//	return null;
+			//}
+			//string localizedPriceString = product.metadata.localizedPriceString;
+			//if (string.IsNullOrEmpty(localizedPriceString))
+			//{
+			//	return "-,--";
+			//}
+			//return localizedPriceString;
 		}
 	}
 }

@@ -30,10 +30,10 @@ namespace JuiceInternal
 			Log.Message("Ads - Interstitial", $"{eventName} event received");
 		}
 
-		private void LogEvent(string eventName, IronSourceError error)
-		{
-			Log.Message("Ads - Interstitial", $"{eventName} event received with error \"{error.getDescription()}\" (Code {error.getCode()} - Error {error.getErrorCode()})");
-		}
+		//private void LogEvent(string eventName, IronSourceError error)
+		//{
+		//	Log.Message("Ads - Interstitial", $"{eventName} event received with error \"{error.getDescription()}\" (Code {error.getCode()} - Error {error.getErrorCode()})");
+		//}
 
 		private void Awake()
 		{
@@ -45,13 +45,13 @@ namespace JuiceInternal
 			if (!turnedOn && !Ads.forceNoFuckingAds && !Module<Premium>.GetInstance().IsPremium())
 			{
 				turnedOn = true;
-				IronSourceEvents.onInterstitialAdReadyEvent += OnInterstitialLoadedEvent;
-				IronSourceEvents.onInterstitialAdLoadFailedEvent += OnInterstitialFailedToLoadEvent;
-				IronSourceEvents.onInterstitialAdShowSucceededEvent += OnInterstitialShownEvent;
-				IronSourceEvents.onInterstitialAdShowFailedEvent += OnInterstitialFailedToShowEvent;
-				IronSourceEvents.onInterstitialAdOpenedEvent += OnInterstitialOpenedEvent;
-				IronSourceEvents.onInterstitialAdClickedEvent += OnInterstitialClickedEvent;
-				IronSourceEvents.onInterstitialAdClosedEvent += OnInterstitialClosedEvent;
+				//IronSourceEvents.onInterstitialAdReadyEvent += OnInterstitialLoadedEvent;
+				//IronSourceEvents.onInterstitialAdLoadFailedEvent += OnInterstitialFailedToLoadEvent;
+				//IronSourceEvents.onInterstitialAdShowSucceededEvent += OnInterstitialShownEvent;
+				//IronSourceEvents.onInterstitialAdShowFailedEvent += OnInterstitialFailedToShowEvent;
+				//IronSourceEvents.onInterstitialAdOpenedEvent += OnInterstitialOpenedEvent;
+				//IronSourceEvents.onInterstitialAdClickedEvent += OnInterstitialClickedEvent;
+				//IronSourceEvents.onInterstitialAdClosedEvent += OnInterstitialClosedEvent;
 				base.enabled = true;
 				interstitialTimer = Time.unscaledTime + (float)Settings.Get().firstAdPopAtSecond;
 			}
@@ -62,13 +62,13 @@ namespace JuiceInternal
 			if (turnedOn)
 			{
 				turnedOn = false;
-				IronSourceEvents.onInterstitialAdReadyEvent -= OnInterstitialLoadedEvent;
-				IronSourceEvents.onInterstitialAdLoadFailedEvent -= OnInterstitialFailedToLoadEvent;
-				IronSourceEvents.onInterstitialAdShowSucceededEvent -= OnInterstitialShownEvent;
-				IronSourceEvents.onInterstitialAdShowFailedEvent -= OnInterstitialFailedToShowEvent;
-				IronSourceEvents.onInterstitialAdOpenedEvent -= OnInterstitialOpenedEvent;
-				IronSourceEvents.onInterstitialAdClickedEvent -= OnInterstitialClickedEvent;
-				IronSourceEvents.onInterstitialAdClosedEvent -= OnInterstitialClosedEvent;
+				//IronSourceEvents.onInterstitialAdReadyEvent -= OnInterstitialLoadedEvent;
+				//IronSourceEvents.onInterstitialAdLoadFailedEvent -= OnInterstitialFailedToLoadEvent;
+				//IronSourceEvents.onInterstitialAdShowSucceededEvent -= OnInterstitialShownEvent;
+				//IronSourceEvents.onInterstitialAdShowFailedEvent -= OnInterstitialFailedToShowEvent;
+				//IronSourceEvents.onInterstitialAdOpenedEvent -= OnInterstitialOpenedEvent;
+				//IronSourceEvents.onInterstitialAdClickedEvent -= OnInterstitialClickedEvent;
+				//IronSourceEvents.onInterstitialAdClosedEvent -= OnInterstitialClosedEvent;
 				base.enabled = false;
 			}
 		}
@@ -93,7 +93,7 @@ namespace JuiceInternal
 					return;
 				}
 				requesting = true;
-				IronSource.Agent.loadInterstitial();
+				//IronSource.Agent.loadInterstitial();
 			}
 		}
 
@@ -110,7 +110,7 @@ namespace JuiceInternal
 				return;
 			}
 			this.callback = callback;
-			IronSource.Agent.showInterstitial();
+			//IronSource.Agent.showInterstitial();
 			Invoke("InCaseShowFailed", 2f);
 		}
 
@@ -131,11 +131,11 @@ namespace JuiceInternal
 			ready = true;
 		}
 
-		private void OnInterstitialFailedToLoadEvent(IronSourceError error)
-		{
-			LogEvent("OnInterstitialFailedToLoadEvent", error);
-			requesting = false;
-		}
+		//private void OnInterstitialFailedToLoadEvent(IronSourceError error)
+		//{
+		//	LogEvent("OnInterstitialFailedToLoadEvent", error);
+		//	requesting = false;
+		//}
 
 		private void OnInterstitialShownEvent()
 		{
@@ -144,11 +144,11 @@ namespace JuiceInternal
 			CancelInvoke();
 		}
 
-		private void OnInterstitialFailedToShowEvent(IronSourceError error)
-		{
-			LogEvent("OnInterstitialFailedToShowEvent", error);
-			ready = false;
-		}
+		//private void OnInterstitialFailedToShowEvent(IronSourceError error)
+		//{
+		//	LogEvent("OnInterstitialFailedToShowEvent", error);
+		//	ready = false;
+		//}
 
 		private void OnInterstitialOpenedEvent()
 		{

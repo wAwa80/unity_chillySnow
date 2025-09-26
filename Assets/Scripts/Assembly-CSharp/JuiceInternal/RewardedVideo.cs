@@ -24,21 +24,21 @@ namespace JuiceInternal
 			Log.Message("Ads - Rewarded Video", $"{eventName} event received");
 		}
 
-		private void LogEvent(string eventName, IronSourceError error)
-		{
-			Log.Message("Ads - Rewarded Video", $"{eventName} event received with error \"{error.getDescription()}\" (Code {error.getCode()} - Error {error.getErrorCode()})");
-		}
+		//private void LogEvent(string eventName, IronSourceError error)
+		//{
+		//	Log.Message("Ads - Rewarded Video", $"{eventName} event received with error \"{error.getDescription()}\" (Code {error.getCode()} - Error {error.getErrorCode()})");
+		//}
 
 		public void RegisterEvents()
 		{
-			IronSourceEvents.onRewardedVideoAdOpenedEvent += OnRewardedVideoOpenedEvent;
-			IronSourceEvents.onRewardedVideoAdClosedEvent += OnRewardedVideoClosedEvent;
-			IronSourceEvents.onRewardedVideoAvailabilityChangedEvent += OnRewardedVideoAvailabilityChangedEvent;
-			IronSourceEvents.onRewardedVideoAdStartedEvent += OnRewardedVideoStartedEvent;
-			IronSourceEvents.onRewardedVideoAdEndedEvent += OnRewardedVideoEndedEvent;
-			IronSourceEvents.onRewardedVideoAdRewardedEvent += OnRewardedVideoRewardedEvent;
-			IronSourceEvents.onRewardedVideoAdShowFailedEvent += OnRewardedVideoFailedToShowEvent;
-			IronSourceEvents.onRewardedVideoAdClickedEvent += OnRewardedVideoClickedEvent;
+			//IronSourceEvents.onRewardedVideoAdOpenedEvent += OnRewardedVideoOpenedEvent;
+			//IronSourceEvents.onRewardedVideoAdClosedEvent += OnRewardedVideoClosedEvent;
+			//IronSourceEvents.onRewardedVideoAvailabilityChangedEvent += OnRewardedVideoAvailabilityChangedEvent;
+			//IronSourceEvents.onRewardedVideoAdStartedEvent += OnRewardedVideoStartedEvent;
+			//IronSourceEvents.onRewardedVideoAdEndedEvent += OnRewardedVideoEndedEvent;
+			//IronSourceEvents.onRewardedVideoAdRewardedEvent += OnRewardedVideoRewardedEvent;
+			//IronSourceEvents.onRewardedVideoAdShowFailedEvent += OnRewardedVideoFailedToShowEvent;
+			//IronSourceEvents.onRewardedVideoAdClickedEvent += OnRewardedVideoClickedEvent;
 		}
 
 		private void Update()
@@ -69,7 +69,7 @@ namespace JuiceInternal
 
 		public bool IsReady()
 		{
-			return IronSource.Agent.isRewardedVideoAvailable();
+			return false;// IronSource.Agent.isRewardedVideoAvailable();
 		}
 
 		public void Show(Action<bool> callback)
@@ -82,7 +82,7 @@ namespace JuiceInternal
 			pleaseFireCallback = false;
 			willCancelReward = 0f;
 			this.callback = callback;
-			IronSource.Agent.showRewardedVideo();
+			//IronSource.Agent.showRewardedVideo();
 			Invoke("InCaseShowFailed", 2f);
 		}
 
@@ -122,28 +122,28 @@ namespace JuiceInternal
 			LogEvent("OnRewardedVideoStartedEvent");
 		}
 
-		private void OnRewardedVideoClickedEvent(IronSourcePlacement placement)
-		{
-			LogEvent("OnRewardedVideoClickedEvent");
-			Module<Analytics>.GetInstance().SendDesignEvent("Ads:RewardedVideo:Clicked");
-		}
+		//private void OnRewardedVideoClickedEvent(IronSourcePlacement placement)
+		//{
+		//	LogEvent("OnRewardedVideoClickedEvent");
+		//	Module<Analytics>.GetInstance().SendDesignEvent("Ads:RewardedVideo:Clicked");
+		//}
 
-		private void OnRewardedVideoEndedEvent()
-		{
-			LogEvent("OnRewardedVideoEndedEvent");
-		}
+		//private void OnRewardedVideoEndedEvent()
+		//{
+		//	LogEvent("OnRewardedVideoEndedEvent");
+		//}
 
-		private void OnRewardedVideoRewardedEvent(IronSourcePlacement placement)
-		{
-			LogEvent("OnRewardedVideoRewardedEvent");
-			pleaseFireCallback = true;
-		}
+		//private void OnRewardedVideoRewardedEvent(IronSourcePlacement placement)
+		//{
+		//	LogEvent("OnRewardedVideoRewardedEvent");
+		//	pleaseFireCallback = true;
+		//}
 
-		private void OnRewardedVideoFailedToShowEvent(IronSourceError error)
-		{
-			LogEvent("OnRewardedVideoFailedToShowEvent", error);
-			CancelInvoke();
-			willCancelReward = Time.unscaledTime;
-		}
+		//private void OnRewardedVideoFailedToShowEvent(IronSourceError error)
+		//{
+		//	LogEvent("OnRewardedVideoFailedToShowEvent", error);
+		//	CancelInvoke();
+		//	willCancelReward = Time.unscaledTime;
+		//}
 	}
 }
