@@ -2,7 +2,14 @@ using UnityEngine;
 
 namespace JuiceInternal
 {
-	public class ModuleBase : MonoBehaviour
+	public abstract class ModuleBase : MonoBehaviour
 	{
+		protected virtual void OnSetup()
+		{
+		}
+
+		protected virtual void OnGameStarted()
+		{
+		}
 	}
 }

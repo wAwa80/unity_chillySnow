@@ -2,75 +2,138 @@ using UnityEngine;
 
 namespace JuiceInternal
 {
-	public class Settings : ScriptableObject
+	public sealed class Settings : ScriptableObject
 	{
+		private static Settings instance;
+
+		[Header("General")]
 		[SerializeField]
-		public bool debug;
+		public bool debug = true;
+
 		[SerializeField]
-		public bool resetOnStart;
+		public bool resetOnStart = true;
+
+		[Space]
 		[SerializeField]
-		public string gameName;
+		public string gameName = "DEFAULT NAME";
+
 		[SerializeField]
-		public string gameBundle;
+		public string gameBundle = "com.default.bundle";
+
+		[Space]
 		[SerializeField]
-		public string gameVersion;
+		public string gameVersion = "1.0";
+
 		[SerializeField]
-		public int gameBuild;
+		public int gameBuild = 1;
+
+		[Space]
+		[Header("Analytics")]
 		[SerializeField]
-		public string[] ABTestCohorts;
+		public string[] ABTestCohorts = new string[0];
+
 		[SerializeField]
-		public float ABTestCohortPercentage;
+		public float ABTestCohortPercentage = 0.05f;
+
+		[Header("Facebook")]
 		[SerializeField]
-		public string facebookAppID;
+		public string facebookAppID = string.Empty;
+
+		[Header("GameAnalytics")]
 		[SerializeField]
-		public string iOSGameKey;
+		public string iOSGameKey = string.Empty;
+
 		[SerializeField]
-		public string iOSSecretKey;
+		public string iOSSecretKey = string.Empty;
+
 		[SerializeField]
-		public string androidGameKey;
+		public string androidGameKey = string.Empty;
+
 		[SerializeField]
-		public string androidSecretKey;
+		public string androidSecretKey = string.Empty;
+
 		[SerializeField]
-		public string[] customDimensions01;
+		public string[] customDimensions01 = new string[0];
+
 		[SerializeField]
-		public string[] customDimensions02;
+		public string[] customDimensions02 = new string[0];
+
 		[SerializeField]
-		public string[] customDimensions03;
+		public string[] customDimensions03 = new string[0];
+
 		[SerializeField]
-		public string[] resourceCurrencies;
+		public string[] resourceCurrencies = new string[0];
+
 		[SerializeField]
-		public string[] resourceItemTypes;
+		public string[] resourceItemTypes = new string[0];
+
+		[Space]
+		[Header("Game Center")]
 		[SerializeField]
-		public string androidResourcesString;
+		public string androidResourcesString = string.Empty;
+
+		[Space]
+		[Header("In App Purchases")]
 		[SerializeField]
-		public string[] consumableProducts;
+		public string[] consumableProducts = new string[0];
+
 		[SerializeField]
-		public string[] nonConsumableProducts;
+		public string[] nonConsumableProducts = new string[0];
+
 		[SerializeField]
-		public string[] subscriptions;
+		public string[] subscriptions = new string[0];
+
+		[Space]
+		[Header("Premium")]
 		[SerializeField]
-		public string premium;
+		public string premium = string.Empty;
+
 		[SerializeField]
-		public string premiumDeal;
+		public string premiumDeal = string.Empty;
+
 		[SerializeField]
-		public int dealPopFirstAtTick;
+		public int dealPopFirstAtTick = 10;
+
 		[SerializeField]
-		public int dealPopThenEveryTick;
+		public int dealPopThenEveryTick = 10;
+
+		[Space]
+		[Header("Ads")]
 		[SerializeField]
-		public string ironSourceIOSAppID;
+		public string ironSourceIOSAppID = string.Empty;
+
 		[SerializeField]
-		public string ironSourceAndroidAppID;
+		public string ironSourceAndroidAppID = string.Empty;
+
+		[Space]
 		[SerializeField]
-		public string iOSAdMobAppID;
+		public string iOSAdMobAppID = string.Empty;
+
 		[SerializeField]
-		public string androidAdMobAppID;
+		public string androidAdMobAppID = string.Empty;
+
+		[Space]
 		[SerializeField]
-		public int firstAdPopAtSecond;
+		public int firstAdPopAtSecond = 40;
+
 		[SerializeField]
-		public int adThenPopEverySecond;
+		public int adThenPopEverySecond = 35;
+
+		[Space]
+		[Header("Rating")]
 		[SerializeField]
-		public string appStoreID;
+		public string appStoreID = string.Empty;
+
 		[SerializeField]
-		public int ratingShowsAtTick;
+		public int ratingShowsAtTick = 8;
+
+		public static Settings Get()
+		{
+			if (!instance)
+			{
+				instance = Resources.Load<Settings>("JuiceSettings");
+			}
+			return instance;
+		}
 	}
 }
