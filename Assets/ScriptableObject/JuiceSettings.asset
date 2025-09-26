@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60ebe074e7ad9eb44040d4330c5ae495, type: 3}
+  m_Name: JuiceSettings
+  m_EditorClassIdentifier:
+  debug: 0
+  resetOnStart: 0
+  gameName: Chilly Snow
+  gameBundle: com.acidcousins.chilly
+  gameVersion: 1.4.1
+  gameBuild: 141
+  ABTestCohorts: []
+  ABTestCohortPercentage: 0.05
+  facebookAppID: 133351990720456
+  iOSGameKey: 48542ac48a4280e865902667246a2b68
+  iOSSecretKey: 53f41b9125551afae9c2b5fb31fca506d5a70974
+  androidGameKey: 649600ff8bf7fc4979dba846bd7708ab
+  androidSecretKey: 3d7b789a66cbf8dc8c6637de68b788fab6725972
+  customDimensions01: []
+  customDimensions02: []
+  customDimensions03: []
+  resourceCurrencies: []
+  resourceItemTypes: []
+  androidResourcesString: '<?xml version="1.0" encoding="utf-8"?> <!-- Google Play game services IDs. Save this file as res/values/games-ids.xml in your project. --> <resources>   <!-- app_id -->   <string name="app_id" translatable="false">20338604698</string>   <!-- package_name -->   <string name="package_name" translatable="false">com.acidcousins.chilly</string>   <!-- leaderboard Score -->   <string name="leaderboard_score" translatable="false">CggImvWZ4ksQAhAA</string>   <!-- leaderboard Night Mode -->   <string name="leaderboard_night_mode" translatable="false">CggImvWZ4ksQAhAC</string> </resources>'
+  consumableProducts: []
+  nonConsumableProducts:
+  - chilly_noads
+  - chilly_noads_deal
+  subscriptions: []
+  premium: chilly_noads
+  premiumDeal: chilly_noads_deal
+  dealPopFirstAtTick: 10
+  dealPopThenEveryTick: 10
+  ironSourceIOSAppID: 9423a7fd
+  ironSourceAndroidAppID: 94204905
+  iOSAdMobAppID: ca-app-pub-1049984197106400~6684578061
+  androidAdMobAppID: ca-app-pub-1049984197106400~5636463540
+  firstAdPopAtSecond: 40
+  adThenPopEverySecond: 35
+  appStoreID: 1297701531
+  ratingShowsAtTick: 8

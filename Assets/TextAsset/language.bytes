@@ -1,0 +1,648 @@
+<document>
+
+    <text value="Best: &lt;size=50&gt;{0}&lt;/size&gt;">
+        <french>Best : &lt;size=50&gt;{0}&lt;/size&gt;</french>
+        <spanish>Récord: &lt;size=50&gt;{0}&lt;/size&gt;</spanish>
+        <portuguese>Melhor: &lt;size=50&gt;{0}&lt;/size&gt;</portuguese>
+        <italian>Record: &lt;size=50&gt;{0}&lt;/size&gt;</italian>
+        <german>Best: &lt;size=50&gt;{0}&lt;/size&gt;</german>
+        <chinesesimplified>最佳：&lt;size=50&gt;{0}&lt;/size&gt;</chinesesimplified>
+        <chinesetraditional>最佳分數：&lt;size=50&gt;{0}&lt;/size&gt;</chinesetraditional>
+        <japanese>ベスト：&lt;size=50&gt;{0}&lt;/size&gt;</japanese>
+        <russian>Рекорд: &lt;size=50&gt;{0}&lt;/size&gt;</russian>
+    </text>
+
+    <text value="Last: &lt;size=50&gt;{0}&lt;/size&gt;">
+        <french>Last : &lt;size=50&gt;{0}&lt;/size&gt;</french>
+        <spanish>Última: &lt;size=50&gt;{0}&lt;/size&gt;</spanish>
+        <portuguese>Último: &lt;size=50&gt;{0}&lt;/size&gt;</portuguese>
+        <italian>Ultimo: &lt;size=50&gt;{0}&lt;/size&gt;</italian>
+        <german>Last: &lt;size=50&gt;{0}&lt;/size&gt;</german>
+        <chinesesimplified>上次：&lt;size=50&gt;{0}&lt;/size&gt;</chinesesimplified>
+        <chinesetraditional>最後分數：&lt;size=50&gt;{0}&lt;/size&gt;</chinesetraditional>
+        <japanese>前回：&lt;size=50&gt;{0}&lt;/size&gt;</japanese>
+        <russian>Последний счет: &lt;size=50&gt;{0}&lt;/size&gt;</russian>
+    </text>
+
+    <text value="New best: {0}">
+        <french>Record battu : {0}</french>
+        <spanish>Nuevo récord: {0}</spanish>
+        <portuguese>Novo recorde: {0}</portuguese>
+        <italian>Nuovo record: {0}</italian>
+        <german>Neue Bestleistung: {0}</german>
+        <chinesesimplified>最佳新成绩：{0}</chinesesimplified>
+        <chinesetraditional>新最佳記錄：{0}</chinesetraditional>
+        <japanese>新記録：{0}</japanese>
+        <russian>Новый рекорд: {0}</russian>
+    </text>
+
+    <text value="Tap to continue">
+        <french>Tapoter pour continuer</french>
+        <spanish>Toca para continuar</spanish>
+        <portuguese>Toca para continuar</portuguese>
+        <italian>Tocca per continuare</italian>
+        <german>Tippe, um fortzufahren</german>
+        <chinesesimplified>点按以继续</chinesesimplified>
+        <chinesetraditional>按一下以繼續</chinesetraditional>
+        <japanese>タップでコンティニュー</japanese>
+        <russian>Коснитесь, чтобы продолжить</russian>
+    </text>
+
+    <text value="Tap to close">
+        <french>Tapoter pour fermer</french>
+        <spanish>Toca para cerrar</spanish>
+        <portuguese>Toca para fechar</portuguese>
+        <italian>Tocca per chiudere</italian>
+        <german>Zum Schließen tippen</german>
+        <chinesesimplified>点击关闭</chinesesimplified>
+        <chinesetraditional>按一下以關閉</chinesetraditional>
+        <japanese>タップして閉じる</japanese>
+        <russian>Коснитесь, чтобы закрыть</russian>
+    </text>
+
+    <text value="OK">
+        <french>OK</french>
+        <spanish>Vale</spanish>
+        <portuguese>OK</portuguese>
+        <italian>OK</italian>
+        <german>OK</german>
+        <chinesesimplified>确定</chinesesimplified>
+        <chinesetraditional>確定</chinesetraditional>
+        <japanese>OK</japanese>
+        <russian>ОК</russian>
+    </text>
+
+    <text value="How would you rate Chilly Snow?">
+        <french>Quelle note donnerais-tu à Chilly Snow ?</french>
+        <spanish>¿Qué te ha parecido Chilly Snow?</spanish>
+        <portuguese>Como classificarias o Chilly Snow?</portuguese>
+        <italian>Che voto daresti a Chilly Snow?</italian>
+        <german>Wie findest du Chilly Snow?</german>
+        <chinesesimplified>您要如何评价Chilly Snow？</chinesesimplified>
+        <chinesetraditional>你會為Chilly Snow評幾分呢？</chinesetraditional>
+        <japanese>Chilly Snowの評価にご協力ください！</japanese>
+        <russian>Оцените Chilly Snow!</russian>
+    </text>
+
+    <text value="Thanks for your precious feedback! We will do our best to improve Chilly Snow!">
+        <french>Merci pour ton précieux retour, nous allons faire de notre mieux pour améliorer Chilly Snow !</french>
+        <spanish>¡Gracias por tu valioso comentario! ¡Nos esforzaremos por mejorar Chilly Snow!</spanish>
+        <portuguese>Obrigado pelos comentários preciosos! Faremos o que pudermos para melhorar o Chilly Snow!</portuguese>
+        <italian>Grazie per la tua opinione! Faremo del nostro meglio per migliorare Chilly Snow!</italian>
+        <german>Danke für dein Feedback! Wir geben unser Bestes, um Chilly Snow noch besser zu machen!</german>
+        <chinesesimplified>感谢您提供宝贵的反馈意见！我们将尽力完善Chilly Snow！</chinesesimplified>
+        <chinesetraditional>感謝你的寶貴意見！我們會盡全力升級Chilly Snow！</chinesetraditional>
+        <japanese>貴重なフィードバックをありがとうございます！今後ともChilly Snowの改善に取り組んでまいります！</japanese>
+        <russian>Спасибо за отзыв! Мы приложим все усилия, чтобы сделать Chilly Snow еще лучше!</russian>
+    </text>
+
+    <text value="Support">
+        <french>Assistance</french>
+        <spanish>Ayuda</spanish>
+        <portuguese>Suporte</portuguese>
+        <italian>Supporto</italian>
+        <german>Support</german>
+        <chinesesimplified>客服支持</chinesesimplified>
+        <chinesetraditional>客服支持</chinesetraditional>
+        <japanese>サポート</japanese>
+        <russian>Поддержка</russian>
+    </text>
+
+    <text value="Server unreachable">
+        <french>Serveur injoignable</french>
+        <spanish>Servidor no disponible</spanish>
+        <portuguese>Não é possível aceder ao servidor</portuguese>
+        <italian>Server non raggiungibile</italian>
+        <german>Server nicht erreichbar</german>
+        <chinesesimplified>服务器不可用</chinesesimplified>
+        <chinesetraditional>伺服器無法連結</chinesetraditional>
+        <japanese>サーバーに接続できません</japanese>
+        <russian>Сервер недоступен</russian>
+    </text>
+
+    <text value="Unable to reach the servers. Please check your Internet connection and try again.">
+        <french>Impossible de joindre les serveurs. Vérifiez votre connexion Internet et réessayez.</french>
+        <spanish>No se puede conectar con el servidor. Comprueba tu conexión e inténtalo de nuevo.</spanish>
+        <portuguese>Não é possível aceder aos servidores. Verifica a tua ligação à Internet e tenta de novo.</portuguese>
+        <italian>Impossibile raggiungere il server. Controlla la tua connessione internet e riprova.</italian>
+        <german>Server kann nicht erreicht werden. Bitte kontrolliere deine Internetverbindung und versuche es erneut.</german>
+        <chinesesimplified>无法连接到服务器。请检查您的网络连接然后重试。</chinesesimplified>
+        <chinesetraditional>無法連結到伺服器。請檢查網路連線後再試一次。</chinesetraditional>
+        <japanese>サーバーに接続できません。インターネット接続をご確認のうえ、もう一度お試しください。</japanese>
+        <russian>Невозможно подключиться к серверу. Проверьте соединение с Интернетом и попробуйте еще раз.</russian>
+    </text>
+	
+	<text value="Quick press">
+		<french>Tap rapide</french>
+		<spanish>Pulsación corta</spanish>
+		<portuguese>Aperto rápido</portuguese>
+		<italian>Premi rapidamente</italian>
+		<german>Schnell drücken</german>
+		<chinesesimplified>短按</chinesesimplified>
+		<chinesetraditional>快按</chinesetraditional>
+		<japanese>素早く押す</japanese>
+		<russian>Быстрое нажатие</russian>
+	</text>
+
+	<text value="Long press">
+		<french>Tap long</french>
+		<spanish>Pulsación larga</spanish>
+		<portuguese>Aperto longo</portuguese>
+		<italian>Premi a lungo</italian>
+		<german>Lange drücken</german>
+		<chinesesimplified>长按</chinesesimplified>
+		<chinesetraditional>長按</chinesetraditional>
+		<japanese>長く押す</japanese>
+		<russian>Долгое нажатие</russian>
+	</text>
+
+	<text value="Good job!">
+		<french>Bien joué !</french>
+		<spanish>¡Buen trabajo!</spanish>
+		<portuguese>Bom trabalho!</portuguese>
+		<italian>Ottimo lavoro!</italian>
+		<german>Gut gemacht!</german>
+		<chinesesimplified>干得好！</chinesesimplified>
+		<chinesetraditional>做得好！</chinesetraditional>
+		<japanese>お見事！</japanese>
+		<russian>Отлично!</russian>
+	</text>
+
+	<text value="Yeah!">
+		<french>Yeah !</french>
+		<spanish>¡Toma!</spanish>
+		<portuguese>Isso!</portuguese>
+		<italian>Sì!</italian>
+		<german>Yeah!</german>
+		<chinesesimplified>耶！</chinesesimplified>
+		<chinesetraditional>好耶！</chinesetraditional>
+		<japanese>やった！</japanese>
+		<russian>Да!</russian>
+	</text>
+
+	<text value="Smooth!">
+		<french>Smooth !</french>
+		<spanish>¡Así se hace!</spanish>
+		<portuguese>Boa!</portuguese>
+		<italian>Bene!</italian>
+		<german>Sauber!</german>
+		<chinesesimplified>漂亮！</chinesesimplified>
+		<chinesetraditional>真流暢！</chinesetraditional>
+		<japanese>スムーズ！</japanese>
+		<russian>Круто!</russian>
+	</text>
+
+	<text value="Awesome!">
+		<french>Impressionnant !</french>
+		<spanish>¡Genial!</spanish>
+		<portuguese>Impressionante!</portuguese>
+		<italian>Fantastico!</italian>
+		<german>Toll!</german>
+		<chinesesimplified>了不起！</chinesesimplified>
+		<chinesetraditional>精彩！</chinesetraditional>
+		<japanese>最高！</japanese>
+		<russian>Потрясающе!</russian>
+	</text>
+
+	<text value="Wow!">
+		<french>Wow !</french>
+		<spanish>¡Alucinante!</spanish>
+		<portuguese>Uau!</portuguese>
+		<italian>Wow!</italian>
+		<german>Wow!</german>
+		<chinesesimplified>哇！</chinesesimplified>
+		<chinesetraditional>嘩！</chinesetraditional>
+		<japanese>すごい！</japanese>
+		<russian>Ух ты!</russian>
+	</text>
+
+	<text value="Chilly!">
+		<french>Chilly !</french>
+		<spanish>¡Espectacular!</spanish>
+		<portuguese>Bacana!</portuguese>
+		<italian>Gelido!</italian>
+		<german>Cool!</german>
+		<chinesesimplified>酷毙！</chinesesimplified>
+		<chinesetraditional>厲害！</chinesetraditional>
+		<japanese>やるな！</japanese>
+		<russian>Классно!</russian>
+	</text>
+
+	<text value="What a style!">
+		<french>Quel style !</french>
+		<spanish>¡Qué estilazo!</spanish>
+		<portuguese>Com estilo!</portuguese>
+		<italian>Che stile!</italian>
+		<german>Was für ein Stil!</german>
+		<chinesesimplified>太有型了！</chinesesimplified>
+		<chinesetraditional>超酷！</chinesetraditional>
+		<japanese>スタイリッシュ！</japanese>
+		<russian>Какой стиль!</russian>
+	</text>
+
+	<text value="Incredible!">
+		<french>Incroyable !</french>
+		<spanish>¡Increíble!</spanish>
+		<portuguese>Não acredito!</portuguese>
+		<italian>Incredibile!</italian>
+		<german>Unfassbar!</german>
+		<chinesesimplified>不可思议！</chinesesimplified>
+		<chinesetraditional>意想不到！</chinesetraditional>
+		<japanese>信じられない！</japanese>
+		<russian>Невероятно!</russian>
+	</text>
+
+	<text value="Amazing!">
+		<french>Génial !</french>
+		<spanish>¡Asombroso!</spanish>
+		<portuguese>Incrível!</portuguese>
+		<italian>Magnifico!</italian>
+		<german>Unglaublich!</german>
+		<chinesesimplified>令人惊叹！</chinesesimplified>
+		<chinesetraditional>完美！</chinesetraditional>
+		<japanese>素晴らしい！</japanese>
+		<russian>Изумительно!</russian>
+	</text>
+
+	<text value="Exquisite!">
+		<french>Exquis !</french>
+		<spanish>¡Qué maravilla!</spanish>
+		<portuguese>Inacreditável!</portuguese>
+		<italian>Splendido!</italian>
+		<german>Ausgezeichnet!</german>
+		<chinesesimplified>精妙绝伦！</chinesesimplified>
+		<chinesetraditional>妙絕！</chinesetraditional>
+		<japanese>優雅！</japanese>
+		<russian>Идеально!</russian>
+	</text>
+
+	<text value="King of the mountain!">
+		<french>Roi de la montagne !</french>
+		<spanish>¡Rey de la montaña!</spanish>
+		<portuguese>Rei da montanha!</portuguese>
+		<italian>Il re della montagna!</italian>
+		<german>König des Berges!</german>
+		<chinesesimplified>大山之王！</chinesesimplified>
+		<chinesetraditional>山嶺之王！</chinesetraditional>
+		<japanese>山の王！</japanese>
+		<russian>Царь горы!</russian>
+	</text>
+
+	<text value="Unstoppable!">
+		<french>Instoppable !</french>
+		<spanish>¡Eres imparable!</spanish>
+		<portuguese>Imbatível!</portuguese>
+		<italian>Inarrestabile!</italian>
+		<german>Unhaltbar!</german>
+		<chinesesimplified>所向披靡！</chinesesimplified>
+		<chinesetraditional>勢不可擋！</chinesetraditional>
+		<japanese>誰にも止められない！</japanese>
+		<russian>Непобедимо!</russian>
+	</text>
+
+	<text value="Mountain is yours!">
+		<french>La montagne est à toi !</french>
+		<spanish>¡La montaña es tuya!</spanish>
+		<portuguese>A montanha é sua!</portuguese>
+		<italian>La montagna è tua!</italian>
+		<german>Der Berg gehört dir!</german>
+		<chinesesimplified>你征服了大山！</chinesesimplified>
+		<chinesetraditional>山嶺盡在你掌握！</chinesetraditional>
+		<japanese>山は君のものだ！</japanese>
+		<russian>Гора ваша!</russian>
+	</text>
+
+	<text value="Chilly Snow master!">
+		<french>Maître de Chilly Snow !</french>
+		<spanish>¡Maestro de Chilly Snow!</spanish>
+		<portuguese>Mestre do Chilly Snow!</portuguese>
+		<italian>Campione di Chilly Snow!</italian>
+		<german>Chilly Snow-Meister!</german>
+		<chinesesimplified>Chilly Snow 大师！</chinesesimplified>
+		<chinesetraditional>Chilly Snow高手！</chinesetraditional>
+		<japanese>雪の支配者！</japanese>
+		<russian>Мастер Chilly Snow!</russian>
+	</text>
+
+	<text value="You're on fire!">
+		<french>Tu es en feu !</french>
+		<spanish>¡Estás que lo tiras!</spanish>
+		<portuguese>Você está pegando fogo!</portuguese>
+		<italian>Stai andando alla grande!</italian>
+		<german>Du brennst!</german>
+		<chinesesimplified>你简直势不可挡！</chinesesimplified>
+		<chinesetraditional>如火如荼</chinesetraditional>
+		<japanese>オンファイヤー！</japanese>
+		<russian>Вы в ударе!</russian>
+	</text>
+	
+	<text value="No thanks">
+		<french>Non merci</french>
+		<spanish>No gracias</spanish>
+		<portuguese>Não, obrigado</portuguese>
+		<italian>No grazie</italian>
+		<german>Nein Danke</german>
+		<chinesesimplified>不，谢谢</chinesesimplified>
+		<chinesetraditional>不，謝謝</chinesetraditional>
+		<japanese>ありがとう</japanese>
+		<russian>Нет, спасибо</russian>
+	</text>
+	
+	<text value="Skins">
+		<french>Apparences</french>
+		<spanish>Diseños</spanish>
+		<portuguese>Máscaras</portuguese>
+		<italian>Skin</italian>
+		<german>Skins</german>
+		<chinesesimplified>皮肤</chinesesimplified>
+		<chinesetraditional>皮膚</chinesetraditional>
+		<japanese>スキン</japanese>
+		<russian>Стили</russian>
+	</text>
+	
+	<text value="Balls">
+		<french>Balles</french>
+		<spanish>Pelotas</spanish>
+		<portuguese>Bolas</portuguese>
+		<italian>Palle</italian>
+		<german>Bälle</german>
+		<chinesesimplified>篮球</chinesesimplified>
+		<chinesetraditional>球數</chinesetraditional>
+		<japanese>ボール</japanese>
+		<russian>Мячи</russian>
+	</text>
+	
+	<text value="Pines">
+		<french>Sapins</french>
+		<spanish>Pinos</spanish>
+		<portuguese>Pinheiros</portuguese>
+		<italian>Pini</italian>
+		<german>Fichten</german>
+		<chinesesimplified>松树</chinesesimplified>
+		<chinesetraditional>松樹</chinesetraditional>
+		<japanese>マツ</japanese>
+		<russian>Сосны</russian>
+	</text>
+	
+	<text value="Backgrounds">
+		<french>Fonds</french>
+		<spanish>Fondos</spanish>
+		<portuguese>Fundos</portuguese>
+		<italian>Sfondi</italian>
+		<german>Hintergründe</german>
+		<chinesesimplified>背景</chinesesimplified>
+		<chinesetraditional>背景</chinesetraditional>
+		<japanese>バックグラウンド</japanese>
+		<russian>Фон</russian>
+	</text>
+	
+	<text value="Unlocked!">
+		<french>Débloqué !</french>
+		<spanish>¡Desbloqueado!</spanish>
+		<portuguese>Desbloqueado!</portuguese>
+		<italian>Sbloccato!</italian>
+		<german>Freigeschaltet!</german>
+		<chinesesimplified>已解锁！</chinesesimplified>
+		<chinesetraditional>已解鎖！</chinesetraditional>
+		<japanese>アンロックされました！</japanese>
+		<russian>Открыто!</russian>
+	</text>
+	
+	<text value="Watch">
+		<french>Regarder</french>
+		<spanish>Mira</spanish>
+		<portuguese>Assistir</portuguese>
+		<italian>Guarda</italian>
+		<german>Uhr</german>
+		<chinesesimplified>观看</chinesesimplified>
+		<chinesetraditional>觀看</chinesetraditional>
+		<japanese>視聴する</japanese>
+		<russian>Посмотрите</russian>
+	</text>
+	
+	<text value="Best: {0}">
+		<french>Best : {0}</french>
+		<spanish>Récord: {0}</spanish>
+		<portuguese>Melhor: {0}</portuguese>
+		<italian>Record: {0}</italian>
+		<german>Best: {0}</german>
+		<chinesesimplified>最佳：{0}</chinesesimplified>
+		<chinesetraditional>最佳分數：{0}</chinesetraditional>
+		<japanese>ベスト: {0}</japanese>
+		<russian>Рекорд: {0}</russian>
+	</text>
+	
+	<text value="Brush past 1000 pines in total">
+		<french>Frôle 1000 sapins au total</french>
+		<spanish>Roza 1000 pinos en total</spanish>
+		<portuguese>Passe por mil pinheiros no total</portuguese>
+		<italian>Sfiora 1000 pini in totale</italian>
+		<german>Wische über 1000 Fichten insgesamt</german>
+		<chinesesimplified>总共穿过1000棵松树</chinesesimplified>
+		<chinesetraditional>總共擦過1000棵松樹</chinesetraditional>
+		<japanese>合計1000本のマツをかすめ過ぎる</japanese>
+		<russian>Проскочите мимо 1000 сосен за все игры</russian>
+	</text>
+	
+	<text value="Play 3 days in a row">
+		<french>Joue 3 jours d'affilé</french>
+		<spanish>Juega 3 días seguidos</spanish>
+		<portuguese>Jogue 3 dias seguidos</portuguese>
+		<italian>Gioca per 3 giorni di seguito</italian>
+		<german>Spiele 3 Tage in Folge</german>
+		<chinesesimplified>连续玩3天</chinesesimplified>
+		<chinesetraditional>連續玩3天</chinesetraditional>
+		<japanese>3日連続でプレイする</japanese>
+		<russian>Сыграйте 3 дня подряд</russian>
+	</text>
+	
+	<text value="Play 7 days in a row">
+		<french>Joue 7 jours d'affilé</french>
+		<spanish>Juega 7 días seguidos</spanish>
+		<portuguese>Jogue 7 dias seguidos</portuguese>
+		<italian>Gioca per 7 giorni di seguito</italian>
+		<german>Spiele 7 Tage in Folge</german>
+		<chinesesimplified>连续玩7天</chinesesimplified>
+		<chinesetraditional>連續玩7天</chinesetraditional>
+		<japanese>7日連続でプレイする</japanese>
+		<russian>Сыграйте 7 дня подряд</russian>
+	</text>
+	
+	<text value="Play 100 games">
+		<french>Joue 100 parties</french>
+		<spanish>Juega 100 partidas</spanish>
+		<portuguese>Jogue 100 jogos</portuguese>
+		<italian>Gioca 100 partite</italian>
+		<german>Spiele 100 Spiele</german>
+		<chinesesimplified>完成100场游戏</chinesesimplified>
+		<chinesetraditional>參加100場賽事</chinesetraditional>
+		<japanese>100ゲームプレイする</japanese>
+		<russian>Сыграйте 100 игр</russian>
+	</text>
+	
+	<text value="Play 200 games">
+		<french>Joue 200 parties</french>
+		<spanish>Juega 200 partidas</spanish>
+		<portuguese>Jogue 200 jogos</portuguese>
+		<italian>Gioca 200 partite</italian>
+		<german>Spiele 200 Spiele</german>
+		<chinesesimplified>完成200场游戏</chinesesimplified>
+		<chinesetraditional>參加200場賽事</chinesetraditional>
+		<japanese>200ゲームプレイする</japanese>
+		<russian>Сыграйте 200 игр</russian>
+	</text>
+	
+	<text value="Brush past 30 pines in a single game">
+		<french>Frôle 30 sapins dans une même partie</french>
+		<spanish>Roza 30 pinos en una sola partida</spanish>
+		<portuguese>Passe por 30 pinheiros em um único jogo</portuguese>
+		<italian>Sfiora 30 pini in una partita</italian>
+		<german>Wische über 30 Fichten in einem einzelnen Spiel</german>
+		<chinesesimplified>一场游戏中穿过30棵松树</chinesesimplified>
+		<chinesetraditional>在一場賽事中擦過30棵松樹</chinesetraditional>
+		<japanese>1ゲームで30本のマツをかすめ過ぎる</japanese>
+		<russian>Проскочите мимо 30 сосен за одну игру</russian>
+	</text>
+	
+	
+	<text value="Achieve a Perfect +30">
+		<french>Réalise un Perfect +30</french>
+		<spanish>Consigue un Perfecto +30</spanish>
+		<portuguese>Alcance um perfeito +30</portuguese>
+		<italian>Ottieni un Perfetto +30</italian>
+		<german>Erziele ein perfektes +30</german>
+		<chinesesimplified>获得完美动作+30</chinesesimplified>
+		<chinesetraditional>做出完美動作+30</chinesetraditional>
+		<japanese>パーフェクト+ 30を達成する</japanese>
+		<russian>Достигните идеала +30</russian>
+	</text>
+	
+	
+	<text value="Score 500 or more">
+		<french>Réalise un score de 500 ou plus.</french>
+		<spanish>Consigue 500 puntos o más</spanish>
+		<portuguese>Alcança uma pontuação de 500 ou mais</portuguese>
+		<italian>Segna 500 o più</italian>
+		<german>Erziele mindestens 500 Punkte.</german>
+		<chinesesimplified>得到500分或更多</chinesesimplified>
+		<chinesetraditional>500分以上</chinesetraditional>
+		<japanese>500点以上入れよう</japanese>
+		<russian>Наберите 500 очков или больше</russian>
+	</text>
+	
+	
+	<text value="Score 1000 or more">
+		<french>Réalise un score de 1000 ou plus.</french>
+		<spanish>Consigue 1000 puntos o más</spanish>
+		<portuguese>Alcança uma pontuação de 1000 ou mais</portuguese>
+		<italian>Segna 1000 o più</italian>
+		<german>Erziele mindestens 1000 Punkte.</german>
+		<chinesesimplified>得到1000分或更多</chinesesimplified>
+		<chinesetraditional>1000分以上</chinesetraditional>
+		<japanese>1000点以上入れよう</japanese>
+		<russian>Наберите 1000 очков или больше</russian>
+	</text>
+	
+	
+	<text value="Score 2000 or more">
+		<french>Réalise un score de 2000 ou plus.</french>
+		<spanish>Consigue 2000 puntos o más</spanish>
+		<portuguese>Alcança uma pontuação de 2000 ou mais</portuguese>
+		<italian>Segna 2000 o più</italian>
+		<german>Erziele mindestens 2000 Punkte.</german>
+		<chinesesimplified>得到2000分或更多</chinesesimplified>
+		<chinesetraditional>2000分以上</chinesetraditional>
+		<japanese>2000点以上入れよう</japanese>
+		<russian>Наберите 2000 очков или больше</russian>
+	</text>
+	
+	
+	<text value="Score 1000 or more using a second chance">
+		<french>Réalise un score de 1000 ou plus en utilisant l'option Seconde chance.</french>
+		<spanish>Consigue 1000 o más en una segunda oportunidad</spanish>
+		<portuguese>Consegue a pontuação de pelo menos 1000 numa segunda oportunidade</portuguese>
+		<italian>Segna 1000 o più usando una seconda occasione</italian>
+		<german>Erziele mind. 1000 Punkte mit einer Zweiten Chance</german>
+		<chinesesimplified>在第二次机会中一口气拿下 1000 分或更多</chinesesimplified>
+		<chinesetraditional>使用第二次機會獲得至少1000分</chinesetraditional>
+		<japanese>セカンドチャンスで1000点以上入れよう</japanese>
+		<russian>"Наберите 1000 очков или больше</russian>
+	</text>
+	
+	
+	<text value="Come back tomorrow!">
+		<french>Rejoue demain !</french>
+		<spanish>¡Vuelve mañana!</spanish>
+		<portuguese>Volte amanhã!</portuguese>
+		<italian>Ritorna domani!</italian>
+		<german>Komm morgen wieder!</german>
+		<chinesesimplified>明天再来！</chinesesimplified>
+		<chinesetraditional>明天回來吧！</chinesetraditional>
+		<japanese>明日戻ってきてください！</japanese>
+		<russian>Возвращайтесь завтра!</russian>
+	</text>
+	
+	
+	<text value="Watch a video ad">
+		<french>Regarder une publicité vidéo</french>
+		<spanish>Ver un anuncio</spanish>
+		<portuguese>Vê um vídeo publicitário</portuguese>
+		<italian>Guarda una pubblicità</italian>
+		<german>Werbung ansehen</german>
+		<chinesesimplified>观看广告视频</chinesesimplified>
+		<chinesetraditional>觀看視訊廣告</chinesetraditional>
+		<japanese>動画広告を視聴</japanese>
+		<russian>Смотреть рекламный ролик</russian>
+	</text>
+	
+	
+	<text value="Use 10 second chances">
+		<french>Utilise 10 fois l'option Seconde chance.</french>
+		<spanish>Utiliza 10 segundas oportunidades</spanish>
+		<portuguese>Usa 10 segundas oportunidades</portuguese>
+		<italian>Usa 10 seconde occasioni</italian>
+		<german>Benutze 10 zweite Chancen</german>
+		<chinesesimplified>使用 10 次第二次机会</chinesesimplified>
+		<chinesetraditional>使用10次第二次機會</chinesetraditional>
+		<japanese>セカンドチャンスを10回使おう</japanese>
+		<russian>Воспользуйтесь Вторым шансом 10 раз</russian>
+	</text>
+	
+	
+	<text value="Unlock 10 skins">
+		<french>Débloque 10 apparences.</french>
+		<spanish>Desbloquea 10 diseños</spanish>
+		<portuguese>Desbloqueia 10 máscaras</portuguese>
+		<italian>Sblocca 10 skin</italian>
+		<german>Schalte 10 Skins frei.</german>
+		<chinesesimplified>解锁10个皮肤</chinesesimplified>
+		<chinesetraditional>解鎖10款球款</chinesetraditional>
+		<japanese>スキンを10個手に入れよう</japanese>
+		<russian>Откройте 10 стилей</russian>
+	</text>
+	
+	<text value="Watch 1 ad to revive">
+		<french>Regarder 1 pub pour revivre</french>
+		<spanish>Visualiza 1 anuncio para resucitar</spanish>
+		<portuguese>Vê 1 anúncio para ressuscitares</portuguese>
+		<italian>Guarda 1 video per una nuova vita</italian>
+		<german>Zum Wiederbeleben 1 Werbung anschauen</german>
+		<chinesesimplified>观看1条广告可复活</chinesesimplified>
+		<chinesetraditional>觀看 1 段廣告以復活</chinesetraditional>
+		<japanese>復活のために1つの広告を見る</japanese>
+		<russian>Посмотрите рекламу, чтобы ожить</russian>
+	</text>
+	
+	<text value="Level {0} complete!">
+		<french>Niveau {0} terminé!</french>
+		<spanish>¡Nivel {0} completado!</spanish>
+		<portuguese>Livello {0} completato!</portuguese>
+		<italian>Nível {0} concluído!</italian>
+		<german>Level {0} abgeschlossen!</german>
+		<chinesesimplified>已通过第 {0} 关！</chinesesimplified>
+		<chinesetraditional>第 {0} 關已完成！</chinesetraditional>
+		<japanese>レベル{0}クリア！</japanese>
+		<russia>Уровень {0} пройден!</russia>
+	</text>
+
+</document>
