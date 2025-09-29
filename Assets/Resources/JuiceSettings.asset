@@ -3,16 +3,17 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60ebe074e7ad9eb44040d4330c5ae495, type: 3}
   m_Name: JuiceSettings
-  m_EditorClassIdentifier:
-  debug: 0
-  resetOnStart: 0
+  m_EditorClassIdentifier: 
+  debug: 1
+  resetOnStart: 1
   gameName: Chilly Snow
   gameBundle: com.acidcousins.chilly
   gameVersion: 1.4.1
@@ -29,7 +30,13 @@ MonoBehaviour:
   customDimensions03: []
   resourceCurrencies: []
   resourceItemTypes: []
-  androidResourcesString: '<?xml version="1.0" encoding="utf-8"?> <!-- Google Play game services IDs. Save this file as res/values/games-ids.xml in your project. --> <resources>   <!-- app_id -->   <string name="app_id" translatable="false">20338604698</string>   <!-- package_name -->   <string name="package_name" translatable="false">com.acidcousins.chilly</string>   <!-- leaderboard Score -->   <string name="leaderboard_score" translatable="false">CggImvWZ4ksQAhAA</string>   <!-- leaderboard Night Mode -->   <string name="leaderboard_night_mode" translatable="false">CggImvWZ4ksQAhAC</string> </resources>'
+  androidResourcesString: <?xml version="1.0" encoding="utf-8"?> <!-- Google Play
+    game services IDs. Save this file as res/values/games-ids.xml in your project.
+    --> <resources>   <!-- app_id -->   <string name="app_id" translatable="false">20338604698</string>  
+    <!-- package_name -->   <string name="package_name" translatable="false">com.acidcousins.chilly</string>  
+    <!-- leaderboard Score -->   <string name="leaderboard_score" translatable="false">CggImvWZ4ksQAhAA</string>  
+    <!-- leaderboard Night Mode -->   <string name="leaderboard_night_mode" translatable="false">CggImvWZ4ksQAhAC</string>
+    </resources>
   consumableProducts: []
   nonConsumableProducts:
   - chilly_noads
