@@ -13,7 +13,7 @@ public abstract class Recyclable<T> : Neuron, IRecyclable where T : Recyclable<T
 
 	public static T Get()
 	{
-		T val = ((!pool.IsEmpty()) ? pool.Pop() : ((GameObject)Object.Instantiate(Resources.Load(typeof(T).Name))).GetComponent<T>());
+		T val = (!pool.IsEmpty()) ? pool.Pop() : ((GameObject)Object.Instantiate(Resources.Load(typeof(T).Name))).GetComponent<T>();
 		val.alive = true;
 		val.OnEnabled();
 		return val;

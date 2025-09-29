@@ -5,6 +5,14 @@ using UnityEngine.Purchasing;
 
 namespace JuiceInternal
 {
+	/// <summary>
+	/// 应用内购买系统
+	/// 
+	/// 与Premium的关联：
+	/// 产品所有权验证：Store.IsOwned() 方法被Premium用来检查购买状态
+	/// 购买功能：Premium的Buy()方法调用Store的购买功能（当前被注释）
+	///	数据持久化：通过PlayerPrefs保存已购买产品列表
+	/// </summary>
 	public sealed class Store : Module<Store> //, IStoreListener
 	{
 		private class ProductBoughtEvent : UnityEvent<string, bool>

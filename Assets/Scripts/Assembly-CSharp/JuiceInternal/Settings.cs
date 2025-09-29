@@ -85,17 +85,18 @@ namespace JuiceInternal
 
 		[Space]
 		[Header("Premium")]
+		//// 高级版产品ID
 		[SerializeField]
 		public string premium = string.Empty;
 
 		[SerializeField]
 		public string premiumDeal = string.Empty;
+		//// 弹窗显示频率控制
+		[SerializeField]
+		public int dealPopFirstAtTick = 10;	// 第10次运行时首次显示
 
 		[SerializeField]
-		public int dealPopFirstAtTick = 10;
-
-		[SerializeField]
-		public int dealPopThenEveryTick = 10;
+		public int dealPopThenEveryTick = 10;	// 第10次运行时首次显示
 
 		[Space]
 		[Header("Ads")]
