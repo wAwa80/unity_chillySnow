@@ -4,6 +4,6 @@ namespace EasyMobile
 	{
 		None = 0,
 		AdMob = 2,
-		Heyzap = 4,
+		Heyzap = 4
 	}
 }
