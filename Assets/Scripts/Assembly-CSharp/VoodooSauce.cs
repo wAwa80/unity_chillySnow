@@ -79,7 +79,9 @@ public static class VoodooSauce
 	public static void ShowRewardedVideo(Action<bool> onComplete)
 	{
 		//VoodooAds.ShowRewardedVideo(onComplete);
-	}
+        onComplete?.Invoke(true);
+
+    }
 
 	public static void SetInterstitialAdsDisplayConditions(int delayInSecondsBeforeFirstInterstitialAd, int delayInSecondsBetweenInterstitialAds, int maxGamesBetweenInterstitialAds)
 	{

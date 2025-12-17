@@ -80,7 +80,9 @@ public sealed class MenuPage : Page<MenuPage>, IPointerDownHandler, IPointerUpHa
 			yield return null;
 		}
 		//VoodooSauce.ShowInterstitial(ValidateTransition);
-		Neuron.BackToMenu();
+		ValidateTransition();
+
+        Neuron.BackToMenu();
 		StartCoroutine(GoToMenu());
 	}
 

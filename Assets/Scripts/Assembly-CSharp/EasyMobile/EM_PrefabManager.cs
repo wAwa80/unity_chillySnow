@@ -22,7 +22,7 @@ namespace EasyMobile
 			}
 			Instance = this;
 			UnityEngine.Object.DontDestroyOnLoad(base.gameObject);
-			SetLogEnabled(isEnabled: false);
+			//SetLogEnabled(isEnabled: false);
 		}
 
 		private void SetLogEnabled(bool isEnabled)

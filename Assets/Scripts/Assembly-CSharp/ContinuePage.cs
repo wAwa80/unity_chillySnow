@@ -25,15 +25,17 @@ public class ContinuePage : Page<ContinuePage>, IPointerDownHandler, IEventSyste
 
 	protected override void OnGameOver(bool canUseSecondChance)
 	{
-		if (canUseSecondChance)
+		Logger.Log($"ContinuePage OnGameOver called.  canUseSecondChance: {canUseSecondChance}");
+        if (canUseSecondChance)
 		{
-			if (false)//(VoodooSauce.IsRewardedVideoAvailable())
+			if (VoodooSauce.IsRewardedVideoAvailable())
 			{
 				Invoke("Show", 1f);
 			}
 			else
 			{
-				Invoke("CannotContinue", 2f);
+				Logger.Log($"No video available for continue.");
+                Invoke("CannotContinue", 2f);
 			}
 		}
 	}
@@ -46,18 +48,20 @@ public class ContinuePage : Page<ContinuePage>, IPointerDownHandler, IEventSyste
 	public void TryContinue()
 	{
 		freeze = true;
-		//VoodooSauce.ShowRewardedVideo(ValidateContinue);
+		VoodooSauce.ShowRewardedVideo(ValidateContinue);
 	}
 
 	private void ValidateContinue(bool finishedVideo)
 	{
 		if (finishedVideo)
 		{
-			Neuron.Continue();
+			Logger.Log("Player continued after watching video.");
+            Neuron.Continue();
 		}
 		else
 		{
-			Abort();
+			Logger.Log("Player did not finish watching video, cannot continue.");
+            Abort();
 		}
 	}
 

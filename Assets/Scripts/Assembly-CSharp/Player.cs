@@ -93,7 +93,8 @@ public sealed class Player : Singleton<Player>
 
 	protected override void Awake()
 	{
-		base.Awake();
+		Debug.Log("Player Awake");
+        base.Awake();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		trail = GetComponent<TrailRenderer>();
 		source = GetComponent<AudioSource>();
@@ -111,11 +112,14 @@ public sealed class Player : Singleton<Player>
 		feverColor = Utility.HexToColor("#ffad00");
 		megaFeverColor = Utility.HexToColor("#d7331c");
 		IsABTestDestroyPines = Analytics.GetCohort() == "DestroyPines";
-	}
+        Logger.Log("Player Awake 2");
+    }
 
 	private void Start()
 	{
-		OnBackToMenu();
+		Logger.Log("Player Start");
+        OnBackToMenu();
+	
 	}
 
 	protected override void OnBackToMenu()
@@ -135,7 +139,8 @@ public sealed class Player : Singleton<Player>
 
 	protected override void OnGameOver(bool canUseSecondChance)
 	{
-		spriteRenderer.enabled = false;
+		Debug.Log("Player GameOver");
+        spriteRenderer.enabled = false;
 		if (!NightModeButton.nightModeOn)
 		{
 			shadow.enabled = false;
@@ -167,7 +172,8 @@ public sealed class Player : Singleton<Player>
 
 	protected override void OnContinue()
 	{
-		didNotValidateContinue = true;
+		Logger.Log("Player Continue");
+        didNotValidateContinue = true;
 		SetFeverState(FeverState.None);
 		ResetTrail();
 		base.transform.position = new Vector3(0f, base.transform.position.y, base.transform.position.z);

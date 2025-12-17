@@ -65,7 +65,8 @@ public class PineGenerator : Singleton<PineGenerator>
 
 	protected override void OnGameOver(bool canUseSecondChance)
 	{
-		base.enabled = false;
+		Logger.Log($"PineGenerator: OnGameOver called. canUseSecondChance: {canUseSecondChance}");
+        base.enabled = false;
 	}
 
 	protected override void OnNewGame()
@@ -90,7 +91,8 @@ public class PineGenerator : Singleton<PineGenerator>
 
 	protected override void OnContinue()
 	{
-		CleanClosePines(comingPines);
+		Logger.Log("PineGenerator: OnContinue called.");
+        CleanClosePines(comingPines);
 		CleanClosePines(dangerousPines);
 		CleanClosePines(whooshablePines);
 		CleanClosePines(pendingDelete);

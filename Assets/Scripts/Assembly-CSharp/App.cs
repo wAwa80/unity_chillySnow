@@ -34,26 +34,34 @@ public sealed class App : Singleton<App>
 
 	protected override void Awake()
 	{
-		base.Awake();
+        Debug.Log("App.Awake 开始");
+        base.Awake();
 		InitializeVersion();
-		UnityEngine.Object.DontDestroyOnLoad(this);
-		base.name = "SYSTEM_OBJECT App";
-		Translator.Load();
-		UnityEngine.Object.DontDestroyOnLoad(new GameObject("SYSTEM_OBJECT Easy Mobile", typeof(EM_PrefabManager), typeof(GameServiceManager)));
-		UnityEngine.Object.DontDestroyOnLoad(new GameObject("SYSTEM_OBJECT Data Auto Saver", typeof(Data)));
-		UnityEngine.Object.DontDestroyOnLoad(new GameObject("SYSTEM_OBJECT Stats Saver", typeof(Stats)));
-		UnityEngine.Object.DontDestroyOnLoad(new GameObject("SYSTEM_OBJECT Analytics", typeof(Analytics)));
-		//VoodooSauce.RegisterPurchaseDelegate(this);
-		if (IsRelease())
+		if (i == this)
 		{
-			StartCoroutine(LaunchGameDelay());
-			return;
+			UnityEngine.Object.DontDestroyOnLoad(this);
+			base.name = "SYSTEM_OBJECT App";
+			Translator.Load();
+			UnityEngine.Object.DontDestroyOnLoad(new GameObject("SYSTEM_OBJECT Easy Mobile", typeof(EM_PrefabManager), typeof(GameServiceManager)));
+			UnityEngine.Object.DontDestroyOnLoad(new GameObject("SYSTEM_OBJECT Data Auto Saver", typeof(Data)));
+			UnityEngine.Object.DontDestroyOnLoad(new GameObject("SYSTEM_OBJECT Stats Saver", typeof(Stats)));
+			UnityEngine.Object.DontDestroyOnLoad(new GameObject("SYSTEM_OBJECT Analytics", typeof(Analytics)));
+			//VoodooSauce.RegisterPurchaseDelegate(this);
+			if (IsRelease())
+			{
+				StartCoroutine(LaunchGameDelay());
+				return;
+			}
+			CanvasGroup component = GameObject.Find("Buttons").GetComponent<CanvasGroup>();
+			component.alpha = 1f;
+			component.interactable = true;
+			component.blocksRaycasts = true;
 		}
-		CanvasGroup component = GameObject.Find("Buttons").GetComponent<CanvasGroup>();
-		component.alpha = 1f;
-		component.interactable = true;
-		component.blocksRaycasts = true;
-	}
+        else
+        {
+            Debug.Log("App: 重复实例，不执行初始化");
+        }
+    }
 
 	public void LaunchGame(string forcedABTest)
 	{
