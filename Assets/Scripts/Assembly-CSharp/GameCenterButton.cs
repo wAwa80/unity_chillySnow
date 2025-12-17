@@ -10,8 +10,6 @@ public class GameCenterButton : AnimatedButton<GameCenterButton>
 	protected override void Awake()
 	{
 		base.Awake();
-		GameServiceManager.UserLoginSucceeded += OnUserLoginSucceeded;
-		button.onClick.AddListener(ShowLeaderboard);
 	}
 
 	private void ShowLeaderboard()
@@ -25,6 +23,7 @@ public class GameCenterButton : AnimatedButton<GameCenterButton>
 					if (!hasSuccessfullyLoadedFromLeaderboard)
 					{
 						GameServiceManager.LoadLocalUserScore("Score Leaderboard", OnLocalUserScoreLoaded);
+						GameServiceManager.LoadLocalUserScore("Night Score Leaderboard", OnLocalUserScoreLoaded);
 					}
 					GameServiceManager.ShowLeaderboardUI();
 				}
@@ -46,10 +45,6 @@ public class GameCenterButton : AnimatedButton<GameCenterButton>
 
 	protected override void OnGameOver(bool canUseSecondChance)
 	{
-		if (!canUseSecondChance && GameServiceManager.IsInitialized())
-		{
-			GameServiceManager.ReportScore(Stats.GetTop().score, "Score Leaderboard");
-		}
 	}
 
 	private void OnUserLoginSucceeded()
@@ -58,6 +53,7 @@ public class GameCenterButton : AnimatedButton<GameCenterButton>
 		if (!hasSuccessfullyLoadedFromLeaderboard)
 		{
 			GameServiceManager.LoadLocalUserScore("Score Leaderboard", OnLocalUserScoreLoaded);
+			GameServiceManager.LoadLocalUserScore("Night Score Leaderboard", OnLocalUserScoreLoaded);
 		}
 		if (wantsLeaderboard)
 		{
@@ -80,6 +76,7 @@ public class GameCenterButton : AnimatedButton<GameCenterButton>
 		{
 			game.SetFromLeaderboard(num);
 			Singleton<MenuScores>.i.LeaderboardScoreLoaded();
+			Singleton<SkinsPage>.i.LoadedFromLeaderboard(num);
 		}
 		else if (num < game.score)
 		{
@@ -89,6 +86,5 @@ public class GameCenterButton : AnimatedButton<GameCenterButton>
 
 	private void OnDestroy()
 	{
-		GameServiceManager.UserLoginSucceeded -= OnUserLoginSucceeded;
 	}
 }

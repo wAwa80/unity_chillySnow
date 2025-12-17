@@ -14,12 +14,15 @@ public class NightModeButton : AnimatedButton<NightModeButton>
 		onIcon = childTransform.GetChild(0).GetComponent<Image>();
 		offIcon = childTransform.GetChild(1).GetComponent<Image>();
 		button.onClick.AddListener(SwitchMode);
-		if (Data.LoadBool("nightModeOn"))
+		OnBackToMenu();
+	}
+
+	private void Start()
+	{
+		if (Data.LoadBool("nightModeOn", Analytics.GetCohort() == "DefaultIsNightMode"))
 		{
 			SwitchMode();
 		}
-		OnNightModeSwitched(nightModeOn);
-		OnBackToMenu();
 	}
 
 	private void SwitchMode()
@@ -47,13 +50,5 @@ public class NightModeButton : AnimatedButton<NightModeButton>
 	protected override void OnNewGame()
 	{
 		Hide();
-	}
-
-	public override void Show(float appearSpeed = 2f)
-	{
-		if (Analytics.GetCohort() == "NightMode")
-		{
-			base.Show(appearSpeed);
-		}
 	}
 }

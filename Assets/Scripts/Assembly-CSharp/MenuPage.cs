@@ -12,6 +12,16 @@ public sealed class MenuPage : Page<MenuPage>, IPointerDownHandler, IPointerUpHa
 
 	private bool pressing;
 
+	private float directionChangeThreshold;
+
+	private float sensitivity;
+
+	private float direction;
+
+	private float timer;
+
+	private float touchPosition;
+
 	protected override void Awake()
 	{
 		base.Awake();
@@ -21,8 +31,8 @@ public sealed class MenuPage : Page<MenuPage>, IPointerDownHandler, IPointerUpHa
 	private void Start()
 	{
 		Show();
-		StartCoroutine(GoToMenu(start: true, immediately: false));
-		VoodooSauce.ShowBanner(OnBannerDisplayed);
+		StartCoroutine(GoToMenu());
+		//VoodooSauce.ShowBanner(OnBannerDisplayed);
 	}
 
 	private void OnBannerDisplayed(float height)
@@ -32,6 +42,7 @@ public sealed class MenuPage : Page<MenuPage>, IPointerDownHandler, IPointerUpHa
 	protected override void OnContinue()
 	{
 		didContinue = true;
+		image.raycastTarget = true;
 	}
 
 	protected override void OnNewGame()
@@ -41,49 +52,55 @@ public sealed class MenuPage : Page<MenuPage>, IPointerDownHandler, IPointerUpHa
 
 	protected override void OnGameOver(bool canUseSecondChance)
 	{
+		image.raycastTarget = false;
 		if (!canUseSecondChance)
 		{
-			VoodooSauce.ShowInterstitial(delegate
-			{
-				StartCoroutine(GoToMenu(start: false, !didContinue));
-			});
+			StartCoroutine(InitiateGoToMenu(!didContinue));
 		}
 	}
 
-	private IEnumerator GoToMenu(bool start, bool immediately)
+	private IEnumerator InitiateGoToMenu(bool immediately)
 	{
-		Color c = Singleton<GameCamera>.i.GetCamera().backgroundColor;
-		image.enabled = true;
-		if (!start)
+		if (!immediately)
 		{
-			c.a = 0f;
-			image.color = c;
-			if (!immediately)
-			{
-				yield return new WaitForSeconds(1.5f);
-			}
-			Singleton<GameCamera>.i.Transit();
-			while (c.a < 1f)
-			{
-				c.a += Time.deltaTime * 2f;
-				if (c.a > 1f)
-				{
-					c.a = 1f;
-				}
-				image.color = c;
-				yield return null;
-			}
-			Neuron.BackToMenu();
+			yield return new WaitForSeconds(1.5f);
 		}
-		c.a = 1f;
-		image.color = c;
-		while (c.a > 0f)
+		float alpha = 0f;
+		Singleton<GameCamera>.i.Transit();
+		while (alpha < 1f)
 		{
-			c.a -= Time.deltaTime * 2f;
-			if (c.a < 0f)
+			alpha += Time.deltaTime * 2f;
+			if (alpha > 1f)
 			{
-				c.a = 0f;
+				alpha = 1f;
 			}
+			Color c = Singleton<GameCamera>.i.GetCamera().backgroundColor;
+			c.a = alpha;
+			image.color = c;
+			yield return null;
+		}
+		//VoodooSauce.ShowInterstitial(ValidateTransition);
+		Neuron.BackToMenu();
+		StartCoroutine(GoToMenu());
+	}
+
+	private void ValidateTransition()
+	{
+	}
+
+	private IEnumerator GoToMenu()
+	{
+		float alpha = 1f;
+		image.raycastTarget = true;
+		while (alpha > 0f)
+		{
+			alpha -= Time.deltaTime * 2f;
+			if (alpha < 0f)
+			{
+				alpha = 0f;
+			}
+			Color c = Singleton<GameCamera>.i.GetCamera().backgroundColor;
+			c.a = alpha;
 			image.color = c;
 			yield return null;
 		}
@@ -94,13 +111,85 @@ public sealed class MenuPage : Page<MenuPage>, IPointerDownHandler, IPointerUpHa
 		return pressing;
 	}
 
+	public bool GetDirection()
+	{
+		return direction > 0f;
+	}
+
 	public void OnPointerDown(PointerEventData data)
 	{
+		if (App.GetState() == App.State.Menu)
+		{
+			Neuron.NewGame();
+		}
 		pressing = true;
+		touchPosition = data.position.x / (float)Screen.width;
+		direction = 0f;
+		timer = 0f;
 	}
 
 	public void OnPointerUp(PointerEventData data)
 	{
 		pressing = false;
+	}
+
+	protected override void Update()
+	{
+		base.Update();
+		if (!pressing)
+		{
+			return;
+		}
+		float num = Input.mousePosition.x / (float)Screen.width;
+		float num2 = num - touchPosition;
+		if (direction == 0f)
+		{
+			if (num2 > directionChangeThreshold || num2 < 0f - directionChangeThreshold)
+			{
+				direction = num2;
+				touchPosition = num;
+			}
+		}
+		else if (direction < 0f)
+		{
+			if (num2 < 0f)
+			{
+				direction += num2;
+				touchPosition = num;
+			}
+			else if (num2 > directionChangeThreshold)
+			{
+				direction = num2;
+				timer = direction;
+				touchPosition = num;
+			}
+		}
+		else if (num2 > 0f)
+		{
+			direction += num2;
+			touchPosition = num;
+		}
+		else if (num2 < 0f - directionChangeThreshold)
+		{
+			direction = num2;
+			timer = direction;
+			touchPosition = num;
+		}
+		if (timer < direction)
+		{
+			timer += sensitivity * Time.deltaTime;
+			if (timer > direction)
+			{
+				timer = direction;
+			}
+		}
+		else if (timer > direction)
+		{
+			timer -= sensitivity * Time.deltaTime;
+			if (timer < direction)
+			{
+				timer = direction;
+			}
+		}
 	}
 }

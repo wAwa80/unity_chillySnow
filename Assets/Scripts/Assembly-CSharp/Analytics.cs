@@ -1,7 +1,7 @@
 
 public sealed class Analytics : Singleton<Analytics>
 {
-	private const string SESSION = "Motivational (1.0.4)";
+	private const string SESSION = "Destroy Pines (1.2)";
 
 	private bool sendEvents;
 
@@ -13,7 +13,7 @@ public sealed class Analytics : Singleton<Analytics>
 		{
 			FirstTime();
 		}
-		else if (Data.LoadString("analyticsSession") == "Motivational (1.0.4)")
+		else if (Data.LoadString("analyticsSession") == "Destroy Pines (1.2)")
 		{
 			sendEvents = true;
 		}
@@ -41,29 +41,29 @@ public sealed class Analytics : Singleton<Analytics>
 
 	private void FirstTime()
 	{
-		Data.SaveString("analyticsSession", "Motivational (1.0.4)");
+		Data.SaveString("analyticsSession", "Destroy Pines (1.2)");
 		//GameAnalytics.NewDesignEvent("First Time:App Launched");
 		//if (VoodooAnalytics.GetPlayerCohort() != null)
 		//{
 		//	sendEvents = true;
-		//	GameAnalytics.NewDesignEvent(string.Format("AB Test:{0}:Installation:{1}", "Motivational (1.0.4)", VoodooAnalytics.GetPlayerCohort()));
+		//	GameAnalytics.NewDesignEvent(string.Format("AB Test:{0}:Installation:{1}", "Destroy Pines (1.2)", VoodooAnalytics.GetPlayerCohort()));
 		//}
 	}
 
 	protected override void OnNewGame()
 	{
-		VoodooSauce.OnGameStarted();
+		//VoodooSauce.OnGameStarted();
 	}
 
 	protected override void OnGameOver(bool canUseSecondChance)
 	{
 		if (!canUseSecondChance)
 		{
-			VoodooSauce.OnGameFinished(Stats.GetTop().score);
+			//VoodooSauce.OnGameFinished(Stats.GetTop().score);
 			//GameAnalytics.NewDesignEvent("Game Played", Stats.GetTop().score);
 			//if (sendEvents && VoodooAnalytics.GetPlayerCohort() != null)
 			//{
-			//	GameAnalytics.NewDesignEvent(string.Format("AB Test:{0}:Game Played:{1}", "Motivational (1.0.4)", VoodooAnalytics.GetPlayerCohort()));
+			//	GameAnalytics.NewDesignEvent(string.Format("AB Test:{0}:Game Played:{1}", "Destroy Pines (1.2)", VoodooAnalytics.GetPlayerCohort()));
 			//}
 		}
 	}
@@ -73,7 +73,7 @@ public sealed class Analytics : Singleton<Analytics>
 		//GameAnalytics.NewDesignEvent("Rated", stars);
 		//if (sendEvents && VoodooAnalytics.GetPlayerCohort() != null)
 		//{
-		//	GameAnalytics.NewDesignEvent(string.Format("AB Test:{0}:Rated:{1}", "Motivational (1.0.4)", VoodooAnalytics.GetPlayerCohort()), stars);
+		//	GameAnalytics.NewDesignEvent(string.Format("AB Test:{0}:Rated:{1}", "Destroy Pines (1.2)", VoodooAnalytics.GetPlayerCohort()), stars);
 		//}
 	}
 
@@ -82,16 +82,17 @@ public sealed class Analytics : Singleton<Analytics>
 		//GameAnalytics.NewDesignEvent($"Purchased:{ProductID}");
 		//if (sendEvents && VoodooAnalytics.GetPlayerCohort() != null)
 		//{
-		//	GameAnalytics.NewDesignEvent(string.Format("AB Test:{0}:Purchased:{1}:{2}", "Motivational (1.0.4)", ProductID, VoodooAnalytics.GetPlayerCohort()));
+		//	GameAnalytics.NewDesignEvent(string.Format("AB Test:{0}:Purchased:{1}:{2}", "Destroy Pines (1.2)", ProductID, VoodooAnalytics.GetPlayerCohort()));
 		//}
 	}
 
 	public void AdShown(string adType)
 	{
 		//GameAnalytics.NewDesignEvent($"Ads:Ad Shown:{adType}");
+		//VoodooSauce.TrackCustomEvent("Ad Shown");
 		//if (sendEvents && VoodooAnalytics.GetPlayerCohort() != null)
 		//{
-		//	GameAnalytics.NewDesignEvent(string.Format("AB Test:{0}:Ad Shown:{1}:{2}", "Motivational (1.0.4)", VoodooAnalytics.GetPlayerCohort(), adType));
+		//	GameAnalytics.NewDesignEvent(string.Format("AB Test:{0}:Ad Shown:{1}:{2}", "Destroy Pines (1.2)", VoodooAnalytics.GetPlayerCohort(), adType));
 		//}
 	}
 
@@ -100,7 +101,7 @@ public sealed class Analytics : Singleton<Analytics>
 		//GameAnalytics.NewDesignEvent($"Ads:Ad Clicked:{adType}");
 		//if (sendEvents && VoodooAnalytics.GetPlayerCohort() != null)
 		//{
-		//	GameAnalytics.NewDesignEvent(string.Format("AB Test:{0}:Ad Clicked:{1}:{2}", "Motivational (1.0.4)", VoodooAnalytics.GetPlayerCohort(), adType));
+		//	GameAnalytics.NewDesignEvent(string.Format("AB Test:{0}:Ad Clicked:{1}:{2}", "Destroy Pines (1.2)", VoodooAnalytics.GetPlayerCohort(), adType));
 		//}
 	}
 
@@ -145,6 +146,6 @@ public sealed class Analytics : Singleton<Analytics>
 		{
 			return forcedABTest;
 		}
-		return VoodooSauce.GetPlayerCohort();
+		return null;// VoodooSauce.GetPlayerCohort();
 	}
 }

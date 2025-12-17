@@ -18,6 +18,10 @@ namespace EasyMobile
 
 		[CompilerGenerated]
 		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+		private static Action<RewardedAdNetwork, AdLocation> m_RewardedAdSkipped;
+
+		[CompilerGenerated]
+		[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 		private static Action<RewardedAdNetwork, AdLocation> m_RewardedAdCompleted;
 
 		[CompilerGenerated]
@@ -65,6 +69,32 @@ namespace EasyMobile
 				{
 					action2 = action;
 					action = Interlocked.CompareExchange(ref AdManager.m_InterstitialAdCompleted, (Action<InterstitialAdNetwork, AdLocation>)Delegate.Remove(action2, value), action);
+				}
+				while (action != action2);
+			}
+		}
+
+		public static event Action<RewardedAdNetwork, AdLocation> RewardedAdSkipped
+		{
+			add
+			{
+				Action<RewardedAdNetwork, AdLocation> action = AdManager.m_RewardedAdSkipped;
+				Action<RewardedAdNetwork, AdLocation> action2;
+				do
+				{
+					action2 = action;
+					action = Interlocked.CompareExchange(ref AdManager.m_RewardedAdSkipped, (Action<RewardedAdNetwork, AdLocation>)Delegate.Combine(action2, value), action);
+				}
+				while (action != action2);
+			}
+			remove
+			{
+				Action<RewardedAdNetwork, AdLocation> action = AdManager.m_RewardedAdSkipped;
+				Action<RewardedAdNetwork, AdLocation> action2;
+				do
+				{
+					action2 = action;
+					action = Interlocked.CompareExchange(ref AdManager.m_RewardedAdSkipped, (Action<RewardedAdNetwork, AdLocation>)Delegate.Remove(action2, value), action);
 				}
 				while (action != action2);
 			}
@@ -330,12 +360,15 @@ namespace EasyMobile
 
 		public static bool IsInterstitialAdReady()
 		{
-			return Application.platform switch
+			switch (Application.platform)
 			{
-				RuntimePlatform.Android => IsInterstitialAdReady(EM_Settings.Advertising.AndroidDefaultAdNetworks.interstitialAdNetwork, AdLocation.Default), 
-				RuntimePlatform.IPhonePlayer => IsInterstitialAdReady(EM_Settings.Advertising.IosDefaultAdNetworks.interstitialAdNetwork, AdLocation.Default), 
-				_ => false, 
-			};
+			case RuntimePlatform.Android:
+				return IsInterstitialAdReady(EM_Settings.Advertising.AndroidDefaultAdNetworks.interstitialAdNetwork, AdLocation.Default);
+			case RuntimePlatform.IPhonePlayer:
+				return IsInterstitialAdReady(EM_Settings.Advertising.IosDefaultAdNetworks.interstitialAdNetwork, AdLocation.Default);
+			default:
+				return false;
+			}
 		}
 
 		public static bool IsInterstitialAdReady(InterstitialAdNetwork adNetwork, AdLocation location)
@@ -344,15 +377,21 @@ namespace EasyMobile
 			{
 				return false;
 			}
-			return (AdNetwork)adNetwork switch
+			switch ((AdNetwork)adNetwork)
 			{
-				AdNetwork.AdColony => false, 
-				AdNetwork.AdMob => false, 
-				AdNetwork.Chartboost => false, 
-				AdNetwork.Heyzap => false, 
-				AdNetwork.UnityAds => false, 
-				_ => false, 
-			};
+			case AdNetwork.AdColony:
+				return false;
+			case AdNetwork.AdMob:
+				return false;
+			case AdNetwork.Chartboost:
+				return false;
+			case AdNetwork.Heyzap:
+				return false;
+			case AdNetwork.UnityAds:
+				return false;
+			default:
+				return false;
+			}
 		}
 
 		public static void ShowInterstitialAd()
@@ -437,25 +476,34 @@ namespace EasyMobile
 
 		public static bool IsRewardedAdReady()
 		{
-			return Application.platform switch
+			switch (Application.platform)
 			{
-				RuntimePlatform.Android => IsRewardedAdReady(EM_Settings.Advertising.AndroidDefaultAdNetworks.rewardedAdNetwork, AdLocation.Default), 
-				RuntimePlatform.IPhonePlayer => IsRewardedAdReady(EM_Settings.Advertising.IosDefaultAdNetworks.rewardedAdNetwork, AdLocation.Default), 
-				_ => false, 
-			};
+			case RuntimePlatform.Android:
+				return IsRewardedAdReady(EM_Settings.Advertising.AndroidDefaultAdNetworks.rewardedAdNetwork, AdLocation.Default);
+			case RuntimePlatform.IPhonePlayer:
+				return IsRewardedAdReady(EM_Settings.Advertising.IosDefaultAdNetworks.rewardedAdNetwork, AdLocation.Default);
+			default:
+				return false;
+			}
 		}
 
 		public static bool IsRewardedAdReady(RewardedAdNetwork adNetwork, AdLocation location)
 		{
-			return (AdNetwork)adNetwork switch
+			switch ((AdNetwork)adNetwork)
 			{
-				AdNetwork.AdColony => false, 
-				AdNetwork.AdMob => false, 
-				AdNetwork.Chartboost => false, 
-				AdNetwork.Heyzap => false, 
-				AdNetwork.UnityAds => false, 
-				_ => false, 
-			};
+			case AdNetwork.AdColony:
+				return false;
+			case AdNetwork.AdMob:
+				return false;
+			case AdNetwork.Chartboost:
+				return false;
+			case AdNetwork.Heyzap:
+				return false;
+			case AdNetwork.UnityAds:
+				return false;
+			default:
+				return false;
+			}
 		}
 
 		public static void ShowRewardedAd()
@@ -505,7 +553,7 @@ namespace EasyMobile
 
 		public static void RemoveAds()
 		{
-            UnityEngine.Debug.Log("******* REMOVING ADS... *******");
+			Debug.Log("******* REMOVING ADS... *******");
 			DestroyBannerAd();
 			PlayerPrefs.SetInt("EM_REMOVE_ADS", -1);
 			PlayerPrefs.Save();
@@ -563,6 +611,9 @@ namespace EasyMobile
 		static AdManager()
 		{
 			//AdManager.InterstitialAdCompleted = delegate
+			//{
+			//};
+			//AdManager.RewardedAdSkipped = delegate
 			//{
 			//};
 			//AdManager.RewardedAdCompleted = delegate

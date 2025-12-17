@@ -7,7 +7,6 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 using Debug = UnityEngine.Debug;
-using Range = UnityEngine.SocialPlatforms.Range;
 
 namespace EasyMobile
 {
@@ -514,7 +513,7 @@ namespace EasyMobile
 			ldb.userScope = request.userScope;
 			if (request.fromRank > 0 && request.scoreCount > 0)
 			{
-				ldb.range = new Range(request.fromRank, request.scoreCount);
+				//ldb.range = new Range(request.fromRank, request.scoreCount);
 			}
 			ldb.LoadScores(delegate
 			{
@@ -544,11 +543,11 @@ namespace EasyMobile
 		{
 			//if (success)
 			//{
-   //             if (GameServiceManager.UserLoginSucceeded != null)
-   //             {
-   //                 GameServiceManager.UserLoginSucceeded();
-   //             }
-   //             PlayerPrefs.SetInt("SGLIB_ANDROID_LOGIN_REQUEST_NUMBER", 0);
+			//	if (GameServiceManager.UserLoginSucceeded != null)
+			//	{
+			//		GameServiceManager.UserLoginSucceeded();
+			//	}
+			//	PlayerPrefs.SetInt("SGLIB_ANDROID_LOGIN_REQUEST_NUMBER", 0);
 			//	PlayerPrefs.Save();
 			//}
 			//else if (GameServiceManager.UserLoginFailed != null)
@@ -571,13 +570,17 @@ namespace EasyMobile
 
 		//private static LeaderboardTimeSpan AsGPGSLeaderboardTimeSpan(TimeScope timeScope)
 		//{
-		//	return timeScope switch
+		//	switch (timeScope)
 		//	{
-		//		TimeScope.AllTime => LeaderboardTimeSpan.AllTime, 
-		//		TimeScope.Week => LeaderboardTimeSpan.Weekly, 
-		//		TimeScope.Today => LeaderboardTimeSpan.Daily, 
-		//		_ => LeaderboardTimeSpan.AllTime, 
-		//	};
+		//	case TimeScope.AllTime:
+		//		return LeaderboardTimeSpan.AllTime;
+		//	case TimeScope.Week:
+		//		return LeaderboardTimeSpan.Weekly;
+		//	case TimeScope.Today:
+		//		return LeaderboardTimeSpan.Daily;
+		//	default:
+		//		return LeaderboardTimeSpan.AllTime;
+		//	}
 		//}
 	}
 }

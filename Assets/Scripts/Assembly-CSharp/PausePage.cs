@@ -6,6 +6,9 @@ public sealed class PausePage : Page<PausePage>, IPointerDownHandler, IEventSyst
 	[SerializeField]
 	private SoundButton soundButton;
 
+	[SerializeField]
+	private VibrateButton vibrateButton;
+
 	public void OnPointerDown(PointerEventData data)
 	{
 		Neuron.Unpause();
@@ -15,6 +18,7 @@ public sealed class PausePage : Page<PausePage>, IPointerDownHandler, IEventSyst
 	{
 		Show();
 		soundButton.Show(10f);
+		vibrateButton.Show(10f);
 	}
 
 	protected override void OnUnpause()
@@ -22,6 +26,7 @@ public sealed class PausePage : Page<PausePage>, IPointerDownHandler, IEventSyst
 		Time.timeScale = 1f;
 		Hide();
 		soundButton.Hide(10f);
+		vibrateButton.Hide(10f);
 	}
 
 	protected override void Update()

@@ -359,5 +359,278 @@
 		<japanese>ありがとう</japanese>
 		<russian>Нет, спасибо</russian>
 	</text>
+	
+	<text value="Skins">
+		<french>Apparences</french>
+		<spanish>Diseños</spanish>
+		<portuguese>Máscaras</portuguese>
+		<italian>Skin</italian>
+		<german>Skins</german>
+		<chinesesimplified>皮肤</chinesesimplified>
+		<chinesetraditional>皮膚</chinesetraditional>
+		<japanese>スキン</japanese>
+		<russian>Стили</russian>
+	</text>
+	
+	<text value="Balls">
+		<french>Balles</french>
+		<spanish>Pelotas</spanish>
+		<portuguese>Bolas</portuguese>
+		<italian>Palle</italian>
+		<german>Bälle</german>
+		<chinesesimplified>篮球</chinesesimplified>
+		<chinesetraditional>球數</chinesetraditional>
+		<japanese>ボール</japanese>
+		<russian>Мячи</russian>
+	</text>
+	
+	<text value="Pines">
+		<french>Sapins</french>
+		<spanish>Pinos</spanish>
+		<portuguese>Pinheiros</portuguese>
+		<italian>Pini</italian>
+		<german>Fichten</german>
+		<chinesesimplified>松树</chinesesimplified>
+		<chinesetraditional>松樹</chinesetraditional>
+		<japanese>マツ</japanese>
+		<russian>Сосны</russian>
+	</text>
+	
+	<text value="Backgrounds">
+		<french>Fonds</french>
+		<spanish>Fondos</spanish>
+		<portuguese>Fundos</portuguese>
+		<italian>Sfondi</italian>
+		<german>Hintergründe</german>
+		<chinesesimplified>背景</chinesesimplified>
+		<chinesetraditional>背景</chinesetraditional>
+		<japanese>バックグラウンド</japanese>
+		<russian>Фон</russian>
+	</text>
+	
+	<text value="Unlocked!">
+		<french>Débloqué !</french>
+		<spanish>¡Desbloqueado!</spanish>
+		<portuguese>Desbloqueado!</portuguese>
+		<italian>Sbloccato!</italian>
+		<german>Freigeschaltet!</german>
+		<chinesesimplified>已解锁！</chinesesimplified>
+		<chinesetraditional>已解鎖！</chinesetraditional>
+		<japanese>アンロックされました！</japanese>
+		<russian>Открыто!</russian>
+	</text>
+	
+	<text value="Watch">
+		<french>Regarder</french>
+		<spanish>Mira</spanish>
+		<portuguese>Assistir</portuguese>
+		<italian>Guarda</italian>
+		<german>Uhr</german>
+		<chinesesimplified>观看</chinesesimplified>
+		<chinesetraditional>觀看</chinesetraditional>
+		<japanese>視聴する</japanese>
+		<russian>Посмотрите</russian>
+	</text>
+	
+	<text value="Best: {0}">
+		<french>Best : {0}</french>
+		<spanish>Récord: {0}</spanish>
+		<portuguese>Melhor: {0}</portuguese>
+		<italian>Record: {0}</italian>
+		<german>Best: {0}</german>
+		<chinesesimplified>最佳：{0}</chinesesimplified>
+		<chinesetraditional>最佳分數：{0}</chinesetraditional>
+		<japanese>ベスト: {0}</japanese>
+		<russian>Рекорд: {0}</russian>
+	</text>
+	
+	<text value="Brush past 1000 pines in total">
+		<french>Frôle 1000 sapins au total</french>
+		<spanish>Roza 1000 pinos en total</spanish>
+		<portuguese>Passe por mil pinheiros no total</portuguese>
+		<italian>Sfiora 1000 pini in totale</italian>
+		<german>Wische über 1000 Fichten insgesamt</german>
+		<chinesesimplified>总共穿过1000棵松树</chinesesimplified>
+		<chinesetraditional>總共擦過1000棵松樹</chinesetraditional>
+		<japanese>合計1000本のマツをかすめ過ぎる</japanese>
+		<russian>Проскочите мимо 1000 сосен за все игры</russian>
+	</text>
+	
+	<text value="Play 3 days in a row">
+		<french>Joue 3 jours d'affilé</french>
+		<spanish>Juega 3 días seguidos</spanish>
+		<portuguese>Jogue 3 dias seguidos</portuguese>
+		<italian>Gioca per 3 giorni di seguito</italian>
+		<german>Spiele 3 Tage in Folge</german>
+		<chinesesimplified>连续玩3天</chinesesimplified>
+		<chinesetraditional>連續玩3天</chinesetraditional>
+		<japanese>3日連続でプレイする</japanese>
+		<russian>Сыграйте 3 дня подряд</russian>
+	</text>
+	
+	<text value="Play 7 days in a row">
+		<french>Joue 7 jours d'affilé</french>
+		<spanish>Juega 7 días seguidos</spanish>
+		<portuguese>Jogue 7 dias seguidos</portuguese>
+		<italian>Gioca per 7 giorni di seguito</italian>
+		<german>Spiele 7 Tage in Folge</german>
+		<chinesesimplified>连续玩7天</chinesesimplified>
+		<chinesetraditional>連續玩7天</chinesetraditional>
+		<japanese>7日連続でプレイする</japanese>
+		<russian>Сыграйте 7 дня подряд</russian>
+	</text>
+	
+	<text value="Play 100 games">
+		<french>Joue 100 parties</french>
+		<spanish>Juega 100 partidas</spanish>
+		<portuguese>Jogue 100 jogos</portuguese>
+		<italian>Gioca 100 partite</italian>
+		<german>Spiele 100 Spiele</german>
+		<chinesesimplified>完成100场游戏</chinesesimplified>
+		<chinesetraditional>參加100場賽事</chinesetraditional>
+		<japanese>100ゲームプレイする</japanese>
+		<russian>Сыграйте 100 игр</russian>
+	</text>
+	
+	<text value="Play 200 games">
+		<french>Joue 200 parties</french>
+		<spanish>Juega 200 partidas</spanish>
+		<portuguese>Jogue 200 jogos</portuguese>
+		<italian>Gioca 200 partite</italian>
+		<german>Spiele 200 Spiele</german>
+		<chinesesimplified>完成200场游戏</chinesesimplified>
+		<chinesetraditional>參加200場賽事</chinesetraditional>
+		<japanese>200ゲームプレイする</japanese>
+		<russian>Сыграйте 200 игр</russian>
+	</text>
+	
+	<text value="Brush past 30 pines in a single game">
+		<french>Frôle 30 sapins dans une même partie</french>
+		<spanish>Roza 30 pinos en una sola partida</spanish>
+		<portuguese>Passe por 30 pinheiros em um único jogo</portuguese>
+		<italian>Sfiora 30 pini in una partita</italian>
+		<german>Wische über 30 Fichten in einem einzelnen Spiel</german>
+		<chinesesimplified>一场游戏中穿过30棵松树</chinesesimplified>
+		<chinesetraditional>在一場賽事中擦過30棵松樹</chinesetraditional>
+		<japanese>1ゲームで30本のマツをかすめ過ぎる</japanese>
+		<russian>Проскочите мимо 30 сосен за одну игру</russian>
+	</text>
+	
+	
+	<text value="Achieve a Perfect +30">
+		<french>Réalise un Perfect +30</french>
+		<spanish>Consigue un Perfecto +30</spanish>
+		<portuguese>Alcance um perfeito +30</portuguese>
+		<italian>Ottieni un Perfetto +30</italian>
+		<german>Erziele ein perfektes +30</german>
+		<chinesesimplified>获得完美动作+30</chinesesimplified>
+		<chinesetraditional>做出完美動作+30</chinesetraditional>
+		<japanese>パーフェクト+ 30を達成する</japanese>
+		<russian>Достигните идеала +30</russian>
+	</text>
+	
+	
+	<text value="Score 500 or more">
+		<french>Réalise un score de 500 ou plus.</french>
+		<spanish>Consigue 500 puntos o más</spanish>
+		<portuguese>Alcança uma pontuação de 500 ou mais</portuguese>
+		<italian>Segna 500 o più</italian>
+		<german>Erziele mindestens 500 Punkte.</german>
+		<chinesesimplified>得到500分或更多</chinesesimplified>
+		<chinesetraditional>500分以上</chinesetraditional>
+		<japanese>500点以上入れよう</japanese>
+		<russian>Наберите 500 очков или больше</russian>
+	</text>
+	
+	
+	<text value="Score 1000 or more">
+		<french>Réalise un score de 1000 ou plus.</french>
+		<spanish>Consigue 1000 puntos o más</spanish>
+		<portuguese>Alcança uma pontuação de 1000 ou mais</portuguese>
+		<italian>Segna 1000 o più</italian>
+		<german>Erziele mindestens 1000 Punkte.</german>
+		<chinesesimplified>得到1000分或更多</chinesesimplified>
+		<chinesetraditional>1000分以上</chinesetraditional>
+		<japanese>1000点以上入れよう</japanese>
+		<russian>Наберите 1000 очков или больше</russian>
+	</text>
+	
+	
+	<text value="Score 2000 or more">
+		<french>Réalise un score de 2000 ou plus.</french>
+		<spanish>Consigue 2000 puntos o más</spanish>
+		<portuguese>Alcança uma pontuação de 2000 ou mais</portuguese>
+		<italian>Segna 2000 o più</italian>
+		<german>Erziele mindestens 2000 Punkte.</german>
+		<chinesesimplified>得到2000分或更多</chinesesimplified>
+		<chinesetraditional>2000分以上</chinesetraditional>
+		<japanese>2000点以上入れよう</japanese>
+		<russian>Наберите 2000 очков или больше</russian>
+	</text>
+	
+	
+	<text value="Score 1000 or more using a second chance">
+		<french>Réalise un score de 1000 ou plus en utilisant l'option Seconde chance.</french>
+		<spanish>Consigue 1000 o más en una segunda oportunidad</spanish>
+		<portuguese>Consegue a pontuação de pelo menos 1000 numa segunda oportunidade</portuguese>
+		<italian>Segna 1000 o più usando una seconda occasione</italian>
+		<german>Erziele mind. 1000 Punkte mit einer Zweiten Chance</german>
+		<chinesesimplified>在第二次机会中一口气拿下 1000 分或更多</chinesesimplified>
+		<chinesetraditional>使用第二次機會獲得至少1000分</chinesetraditional>
+		<japanese>セカンドチャンスで1000点以上入れよう</japanese>
+		<russian>"Наберите 1000 очков или больше</russian>
+	</text>
+	
+	
+	<text value="Come back tomorrow!">
+		<french>Rejoue demain !</french>
+		<spanish>¡Vuelve mañana!</spanish>
+		<portuguese>Volte amanhã!</portuguese>
+		<italian>Ritorna domani!</italian>
+		<german>Komm morgen wieder!</german>
+		<chinesesimplified>明天再来！</chinesesimplified>
+		<chinesetraditional>明天回來吧！</chinesetraditional>
+		<japanese>明日戻ってきてください！</japanese>
+		<russian>Возвращайтесь завтра!</russian>
+	</text>
+	
+	
+	<text value="Watch a video ad">
+		<french>Regarder une publicité vidéo</french>
+		<spanish>Ver un anuncio</spanish>
+		<portuguese>Vê um vídeo publicitário</portuguese>
+		<italian>Guarda una pubblicità</italian>
+		<german>Werbung ansehen</german>
+		<chinesesimplified>观看广告视频</chinesesimplified>
+		<chinesetraditional>觀看視訊廣告</chinesetraditional>
+		<japanese>動画広告を視聴</japanese>
+		<russian>Смотреть рекламный ролик</russian>
+	</text>
+	
+	
+	<text value="Use 10 second chances">
+		<french>Utilise 10 fois l'option Seconde chance.</french>
+		<spanish>Utiliza 10 segundas oportunidades</spanish>
+		<portuguese>Usa 10 segundas oportunidades</portuguese>
+		<italian>Usa 10 seconde occasioni</italian>
+		<german>Benutze 10 zweite Chancen</german>
+		<chinesesimplified>使用 10 次第二次机会</chinesesimplified>
+		<chinesetraditional>使用10次第二次機會</chinesetraditional>
+		<japanese>セカンドチャンスを10回使おう</japanese>
+		<russian>Воспользуйтесь Вторым шансом 10 раз</russian>
+	</text>
+	
+	
+	<text value="Unlock 10 skins">
+		<french>Débloque 10 apparences.</french>
+		<spanish>Desbloquea 10 diseños</spanish>
+		<portuguese>Desbloqueia 10 máscaras</portuguese>
+		<italian>Sblocca 10 skin</italian>
+		<german>Schalte 10 Skins frei.</german>
+		<chinesesimplified>解锁10个皮肤</chinesesimplified>
+		<chinesetraditional>解鎖10款球款</chinesetraditional>
+		<japanese>スキンを10個手に入れよう</japanese>
+		<russian>Откройте 10 стилей</russian>
+	</text>
 
 </document>

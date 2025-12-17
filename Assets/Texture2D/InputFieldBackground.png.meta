@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bacca158b6c6daa54047f80441c0bd7a
+guid: 9717f0b27fba936488b6717f80a86eb5
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -10,7 +10,7 @@ TextureImporter:
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
-    sRGBTexture: 0
+    sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
@@ -33,7 +33,7 @@ TextureImporter:
   cubemapConvolution: 0
   seamlessCubemap: 0
   textureFormat: 4
-  maxTextureSize: 2048
+  maxTextureSize: 32
   textureSettings:
     serializedVersion: 2
     filterMode: 1
@@ -152,17 +152,23 @@ TextureImporter:
         width: 31.9465
         height: 31.89737
       alignment: 9
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0.5, y: 0.5000001}
       border: {x: 9.973249, y: 9.948684, z: 9.973249, w: 9.948682}
       outline:
       - - {x: -15, y: -16}
-        - {x: -16, y: -10}
+        - {x: -16, y: -9.999998}
         - {x: -16, y: 14}
         - {x: -14, y: 16}
         - {x: 10, y: 16}
         - {x: 16, y: 15}
         - {x: 16, y: -16}
-      physicsShape: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 15, y: -16}
+        - {x: 16, y: -12}
+        - {x: 16, y: 14}
+        - {x: 11, y: 16}
       tessellationDetail: 0
       bones: []
       spriteID: 02305410000000000800000000000000

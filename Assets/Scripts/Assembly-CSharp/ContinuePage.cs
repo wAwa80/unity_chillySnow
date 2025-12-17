@@ -27,7 +27,7 @@ public class ContinuePage : Page<ContinuePage>, IPointerDownHandler, IEventSyste
 	{
 		if (canUseSecondChance)
 		{
-			if (VoodooSauce.IsRewardedVideoAvailable())
+			if (false)//(VoodooSauce.IsRewardedVideoAvailable())
 			{
 				Invoke("Show", 1f);
 			}
@@ -46,7 +46,7 @@ public class ContinuePage : Page<ContinuePage>, IPointerDownHandler, IEventSyste
 	public void TryContinue()
 	{
 		freeze = true;
-		VoodooSauce.ShowRewardedVideo(ValidateContinue);
+		//VoodooSauce.ShowRewardedVideo(ValidateContinue);
 	}
 
 	private void ValidateContinue(bool finishedVideo)

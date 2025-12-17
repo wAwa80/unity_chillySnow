@@ -18,6 +18,8 @@ public class PineGenerator : Singleton<PineGenerator>
 
 	private bool didContinue;
 
+	private bool dontResetWhooshCombo;
+
 	private const float VERTICAL_PINE_DENSITY = 0.3f;
 
 	private const float HORIZONTAL_PINE_DENSITY = 0.3f;
@@ -28,33 +30,18 @@ public class PineGenerator : Singleton<PineGenerator>
 
 	private const float SQR_SIZE = 0.0225f;
 
-	private const float ABTEST_WHOOSH_DISTANCE = 1f;
+	private const float WHOOSH_DISTANCE = 1f;
 
-	private const float ABTEST_SQR_WHOOSH_DISTANCE = 1f;
-
-	private const float WHOOSH_DISTANCE = 0.75f;
-
-	private const float SQR_WHOOSH_DISTANCE = 0.5625f;
+	private const float SQR_WHOOSH_DISTANCE = 1f;
 
 	private float wd;
 
 	private float swd;
 
-	private bool canWhoosh;
-
 	private void Start()
 	{
-		if (Analytics.GetCohort() == "SimplerPerfect")
-		{
-			wd = 1f;
-			swd = 1f;
-		}
-		else
-		{
-			wd = 0.75f;
-			swd = 0.5625f;
-		}
-		canWhoosh = Analytics.GetCohort() != "NoPerfect";
+		wd = 1f;
+		swd = 1f;
 		OnBackToMenu();
 		base.enabled = false;
 	}
@@ -85,7 +72,14 @@ public class PineGenerator : Singleton<PineGenerator>
 	{
 		base.enabled = true;
 		didContinue = false;
-		Pine.ResetWhooshCombo();
+		if (dontResetWhooshCombo)
+		{
+			Pine.ContinueWhooshCombo();
+		}
+		else
+		{
+			Pine.ResetWhooshCombo();
+		}
 	}
 
 	private void Update()
@@ -100,8 +94,10 @@ public class PineGenerator : Singleton<PineGenerator>
 		CleanClosePines(dangerousPines);
 		CleanClosePines(whooshablePines);
 		CleanClosePines(pendingDelete);
+		dontResetWhooshCombo = true;
 		OnNewGame();
 		didContinue = true;
+		dontResetWhooshCombo = false;
 	}
 
 	private void CleanClosePines(Queue<Pine> pines)
@@ -205,15 +201,26 @@ public class PineGenerator : Singleton<PineGenerator>
 		Vector3 position = Singleton<Player>.i.transform.position;
 		foreach (Pine dangerousPine in dangerousPines)
 		{
+			if (dangerousPine.IsDestroyed())
+			{
+				continue;
+			}
 			float num = dangerousPine.transform.position.x - position.x;
 			float num2 = dangerousPine.transform.position.y - position.y;
 			float num3 = num * num + num2 * num2;
 			if (num3 < 0.0225f)
 			{
-				Neuron.GameOver(!didContinue);
+				if (Player.IsABTestDestroyPines && Singleton<Player>.i.GetFeverState() != 0)
+				{
+					dangerousPine.DestroyPine();
+				}
+				else
+				{
+					Neuron.GameOver(!didContinue);
+				}
 				break;
 			}
-			if (canWhoosh && !dangerousPine.IsPassed() && num3 < swd)
+			if (!dangerousPine.IsPassed() && num3 < swd)
 			{
 				dangerousPine.Pass();
 				Neuron.Whoosh();
@@ -223,20 +230,17 @@ public class PineGenerator : Singleton<PineGenerator>
 		{
 			pendingDelete.Enqueue(whooshablePines.Dequeue());
 		}
-		if (canWhoosh)
+		foreach (Pine whooshablePine in whooshablePines)
 		{
-			foreach (Pine whooshablePine in whooshablePines)
+			if (!whooshablePine.IsPassed())
 			{
-				if (!whooshablePine.IsPassed())
+				float num4 = whooshablePine.transform.position.x - position.x;
+				float num5 = whooshablePine.transform.position.y - position.y;
+				float num6 = num4 * num4 + num5 * num5;
+				if (num6 < swd)
 				{
-					float num4 = whooshablePine.transform.position.x - position.x;
-					float num5 = whooshablePine.transform.position.y - position.y;
-					float num6 = num4 * num4 + num5 * num5;
-					if (num6 < swd)
-					{
-						whooshablePine.Pass();
-						Neuron.Whoosh();
-					}
+					whooshablePine.Pass();
+					Neuron.Whoosh();
 				}
 			}
 		}

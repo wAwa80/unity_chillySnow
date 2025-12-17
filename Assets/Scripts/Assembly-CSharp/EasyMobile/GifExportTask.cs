@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using UnityEngine;
+using ThreadPriority = UnityEngine.ThreadPriority;
 
 namespace EasyMobile
 {
@@ -28,6 +29,6 @@ namespace EasyMobile
 
 		internal Action<AnimatedClip, string> exportCompletedCallback;
 
-		internal UnityEngine.ThreadPriority workerPriority;
+		internal ThreadPriority workerPriority;
 	}
 }

@@ -18,15 +18,22 @@ public static class Utility
 
 	private static int HexToInt(char hex)
 	{
-		return hex switch
+		switch (hex)
 		{
-			'a' => 10, 
-			'b' => 11, 
-			'c' => 12, 
-			'd' => 13, 
-			'e' => 14, 
-			'f' => 15, 
-			_ => int.Parse(hex.ToString()), 
-		};
+		case 'a':
+			return 10;
+		case 'b':
+			return 11;
+		case 'c':
+			return 12;
+		case 'd':
+			return 13;
+		case 'e':
+			return 14;
+		case 'f':
+			return 15;
+		default:
+			return int.Parse(hex.ToString());
+		}
 	}
 }

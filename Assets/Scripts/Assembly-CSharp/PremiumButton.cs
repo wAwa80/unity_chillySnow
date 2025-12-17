@@ -6,16 +6,25 @@ public class PremiumButton : AnimatedButton<PremiumButton>
 		button.onClick.AddListener(PurchasePremium);
 	}
 
+	private void Start()
+	{
+		if (Data.LoadBool("isPremium"))
+		{
+			//VoodooSauce.EnablePremium();
+		}
+	}
+
 	private void PurchasePremium()
 	{
-		VoodooSauce.Purchase("chilly_noads");
+		//VoodooSauce.Purchase("chilly_noads");
 	}
 
 	protected override void OnPurchased(string product)
 	{
 		if (product == "chilly_noads")
 		{
-			VoodooSauce.EnablePremium();
+			Data.SaveBool("isPremium", value: true);
+			//VoodooSauce.EnablePremium();
 		}
 	}
 }

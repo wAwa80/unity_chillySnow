@@ -151,14 +151,14 @@ namespace EasyMobile
 
 		private void OnEnable()
 		{
-			//AndroidNativeGif.GifExportProgress += OnGifExportProgress;
-			//AndroidNativeGif.GifExportCompleted += OnGifExportCompleted;
+			AndroidNativeGif.GifExportProgress += OnGifExportProgress;
+			AndroidNativeGif.GifExportCompleted += OnGifExportCompleted;
 		}
 
 		private void OnDisable()
 		{
-			//AndroidNativeGif.GifExportProgress -= OnGifExportProgress;
-			//AndroidNativeGif.GifExportCompleted -= OnGifExportCompleted;
+			AndroidNativeGif.GifExportProgress -= OnGifExportProgress;
+			AndroidNativeGif.GifExportCompleted -= OnGifExportCompleted;
 		}
 
 		private void OnDestroy()
@@ -243,26 +243,26 @@ namespace EasyMobile
 			};
 			gifExportTasks.Add(exportTask.taskId, exportTask);
 			yield return null;
-			//Texture2D temp = new Texture2D(clip.Width, clip.Height, TextureFormat.RGB24, mipmap: false)
-			//{
-			//	hideFlags = HideFlags.HideAndDontSave,
-			//	wrapMode = TextureWrapMode.Clamp,
-			//	filterMode = FilterMode.Bilinear,
-			//	anisoLevel = 0
-			//};
-			//exportTask.imageData = new Color32[clip.Frames.Length][];
-			//for (int i = 0; i < clip.Frames.Length; i++)
-			//{
-			//	RenderTexture source = (RenderTexture.active = clip.Frames[i]);
-			//	temp.ReadPixels(new Rect(0f, 0f, source.width, source.height), 0, 0);
-			//	temp.Apply();
-			//	RenderTexture.active = null;
-			//	exportTask.imageData[i] = temp.GetPixels32();
-			//	OnGifPreProcessing(progress: (float)i / (float)clip.Frames.Length, taskId: exportTask.taskId);
-			//	yield return null;
-			//}
-			//AndroidNativeGif.ExportGif(exportTask);
-			//UnityEngine.Object.Destroy(temp);
+			Texture2D temp = new Texture2D(clip.Width, clip.Height, TextureFormat.RGB24, false)
+			{
+				hideFlags = HideFlags.HideAndDontSave,
+				wrapMode = TextureWrapMode.Clamp,
+				filterMode = FilterMode.Bilinear,
+				anisoLevel = 0
+			};
+			exportTask.imageData = new Color32[clip.Frames.Length][];
+			for (int i = 0; i < clip.Frames.Length; i++)
+			{
+				RenderTexture source = (RenderTexture.active = clip.Frames[i]);
+				temp.ReadPixels(new Rect(0f, 0f, source.width, source.height), 0, 0);
+				temp.Apply();
+				RenderTexture.active = null;
+				exportTask.imageData[i] = temp.GetPixels32();
+				OnGifPreProcessing(progress: (float)i / (float)clip.Frames.Length, taskId: exportTask.taskId);
+				yield return null;
+			}
+			AndroidNativeGif.ExportGif(exportTask);
+			UnityEngine.Object.Destroy(temp);
 		}
 	}
 }

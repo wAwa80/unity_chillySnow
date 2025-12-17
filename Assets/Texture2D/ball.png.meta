@@ -1,16 +1,13 @@
 fileFormatVersion: 2
-guid: 63ada3a7bf2506b04bc5d2ea1b4169b7
+guid: c3f463a58f823974294604665b17d10f
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 21300000
-    second: ball
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
-    sRGBTexture: 0
+    sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
@@ -32,8 +29,8 @@ TextureImporter:
   generateCubemap: 6
   cubemapConvolution: 0
   seamlessCubemap: 0
-  textureFormat: 47
-  maxTextureSize: 2048
+  textureFormat: 4
+  maxTextureSize: 128
   textureSettings:
     serializedVersion: 2
     filterMode: 1
@@ -142,38 +139,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: ball
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 128
-        height: 128
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -62, y: -47}
-        - {x: -64, y: -37}
-        - {x: -64, y: 36}
-        - {x: -39, y: 64}
-        - {x: 34, y: 64}
-        - {x: 44, y: 62}
-        - {x: 64, y: 43}
-        - {x: 64, y: -37}
-        - {x: 56, y: -64}
-        - {x: -35, y: -64}
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 
-      internalID: 21300000
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline:
     - - {x: -62, y: -47}
       - {x: -64, y: -37}
@@ -185,7 +151,24 @@ TextureImporter:
       - {x: 64, y: -37}
       - {x: 56, y: -64}
       - {x: -35, y: -64}
-    physicsShape: []
+    physicsShape:
+    - - {x: 64, y: 21}
+      - {x: 59, y: 35}
+      - {x: 34, y: 58}
+      - {x: 20, y: 64}
+      - {x: -19, y: 64}
+      - {x: -37, y: 57}
+      - {x: -55, y: 39}
+      - {x: -60, y: 28}
+      - {x: -64, y: 20}
+      - {x: -64, y: -20}
+      - {x: -56, y: -40}
+      - {x: -44, y: -53}
+      - {x: -21, y: -64}
+      - {x: 17, y: -64}
+      - {x: 26, y: -62}
+      - {x: 42, y: -54}
+      - {x: 64, y: -26}
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
@@ -194,8 +177,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      ball: 21300000
+    nameFileIdTable: {}
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

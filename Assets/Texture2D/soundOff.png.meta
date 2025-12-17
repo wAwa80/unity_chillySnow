@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ca5f3774e9a690a54d67f2c4c09ac488
+guid: 54a18207959623b42af2ff33b9accca2
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -10,7 +10,7 @@ TextureImporter:
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
-    sRGBTexture: 0
+    sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
@@ -32,8 +32,8 @@ TextureImporter:
   generateCubemap: 6
   cubemapConvolution: 0
   seamlessCubemap: 0
-  textureFormat: 47
-  maxTextureSize: 2048
+  textureFormat: 4
+  maxTextureSize: 64
   textureSettings:
     serializedVersion: 2
     filterMode: 1
@@ -163,7 +163,25 @@ TextureImporter:
         - {x: 32, y: 21.47215}
         - {x: 32, y: -14.52785}
         - {x: 12, y: -28.52785}
-      physicsShape: []
+      physicsShape:
+      - - {x: -16, y: 13.47215}
+        - {x: -16, y: -14.52785}
+        - {x: 3, y: -26.52785}
+        - {x: 6, y: -26.52785}
+        - {x: 8, y: -25.52785}
+        - {x: 8, y: 23.47215}
+        - {x: 7, y: 25.47215}
+        - {x: 2, y: 25.47215}
+        - {x: -2, y: 24.47215}
+      - - {x: -32, y: 13.47215}
+        - {x: -32, y: -13.52785}
+        - {x: -17, y: -13.52785}
+        - {x: -17, y: 13.47215}
+      - - {x: 11, y: 11.47215}
+        - {x: 11, y: -11.52785}
+        - {x: 32, y: -11.52785}
+        - {x: 32, y: 8.472149}
+        - {x: 29, y: 11.47215}
       tessellationDetail: 0
       bones: []
       spriteID: 02305410000000000800000000000000

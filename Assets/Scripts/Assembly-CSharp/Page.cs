@@ -22,6 +22,11 @@ public abstract class Page<T> : Singleton<T> where T : Page<T>
 
 	private bool visible;
 
+	public bool IsVisible()
+	{
+		return visible;
+	}
+
 	protected override void Awake()
 	{
 		base.Awake();

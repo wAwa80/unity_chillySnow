@@ -10,6 +10,10 @@ public static class Translator
 
 	public static string Translate(string baseText)
 	{
+		if (baseText.Length == 0)
+		{
+			return baseText;
+		}
 		try
 		{
 			return traductions[baseText.ToLower()];

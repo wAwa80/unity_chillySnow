@@ -54,6 +54,7 @@ public class VibrateButton : MonoBehaviour
 			soundButton2.onIcon.enabled = true;
 			soundButton2.offIcon.enabled = false;
 		}
+		Device.Vibrate(Device.Vibration.Light);
 	}
 
 	private void Awake()

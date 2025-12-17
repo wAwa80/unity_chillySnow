@@ -188,14 +188,19 @@ namespace EasyMobile
 
 		private static UserAction ConvertToUserAction(int index)
 		{
-			return index switch
+			switch (index)
 			{
-				0 => UserAction.Refuse, 
-				1 => UserAction.Postpone, 
-				2 => UserAction.Feedback, 
-				3 => UserAction.Rate, 
-				_ => UserAction.Postpone, 
-			};
+			case 0:
+				return UserAction.Refuse;
+			case 1:
+				return UserAction.Postpone;
+			case 2:
+				return UserAction.Feedback;
+			case 3:
+				return UserAction.Rate;
+			default:
+				return UserAction.Postpone;
+			}
 		}
 
 		private void OnAndroidRatingDialogCallback(string userAction)

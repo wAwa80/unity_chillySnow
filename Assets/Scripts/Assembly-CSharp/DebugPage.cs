@@ -88,4 +88,12 @@ public class DebugPage : Page<DebugPage>
 	{
 		Neuron.Purchased("chilly_noads");
 	}
+
+	public void AllSkins()
+	{
+		foreach (Skin item in Multiton<Skin>.Enumerate())
+		{
+			item.Unlock();
+		}
+	}
 }

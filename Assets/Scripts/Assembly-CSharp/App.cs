@@ -4,7 +4,7 @@ using EasyMobile;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public sealed class App : Singleton<App>, IPurchaseDelegate
+public sealed class App : Singleton<App>
 {
 	public enum State
 	{
@@ -43,7 +43,7 @@ public sealed class App : Singleton<App>, IPurchaseDelegate
 		UnityEngine.Object.DontDestroyOnLoad(new GameObject("SYSTEM_OBJECT Data Auto Saver", typeof(Data)));
 		UnityEngine.Object.DontDestroyOnLoad(new GameObject("SYSTEM_OBJECT Stats Saver", typeof(Stats)));
 		UnityEngine.Object.DontDestroyOnLoad(new GameObject("SYSTEM_OBJECT Analytics", typeof(Analytics)));
-		VoodooSauce.RegisterPurchaseDelegate(this);
+		//VoodooSauce.RegisterPurchaseDelegate(this);
 		if (IsRelease())
 		{
 			StartCoroutine(LaunchGameDelay());

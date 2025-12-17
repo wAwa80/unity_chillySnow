@@ -37,9 +37,15 @@ public sealed class Pine : Recyclable<Pine>
 
 	private static float lastWhooshTime;
 
+	private static bool continueCombo;
+
 	private float size;
 
 	private Color bonusColor = Utility.HexToColor("#425f59");
+
+	private const float MAX_TIME_BETWEEN_WHOOSHES_AB_TEST = 1f;
+
+	private bool destroyed;
 
 	protected override void Awake()
 	{
@@ -72,6 +78,7 @@ public sealed class Pine : Recyclable<Pine>
 		size += Random.value * (1.3f - size);
 		base.transform.localScale = new Vector3(size, size, size);
 		passed = -2f;
+		destroyed = false;
 	}
 
 	protected override void OnDisabled()
@@ -100,6 +107,11 @@ public sealed class Pine : Recyclable<Pine>
 		whooshCombo = 1;
 	}
 
+	public static void ContinueWhooshCombo()
+	{
+		continueCombo = true;
+	}
+
 	public bool IsPassed()
 	{
 		return passed > -1.5f;
@@ -107,13 +119,20 @@ public sealed class Pine : Recyclable<Pine>
 
 	public void Pass()
 	{
-		float num = ((Singleton<Player>.i.GetFeverState() != 0) ? 3f : 1.5f);
-		if (Time.time - lastWhooshTime > num)
+		float num = ((Singleton<Player>.i.GetFeverState() != 0) ? 3f : ((!Player.IsABTestDestroyPines) ? 1.5f : 1f));
+		if (!continueCombo && Time.time - lastWhooshTime > num)
 		{
-			ResetWhooshCombo();
+			if (!Player.IsABTestDestroyPines || num < 3f)
+			{
+				ResetWhooshCombo();
+			}
 		}
 		else
 		{
+			if (continueCombo)
+			{
+				continueCombo = false;
+			}
 			whooshPoints += 2;
 			whooshCombo++;
 		}
@@ -131,32 +150,13 @@ public sealed class Pine : Recyclable<Pine>
 		}
 		SyncBonusEffect(0f);
 		source.Play();
-		if (Analytics.GetCohort() == "SimplerPerfect")
-		{
-			if (whooshCombo == 1 || whooshCombo > 3)
-			{
-				Device.Vibrate(Device.Vibration.Light);
-			}
-			else if (whooshCombo == 2)
-			{
-				Device.Vibrate(Device.Vibration.Medium);
-			}
-			else if (whooshCombo == 3)
-			{
-				Device.Vibrate(Device.Vibration.Heavy);
-			}
-		}
-		else if (whooshCombo == 2 || whooshCombo > 4)
-		{
-			Device.Vibrate(Device.Vibration.Light);
-		}
-		else if (whooshCombo == 3)
+		if (whooshCombo == 3)
 		{
 			Device.Vibrate(Device.Vibration.Medium);
 		}
-		else if (whooshCombo == 4)
+		else if (whooshCombo == 6)
 		{
-			Device.Vibrate(Device.Vibration.Heavy);
+			Device.Vibrate(Device.Vibration.Medium);
 		}
 	}
 
@@ -190,8 +190,8 @@ public sealed class Pine : Recyclable<Pine>
 			float num3 = Singleton<Player>.i.transform.position.y - base.transform.position.y;
 			nightShadow.transform.localEulerAngles = new Vector3(90f, (0f - Mathf.Atan2(num3, num2)) * 57.29578f - 90f, 0f);
 			num2 = Singleton<Player>.i.GetGlowIntensity() * Mathf.Min(5f / Mathf.Max(num2 * num2 + num3 * num3, 1f), 1f);
-			Color feverColor = Singleton<Player>.i.GetFeverColor(Singleton<Player>.i.GetFeverState());
-			spriteRenderer.color = new Color(feverColor.r * num2, feverColor.g * num2, feverColor.b * num2, 1f);
+			Color color = ((Singleton<Player>.i.GetFeverState() != 0) ? Singleton<Player>.i.GetFeverColor(Singleton<Player>.i.GetFeverState()) : Singleton<Player>.i.GetSkinColor());
+			spriteRenderer.color = new Color(color.r * num2, color.g * num2, color.b * num2, 1f);
 		}
 	}
 
@@ -232,5 +232,21 @@ public sealed class Pine : Recyclable<Pine>
 				shadow.enabled = true;
 			}
 		}
+	}
+
+	public bool IsDestroyed()
+	{
+		return destroyed;
+	}
+
+	public void DestroyPine()
+	{
+		OnDisabled();
+		destroyed = true;
+		Singleton<Player>.i.PineDestroyed();
+		PineDestroyedEffect pineDestroyedEffect = Recyclable<PineDestroyedEffect>.Get();
+		pineDestroyedEffect.SetColor(Skin.GetSelected(Skin.Type.Pine).GetColor());
+		pineDestroyedEffect.transform.position = base.transform.position;
+		pineDestroyedEffect.transform.localScale = base.transform.localScale;
 	}
 }

@@ -38,34 +38,34 @@ public class Motivational : Singleton<Motivational>
 
 	protected override void OnWhoosh()
 	{
-		if (!(Analytics.GetCohort() != "Motivational"))
+		int whooshCombo = Pine.GetWhooshCombo();
+		if (whooshCombo > 6)
 		{
-			int whooshCombo = Pine.GetWhooshCombo();
-			if (whooshCombo > 6)
-			{
-				Play(Goodness.Perfect);
-			}
-			else if (whooshCombo > 3)
-			{
-				Play(Goodness.Exquisite);
-			}
-			else if (whooshCombo > 2)
-			{
-				Play(Goodness.Awesome);
-			}
-			else if (whooshCombo > 1)
-			{
-				Play(Goodness.Good);
-			}
+			Play(Goodness.Perfect);
+		}
+		else if (whooshCombo > 3)
+		{
+			Play(Goodness.Exquisite);
+		}
+		else if (whooshCombo > 2)
+		{
+			Play(Goodness.Awesome);
+		}
+		else if (whooshCombo > 1)
+		{
+			Play(Goodness.Good);
 		}
 	}
 
 	public void Play(Goodness goodness)
 	{
-		string[] array = wordings[goodness];
-		uiText.text = Translator.Translate(array[Random.Range(0, array.Length)]);
-		StopAllCoroutines();
-		StartCoroutine(PlayAnimation());
+		if (MotivationalButton.motivationalOn)
+		{
+			string[] array = wordings[goodness];
+			uiText.text = Translator.Translate(array[Random.Range(0, array.Length)]);
+			StopAllCoroutines();
+			StartCoroutine(PlayAnimation());
+		}
 	}
 
 	private IEnumerator PlayAnimation()
@@ -82,7 +82,7 @@ public class Motivational : Singleton<Motivational>
 				timer = 1f;
 			}
 			float scale2 = 4f * timer - 3f;
-			scale2 = (9f - scale2 * scale2) * 0.125f;
+			scale2 = (9f - scale2 * scale2) * 0.1f;
 			uiText.transform.localScale = new Vector3(scale2, scale2, scale2);
 			yield return null;
 		}

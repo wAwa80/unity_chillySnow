@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer), typeof(TrailRenderer), typeof(AudioSource))]
@@ -50,15 +51,9 @@ public sealed class Player : Singleton<Player>
 
 	private readonly ParticleSystem.MinMaxCurve powderSpreadEmitting = new ParticleSystem.MinMaxCurve(100f);
 
-	private float trailWidthMultiplier;
-
-	private TrailRenderer feverTrail;
-
 	private ParticleSystem feverParticles;
 
 	private AudioSource feverSound;
-
-	private TrailRenderer megaFeverTrail;
 
 	private ParticleSystem megaFeverParticles;
 
@@ -72,15 +67,29 @@ public sealed class Player : Singleton<Player>
 
 	private float feverTime;
 
-	private FeverState feverState = FeverState.Fever;
+	private FeverState feverState;
 
 	private const float MIN_SKI_VOLUME = 0.025f;
 
 	private const float MAX_SKI_VOLUME = 0.1f;
 
+	private Color skinColor;
+
+	private Color backgroundColor;
+
 	private float glowIntensity = 1f;
 
 	private Color glowBaseColor;
+
+	public static bool IsABTestDestroyPines;
+
+	private float destroyFeverTime;
+
+	private bool feverWillStop;
+
+	private float feverWillStopIn;
+
+	private Color lastFeverColor;
 
 	protected override void Awake()
 	{
@@ -94,20 +103,14 @@ public sealed class Player : Singleton<Player>
 		deathSound = deathParticles.GetComponent<AudioSource>();
 		feverParticles = base.transform.GetChild(3).GetComponent<ParticleSystem>();
 		feverSound = feverParticles.GetComponent<AudioSource>();
-		feverTrail = feverParticles.GetComponent<TrailRenderer>();
 		megaFeverParticles = base.transform.GetChild(4).GetComponent<ParticleSystem>();
 		megaFeverSound = megaFeverParticles.GetComponent<AudioSource>();
-		megaFeverTrail = megaFeverParticles.GetComponent<TrailRenderer>();
 		glow = base.transform.GetChild(5).GetComponent<SpriteRenderer>();
 		glowBaseColor = glow.color;
-		trailWidthMultiplier = trail.widthMultiplier;
 		baseColor = spriteRenderer.color;
 		feverColor = Utility.HexToColor("#ffad00");
 		megaFeverColor = Utility.HexToColor("#d7331c");
-		if (Analytics.GetCohort() == "BiggerBall")
-		{
-			base.transform.localScale = new Vector3(0.45f, 0.45f, 0.45f);
-		}
+		IsABTestDestroyPines = Analytics.GetCohort() == "DestroyPines";
 	}
 
 	private void Start()
@@ -117,7 +120,6 @@ public sealed class Player : Singleton<Player>
 
 	protected override void OnBackToMenu()
 	{
-		SetFeverState(FeverState.None);
 		ResetTrail();
 		base.transform.position = new Vector3(0f, 0f, base.transform.position.z);
 		meters = 0;
@@ -152,15 +154,14 @@ public sealed class Player : Singleton<Player>
 		{
 			deathParticles.Play();
 			deathSound.Play();
-		}
-		Device.Vibrate(Device.Vibration.Medium);
-	}
+            //调用一个自定义的封装方法来触发一次移动设备的振动。
+            //Device.Vibrate(Device.Vibration.Light);
+        }
+    }
 
 	protected override void OnNewGame()
 	{
 		trail.enabled = true;
-		feverTrail.enabled = true;
-		megaFeverTrail.enabled = true;
 		didContinue = false;
 	}
 
@@ -176,6 +177,8 @@ public sealed class Player : Singleton<Player>
 		{
 			shadow.enabled = true;
 		}
+		glowIntensity = 1f;
+		glow.color = glowBaseColor;
 		ResetPhysics();
 		OnNewGame();
 		didContinue = true;
@@ -202,17 +205,13 @@ public sealed class Player : Singleton<Player>
 	private void Update()
 	{
 		float num = Mathf.Min(Singleton<PineGenerator>.i.GetDistance(), 400f);
-		if (App.GetState() == App.State.Menu || App.GetState() == App.State.Playing)
+		if (App.GetState() == App.State.Playing)
 		{
 			if (Singleton<MenuPage>.i.IsPressing())
 			{
 				if (!isPressing)
 				{
-					if (App.GetState() == App.State.Menu)
-					{
-						Neuron.NewGame();
-					}
-					else if (didNotValidateContinue)
+					if (didNotValidateContinue)
 					{
 						didNotValidateContinue = false;
 					}
@@ -336,6 +335,10 @@ public sealed class Player : Singleton<Player>
 			}
 			UpdateFever();
 			UpdateSound();
+			if (IsABTestDestroyPines)
+			{
+				UpdateFeverWillStop();
+			}
 		}
 		else
 		{
@@ -358,6 +361,11 @@ public sealed class Player : Singleton<Player>
 		emission.rateOverTime = powderSpreadNotEmitting;
 	}
 
+	public Color GetSkinColor()
+	{
+		return skinColor;
+	}
+
 	public FeverState GetFeverState()
 	{
 		return feverState;
@@ -365,31 +373,40 @@ public sealed class Player : Singleton<Player>
 
 	public Color GetFeverColor(FeverState state)
 	{
-		return state switch
+		switch (state)
 		{
-			FeverState.None => baseColor, 
-			FeverState.Fever => feverColor, 
-			_ => megaFeverColor, 
-		};
+		case FeverState.None:
+			return baseColor;
+		case FeverState.Fever:
+			return feverColor;
+		default:
+			return megaFeverColor;
+		}
 	}
 
 	protected override void OnWhoosh()
 	{
-		feverTime = Time.time;
-		SetFeverState(NextFeverState());
+		if (!IsABTestDestroyPines)
+		{
+			feverTime = Time.time;
+		}
+		if (!IsABTestDestroyPines || !feverWillStop)
+		{
+			SetFeverState(NextFeverState());
+		}
 	}
 
 	public FeverState NextFeverState()
 	{
-		if ((!App.IsRelease() && DebugPage.dontFever) || Analytics.GetCohort() == "NoPerfect")
+		if (!App.IsRelease() && DebugPage.dontFever)
 		{
 			return FeverState.None;
 		}
-		if (Pine.GetWhooshPoints() >= 16 && Analytics.GetCohort() == "MegaFever")
+		if (Pine.GetWhooshPoints() >= 12 || (Pine.GetWhooshPoints() >= 8 && IsABTestDestroyPines))
 		{
 			return FeverState.MegaFever;
 		}
-		if (Pine.GetWhooshPoints() >= 8 || (Pine.GetWhooshPoints() >= 6 && Analytics.GetCohort() == "SimplerPerfect"))
+		if (Pine.GetWhooshPoints() >= 6 && !IsABTestDestroyPines)
 		{
 			return FeverState.Fever;
 		}
@@ -398,66 +415,60 @@ public sealed class Player : Singleton<Player>
 
 	private void SetFeverState(FeverState state)
 	{
-		if (feverState != state)
+		if (feverState == state)
 		{
-			feverState = state;
-			if (feverState == FeverState.None)
-			{
-				spriteRenderer.color = baseColor;
-				trail.widthMultiplier = trailWidthMultiplier;
-				feverTrail.widthMultiplier = 0f;
-				megaFeverTrail.widthMultiplier = 0f;
-				feverParticles.Stop();
-				megaFeverParticles.Stop();
-				Singleton<MenuScores>.i.SetScoreColor(baseColor);
-				Color color = baseColor;
-				color.a = glow.color.a;
-				glow.color = color;
-			}
-			else if (feverState == FeverState.Fever)
-			{
-				spriteRenderer.color = feverColor;
-				trail.widthMultiplier = 0f;
-				feverTrail.widthMultiplier = trailWidthMultiplier;
-				megaFeverTrail.widthMultiplier = 0f;
-				feverParticles.Play();
-				megaFeverParticles.Stop();
-				feverSound.Play();
-				Singleton<MenuScores>.i.SetScoreColor(feverColor);
-				Color color2 = feverColor;
-				color2.a = glow.color.a;
-				glow.color = color2;
-			}
-			else
-			{
-				spriteRenderer.color = megaFeverColor;
-				trail.widthMultiplier = 0f;
-				feverTrail.widthMultiplier = 0f;
-				megaFeverTrail.widthMultiplier = trailWidthMultiplier;
-				feverParticles.Stop();
-				megaFeverParticles.Play();
-				megaFeverSound.Play();
-				Singleton<MenuScores>.i.SetScoreColor(megaFeverColor);
-				Color color3 = megaFeverColor;
-				color3.a = glow.color.a;
-				glow.color = color3;
-			}
+			return;
 		}
+		feverState = state;
+		if (feverState == FeverState.None)
+		{
+			if (IsABTestDestroyPines)
+			{
+				Pine.ResetWhooshCombo();
+			}
+			SetColor(skinColor);
+			feverParticles.Stop();
+			megaFeverParticles.Stop();
+			Singleton<MenuScores>.i.SetScoreColor(baseColor);
+			return;
+		}
+		if (feverState == FeverState.Fever)
+		{
+			SetColor(feverColor);
+			feverParticles.Play();
+			megaFeverParticles.Stop();
+			feverSound.Play();
+			Singleton<MenuScores>.i.SetScoreColor(feverColor);
+			return;
+		}
+		if (IsABTestDestroyPines)
+		{
+			feverTime = Time.time;
+			destroyFeverTime = Time.time;
+		}
+		SetColor(megaFeverColor, lightenUp: true);
+		feverParticles.Stop();
+		megaFeverParticles.Play();
+		megaFeverSound.Play();
+		Singleton<MenuScores>.i.SetScoreColor(megaFeverColor);
 	}
 
 	private void ResetTrail()
 	{
 		trail.enabled = false;
-		feverTrail.enabled = false;
-		megaFeverTrail.enabled = false;
 		trail.Clear();
-		feverTrail.Clear();
-		megaFeverTrail.Clear();
 	}
 
 	private void UpdateFever()
 	{
-		if (feverState != 0 && Time.time - feverTime > 3f)
+		if (IsABTestDestroyPines)
+		{
+			if (feverState != 0 && !feverWillStop && (Time.time - feverTime > 8f || Time.time - destroyFeverTime > 3f))
+			{
+				FeverWillStop();
+			}
+		}
+		else if (feverState != 0 && Time.time - feverTime > 3f)
 		{
 			SetFeverState(FeverState.None);
 		}
@@ -507,16 +518,101 @@ public sealed class Player : Singleton<Player>
 		{
 			glow.enabled = true;
 			shadow.enabled = false;
-			ParticleSystem.ColorOverLifetimeModule colorOverLifetime = powderSpread.colorOverLifetime;
-			colorOverLifetime.enabled = true;
+			SyncGlowColor();
 		}
 		else
 		{
 			glow.enabled = false;
 			shadow.enabled = true;
-			ParticleSystem.ColorOverLifetimeModule colorOverLifetime2 = powderSpread.colorOverLifetime;
-			colorOverLifetime2.enabled = false;
 		}
+		SyncPowderSpreadColor(skinColor);
+	}
+
+	protected override void OnSkinSelected(Skin s)
+	{
+		if (s.GetSkinType() == Skin.Type.Ball)
+		{
+			skinColor = s.GetColor();
+			if (NightModeButton.nightModeOn)
+			{
+				SyncGlowColor();
+				SyncPowderSpreadColor(skinColor);
+			}
+			ParticleSystem.MainModule main = deathParticles.main;
+			main.startColor = new ParticleSystem.MinMaxGradient(skinColor);
+			SyncTrailColor(skinColor);
+		}
+		else if (s.GetSkinType() == Skin.Type.Background)
+		{
+			backgroundColor = s.GetColor();
+			SyncPowderSpreadColor(skinColor);
+		}
+	}
+
+	private void SyncGlowColor()
+	{
+		Color color = skinColor;
+		color.a = glowBaseColor.a;
+		glowBaseColor = color;
+		if (glowBaseColor.r < 0.2f)
+		{
+			glowBaseColor.r = 0.2f;
+		}
+		if (glowBaseColor.g < 0.2f)
+		{
+			glowBaseColor.g = 0.2f;
+		}
+		if (glowBaseColor.b < 0.2f)
+		{
+			glowBaseColor.b = 0.2f;
+		}
+		float num = Mathf.Max(glowBaseColor.r, glowBaseColor.g, glowBaseColor.b);
+		if (num < 1f)
+		{
+			num = 1f / num;
+			glowBaseColor.r *= num;
+			glowBaseColor.g *= num;
+			glowBaseColor.b *= num;
+		}
+		glow.color = glowBaseColor;
+	}
+
+	private void SyncPowderSpreadColor(Color color)
+	{
+		ParticleSystem.MainModule main = powderSpread.main;
+		ParticleSystem.ColorOverLifetimeModule colorOverLifetime = powderSpread.colorOverLifetime;
+		if (NightModeButton.nightModeOn)
+		{
+			main.startColor = new ParticleSystem.MinMaxGradient(color);
+			colorOverLifetime.enabled = true;
+			return;
+		}
+		Color color2 = backgroundColor;
+		color2.r *= 0.9f;
+		color2.g *= 0.9f;
+		color2.b *= 0.9f;
+		main.startColor = new ParticleSystem.MinMaxGradient(color2);
+		colorOverLifetime.enabled = false;
+	}
+
+	private void SyncTrailColor(Color c)
+	{
+		GradientColorKey[] colorKeys = new GradientColorKey[2]
+		{
+			new GradientColorKey(c, 0f),
+			new GradientColorKey(c, 1f)
+		};
+		GradientAlphaKey[] alphaKeys = new GradientAlphaKey[2]
+		{
+			new GradientAlphaKey(0.39f, 0f),
+			new GradientAlphaKey(0f, 1f)
+		};
+		trail.colorGradient = new Gradient
+		{
+			mode = GradientMode.Blend,
+			colorKeys = colorKeys,
+			alphaKeys = alphaKeys
+		};
 	}
 
 	public float GetGlowIntensity()
@@ -536,6 +632,58 @@ public sealed class Player : Singleton<Player>
 			Color color = glow.color;
 			color.a = glowIntensity * glowBaseColor.a;
 			glow.color = color;
+		}
+	}
+
+	private void SetColor(Color c, bool lightenUp = false)
+	{
+		spriteRenderer.color = c;
+		SyncPowderSpreadColor(c);
+		SyncTrailColor(c);
+		if (lightenUp)
+		{
+			glow.color = new Color(c.r + 0.2f, c.g + 0.2f, c.b + 0.2f, glow.color.a);
+			return;
+		}
+		c.a = glow.color.a;
+		glow.color = c;
+	}
+
+	public void PineDestroyed()
+	{
+		destroyFeverTime = Time.time;
+		Singleton<GameCamera>.i.Shake();
+		Device.Vibrate(Device.Vibration.Light);
+	}
+
+	private void FeverWillStop()
+	{
+		if (!feverWillStop)
+		{
+			lastFeverColor = spriteRenderer.color;
+			feverWillStop = true;
+			feverWillStopIn = Time.time;
+			SetColor(skinColor);
+			feverParticles.Stop();
+			megaFeverParticles.Stop();
+			Singleton<MenuScores>.i.SetScoreColor(baseColor);
+		}
+	}
+
+	private void UpdateFeverWillStop()
+	{
+		float num = Time.time - feverWillStopIn;
+		if (!feverWillStop)
+		{
+			if (feverState != 0)
+			{
+				SetColor(Color.Lerp(feverColor, megaFeverColor, Mathf.Cos(num * 5f * (float)Math.PI) * 0.5f + 0.5f));
+			}
+		}
+		else if (num >= 0.5f)
+		{
+			feverWillStop = false;
+			SetFeverState(FeverState.None);
 		}
 	}
 }

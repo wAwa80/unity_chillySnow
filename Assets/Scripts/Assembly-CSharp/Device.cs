@@ -16,5 +16,9 @@ public static class Device
 
 	public static void Vibrate(Vibration vibration)
 	{
+		if (VibrateButton.vibrateOn)
+		{
+			//Handheld.Vibrate();
+		}
 	}
 }

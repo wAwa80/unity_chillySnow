@@ -21,13 +21,8 @@ public class NightModeText : Neuron
 
 	protected override void OnNightModeSwitched(bool enabled)
 	{
-		if (enabled)
-		{
-			text.color = nightColor;
-		}
-		else
-		{
-			text.color = dayColor;
-		}
+		Color color = ((!enabled) ? dayColor : nightColor);
+		color.a = text.color.a;
+		text.color = color;
 	}
 }

@@ -63,15 +63,15 @@ namespace EasyMobile
 
 		public static Texture2D CaptureScreenshot()
 		{
-			return null;// CaptureScreenshot(0f, 0f, Screen.width, Screen.height);
+			return CaptureScreenshot(0f, 0f, Screen.width, Screen.height);
 		}
 
-        public static Texture2D CaptureScreenshot(float startX, float startY, float width, float height)
-        {
-			//Texture2D texture2D = new Texture2D((int)width, (int)height, TextureFormat.RGB24, mipmap: false);
-			//texture2D.ReadPixels(new Rect(startX, startY, width, height), 0, 0);
-			//texture2D.Apply();
-			return null;// texture2D;
-        }
-    }
+		public static Texture2D CaptureScreenshot(float startX, float startY, float width, float height)
+		{
+			Texture2D texture2D = new Texture2D((int)width, (int)height, TextureFormat.RGB24, false);
+			texture2D.ReadPixels(new Rect(startX, startY, width, height), 0, 0);
+			texture2D.Apply();
+			return texture2D;
+		}
+	}
 }

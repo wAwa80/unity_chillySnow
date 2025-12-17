@@ -154,4 +154,16 @@ public sealed class GameCamera : Singleton<GameCamera>
 			thisCamera.backgroundColor = dayColor;
 		}
 	}
+
+	protected override void OnSkinSelected(Skin skin)
+	{
+		if (skin.GetSkinType() == Skin.Type.Background)
+		{
+			dayColor = skin.GetColor();
+			if (!NightModeButton.nightModeOn)
+			{
+				thisCamera.backgroundColor = dayColor;
+			}
+		}
+	}
 }

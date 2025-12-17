@@ -6,6 +6,9 @@ public sealed class SettingsPage : Page<SettingsPage>, IPointerDownHandler, IEve
 	[SerializeField]
 	private SoundButton soundButton;
 
+	[SerializeField]
+	private VibrateButton vibrateButton;
+
 	public void OnPointerDown(PointerEventData data)
 	{
 		Hide();
@@ -16,9 +19,11 @@ public sealed class SettingsPage : Page<SettingsPage>, IPointerDownHandler, IEve
 		base.Show();
 		Singleton<SettingsButton>.i.Hide(4f);
 		soundButton.Show();
-		Invoke("ShowGameCenterButton", 0.2f);
-		Invoke("ShowPremiumButton", 0.4f);
-		Invoke("ShowRestoreButton", 0.6f);
+		Invoke("ShowVibrateButton", 0.2f);
+		Invoke("ShowMotivationalButton", 0.4f);
+		Invoke("ShowGameCenterButton", 0.6f);
+		Invoke("ShowPremiumButton", 0.8f);
+		Invoke("ShowRestoreButton", 1f);
 	}
 
 	public override void Hide()
@@ -27,6 +32,8 @@ public sealed class SettingsPage : Page<SettingsPage>, IPointerDownHandler, IEve
 		CancelInvoke();
 		Singleton<SettingsButton>.i.Show(4f);
 		soundButton.Hide();
+		vibrateButton.Hide();
+		Singleton<MotivationalButton>.i.Hide();
 		Singleton<GameCenterButton>.i.Hide();
 		Singleton<PremiumButton>.i.Hide();
 		Singleton<RestoreButton>.i.Hide();
@@ -34,6 +41,12 @@ public sealed class SettingsPage : Page<SettingsPage>, IPointerDownHandler, IEve
 
 	private void ShowVibrateButton()
 	{
+		vibrateButton.Show();
+	}
+
+	private void ShowMotivationalButton()
+	{
+		Singleton<MotivationalButton>.i.Show();
 	}
 
 	private void ShowGameCenterButton()

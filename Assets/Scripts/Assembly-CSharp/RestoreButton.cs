@@ -8,6 +8,6 @@ public class RestoreButton : AnimatedButton<RestoreButton>
 
 	private void RestorePremium()
 	{
-		VoodooSauce.RestorePurchases();
+		//VoodooSauce.RestorePurchases();
 	}
 }

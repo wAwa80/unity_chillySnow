@@ -8,13 +8,18 @@ public class Negative : MonoBehaviour
 	[SerializeField]
 	private Shader shader;
 
-	private void Awake()
-	{
-		material = new Material(shader);
-	}
-
 	private void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
-		Graphics.Blit(source, destination, material);
+		try
+		{
+			if (material == null)
+			{
+				material = new Material(shader);
+			}
+			Graphics.Blit(source, destination, material);
+		}
+		catch
+		{
+		}
 	}
 }

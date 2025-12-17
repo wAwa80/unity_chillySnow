@@ -17,7 +17,8 @@ public abstract class Neuron : MonoBehaviour, IPriority
 		Continue,
 		BackToMenu,
 		Purchased,
-		NightModeSwitched
+		NightModeSwitched,
+		SkinSelected
 	}
 
 	private static readonly Dictionary<string, Event> eventNames;
@@ -99,6 +100,10 @@ public abstract class Neuron : MonoBehaviour, IPriority
 	{
 	}
 
+	protected virtual void OnSkinSelected(Skin skin)
+	{
+	}
+
 	public static void NewGame()
 	{
 		foreach (Neuron item in neurons[Event.NewGame])
@@ -176,6 +181,14 @@ public abstract class Neuron : MonoBehaviour, IPriority
 		foreach (Neuron item in neurons[Event.NightModeSwitched])
 		{
 			item.OnNightModeSwitched(enabled);
+		}
+	}
+
+	public static void SkinSelected(Skin skin)
+	{
+		foreach (Neuron item in neurons[Event.SkinSelected])
+		{
+			item.OnSkinSelected(skin);
 		}
 	}
 }

@@ -1,4 +1,3 @@
-using mixpanel;
 using UnityEngine;
 
 public class MixpanelExample : MonoBehaviour
@@ -18,15 +17,15 @@ public class MixpanelExample : MonoBehaviour
 	private void OnGUI()
 	{
 		GUI.skin = skin;
-		GUILayout.BeginArea(new Rect((float)Screen.width * 0.3f, (float)Screen.height * 0.45f, (float)Screen.width * 0.4f, (float)Screen.height * 0.5f));
-		if (GUILayout.Button("Track"))
-		{
-			//Mixpanel.Track("The Button Was Clicked");
-		}
-		if (GUILayout.Button("Engage"))
-		{
-			//Mixpanel.people.Increment("clicks", 1);
-		}
+		//GUILayout.BeginArea(new Rect((float)Screen.width * 0.3f, (float)Screen.height * 0.45f, (float)Screen.width * 0.4f, (float)Screen.height * 0.5f));
+		//if (GUILayout.Button("Track"))
+		//{
+		//	Mixpanel.Track("The Button Was Clicked");
+		//}
+		//if (GUILayout.Button("Engage"))
+		//{
+		//	Mixpanel.people.Increment("clicks", 1);
+		//}
 		GUILayout.EndArea();
 	}
 

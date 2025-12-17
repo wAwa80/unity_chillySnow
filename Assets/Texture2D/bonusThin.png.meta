@@ -1,16 +1,13 @@
 fileFormatVersion: 2
-guid: aaea916bb1c9fcaf40ac408cf67cb549
+guid: d72a488cf060f6f4dab2ea99a7e07dd9
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 21300000
-    second: bonusThin
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
-    sRGBTexture: 0
+    sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
@@ -32,8 +29,8 @@ TextureImporter:
   generateCubemap: 6
   cubemapConvolution: 0
   seamlessCubemap: 0
-  textureFormat: 47
-  maxTextureSize: 2048
+  textureFormat: 4
+  maxTextureSize: 256
   textureSettings:
     serializedVersion: 2
     filterMode: 1
@@ -142,36 +139,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: bonusThin
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -128, y: -79}
-        - {x: -128, y: 98}
-        - {x: -74, y: 128}
-        - {x: 115, y: 128}
-        - {x: 128, y: 96}
-        - {x: 128, y: -98}
-        - {x: 75, y: -128}
-        - {x: -71, y: -128}
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 
-      internalID: 21300000
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline:
     - - {x: -128, y: -79}
       - {x: -128, y: 98}
@@ -181,7 +149,91 @@ TextureImporter:
       - {x: 128, y: -98}
       - {x: 75, y: -128}
       - {x: -71, y: -128}
-    physicsShape: []
+    physicsShape:
+    - - {x: 80, y: -103}
+      - {x: 98, y: -86}
+      - {x: 110, y: -70}
+      - {x: 123, y: -46}
+      - {x: 128, y: -25}
+      - {x: 128, y: 29}
+      - {x: 123, y: 46}
+      - {x: 113, y: 65}
+      - {x: 103, y: 80}
+      - {x: 85, y: 98}
+      - {x: 75, y: 106}
+      - {x: 65, y: 113}
+      - {x: 43, y: 123}
+      - {x: 32, y: 126}
+      - {x: 23, y: 128}
+      - {x: -29, y: 128}
+      - {x: -51, y: 121}
+      - {x: -76, y: 107}
+      - {x: -86, y: 98}
+      - {x: -98, y: 86}
+      - {x: -110, y: 70}
+      - {x: -120, y: 50}
+      - {x: -126, y: 36}
+      - {x: -128, y: 23}
+      - {x: -128, y: -24}
+      - {x: -127, y: -29}
+      - {x: -125, y: -37}
+      - {x: -120, y: -50}
+      - {x: -110, y: -70}
+      - {x: -103, y: -80}
+      - {x: -86, y: -98}
+      - {x: -80, y: -103}
+      - {x: -70, y: -110}
+      - {x: -50, y: -120}
+      - {x: -33, y: -127}
+      - {x: -23, y: -128}
+      - {x: 29, y: -128}
+      - {x: 46, y: -123}
+      - {x: 65, y: -113}
+    - - {x: -34, y: -114}
+      - {x: -50, y: -108}
+      - {x: -64, y: -100}
+      - {x: -76, y: -92}
+      - {x: -77, y: -92}
+      - {x: -92, y: -76}
+      - {x: -104, y: -57}
+      - {x: -108, y: -50}
+      - {x: -113, y: -37}
+      - {x: -118, y: -15}
+      - {x: -119, y: 14}
+      - {x: -118, y: 15}
+      - {x: -114, y: 34}
+      - {x: -108, y: 50}
+      - {x: -100, y: 64}
+      - {x: -92, y: 76}
+      - {x: -76, y: 91}
+      - {x: -62, y: 102}
+      - {x: -50, y: 108}
+      - {x: -37, y: 113}
+      - {x: -15, y: 118}
+      - {x: 14, y: 119}
+      - {x: 15, y: 118}
+      - {x: 34, y: 114}
+      - {x: 50, y: 108}
+      - {x: 67, y: 98}
+      - {x: 76, y: 92}
+      - {x: 91, y: 76}
+      - {x: 102, y: 62}
+      - {x: 108, y: 50}
+      - {x: 113, y: 37}
+      - {x: 118, y: 15}
+      - {x: 119, y: -14}
+      - {x: 118, y: -15}
+      - {x: 114, y: -34}
+      - {x: 108, y: -50}
+      - {x: 98, y: -67}
+      - {x: 92, y: -76}
+      - {x: 76, y: -92}
+      - {x: 57, y: -104}
+      - {x: 50, y: -108}
+      - {x: 37, y: -113}
+      - {x: 15, y: -118}
+      - {x: -14, y: -119}
+      - {x: -15, y: -118}
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
@@ -190,8 +242,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      bonusThin: 21300000
+    nameFileIdTable: {}
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

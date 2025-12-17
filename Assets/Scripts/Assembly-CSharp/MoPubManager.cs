@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 public class MoPubManager : MonoBehaviour
 {
@@ -674,107 +673,107 @@ public class MoPubManager : MonoBehaviour
 				GameObject gameObject = new GameObject(typeFromHandle.ToString());
 				gameObject.AddComponent(typeFromHandle);
 				UnityEngine.Object.DontDestroyOnLoad(gameObject);
-				Debug.Log("Created MoPuManager");
+				UnityEngine.Debug.Log("Created MoPuManager");
 			}
 		}
 		catch (UnityException)
 		{
-			Debug.LogWarning(string.Concat("It looks like you have the ", typeFromHandle, " on a GameObject in your scene. Please remove the script from your scene."));
+            UnityEngine.Debug.LogWarning(string.Concat("It looks like you have the ", typeFromHandle, " on a GameObject in your scene. Please remove the script from your scene."));
 		}
 	}
 
 	public static void Init()
 	{
-		Debug.Log("MoPuManager initialized");
+        UnityEngine.Debug.Log("MoPuManager initialized");
 	}
 
-	private void onAdLoaded(string height)
-	{
-		//if (MoPubManager.onAdLoadedEvent != null)
-		//{
-		//	MoPubManager.onAdLoadedEvent(float.Parse(height));
-		//}
-	}
+	//private void onAdLoaded(string height)
+	//{
+	//	if (MoPubManager.onAdLoadedEvent != null)
+	//	{
+	//		MoPubManager.onAdLoadedEvent(float.Parse(height));
+	//	}
+	//}
 
-	private void onAdFailed(string errorMsg)
-	{
-		//if (MoPubManager.onAdFailedEvent != null)
-		//{
-		//	MoPubManager.onAdFailedEvent(errorMsg);
-		//}
-	}
+	//private void onAdFailed(string errorMsg)
+	//{
+	//	if (MoPubManager.onAdFailedEvent != null)
+	//	{
+	//		MoPubManager.onAdFailedEvent(errorMsg);
+	//	}
+	//}
 
-	private void onAdClicked(string adUnitId)
-	{
-		//if (MoPubManager.onAdClickedEvent != null)
-		//{
-		//	MoPubManager.onAdClickedEvent(adUnitId);
-		//}
-	}
+	//private void onAdClicked(string adUnitId)
+	//{
+	//	if (MoPubManager.onAdClickedEvent != null)
+	//	{
+	//		MoPubManager.onAdClickedEvent(adUnitId);
+	//	}
+	//}
 
-	private void onAdExpanded(string adUnitId)
-	{
-		//if (MoPubManager.onAdExpandedEvent != null)
-		//{
-		//	MoPubManager.onAdExpandedEvent(adUnitId);
-		//}
-	}
+	//private void onAdExpanded(string adUnitId)
+	//{
+	//	if (MoPubManager.onAdExpandedEvent != null)
+	//	{
+	//		MoPubManager.onAdExpandedEvent(adUnitId);
+	//	}
+	//}
 
-	private void onAdCollapsed(string adUnitId)
-	{
-		//if (MoPubManager.onAdCollapsedEvent != null)
-		//{
-		//	MoPubManager.onAdCollapsedEvent(adUnitId);
-		//}
-	}
+	//private void onAdCollapsed(string adUnitId)
+	//{
+	//	if (MoPubManager.onAdCollapsedEvent != null)
+	//	{
+	//		MoPubManager.onAdCollapsedEvent(adUnitId);
+	//	}
+	//}
 
-	private void onInterstitialLoaded(string adUnitId)
-	{
-		//if (MoPubManager.onInterstitialLoadedEvent != null)
-		//{
-		//	MoPubManager.onInterstitialLoadedEvent(adUnitId);
-		//}
-	}
+	//private void onInterstitialLoaded(string adUnitId)
+	//{
+	//	if (MoPubManager.onInterstitialLoadedEvent != null)
+	//	{
+	//		MoPubManager.onInterstitialLoadedEvent(adUnitId);
+	//	}
+	//}
 
-	private void onInterstitialFailed(string errorMsg)
-	{
-		//if (MoPubManager.onInterstitialFailedEvent != null)
-		//{
-		//	MoPubManager.onInterstitialFailedEvent(errorMsg);
-		//}
-	}
+	//private void onInterstitialFailed(string errorMsg)
+	//{
+	//	if (MoPubManager.onInterstitialFailedEvent != null)
+	//	{
+	//		MoPubManager.onInterstitialFailedEvent(errorMsg);
+	//	}
+	//}
 
-	private void onInterstitialDismissed(string adUnitId)
-	{
-		//if (MoPubManager.onInterstitialDismissedEvent != null)
-		//{
-		//	MoPubManager.onInterstitialDismissedEvent(adUnitId);
-		//}
-	}
+	//private void onInterstitialDismissed(string adUnitId)
+	//{
+	//	if (MoPubManager.onInterstitialDismissedEvent != null)
+	//	{
+	//		MoPubManager.onInterstitialDismissedEvent(adUnitId);
+	//	}
+	//}
 
-	private void interstitialDidExpire(string adUnitId)
-	{
-		//if (MoPubManager.onInterstitialExpiredEvent != null)
-		//{
-		//	MoPubManager.onInterstitialExpiredEvent(adUnitId);
-		//}
-	}
+	//private void interstitialDidExpire(string adUnitId)
+	//{
+	//	if (MoPubManager.onInterstitialExpiredEvent != null)
+	//	{
+	//		MoPubManager.onInterstitialExpiredEvent(adUnitId);
+	//	}
+	//}
 
-	private void onInterstitialShown(string adUnitId)
-	{
-		//if (MoPubManager.onInterstitialShownEvent != null)
-		//{
-		//	MoPubManager.onInterstitialShownEvent(adUnitId);
-		//}
-	}
+	//private void onInterstitialShown(string adUnitId)
+	//{
+	//	if (MoPubManager.onInterstitialShownEvent != null)
+	//	{
+	//		MoPubManager.onInterstitialShownEvent(adUnitId);
+	//	}
+	//}
 
-	private void onInterstitialClicked(string adUnitId)
-	{
-		//if (MoPubManager.onInterstitialClickedEvent != null)
-		//{
-		//	MoPubManager.onInterstitialClickedEvent(adUnitId);
-		//}
-	}
+	//private void onInterstitialClicked(string adUnitId)
+	//{
+	//	if (MoPubManager.onInterstitialClickedEvent != null)
+	//	{
+	//		MoPubManager.onInterstitialClickedEvent(adUnitId);
+	//	}
+	//}
 
 	//private void onRewardedVideoLoaded(string adUnitId)
 	//{
