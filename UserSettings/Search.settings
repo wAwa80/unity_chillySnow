@@ -1,31 +1,29 @@
 trackSelection = true
 refreshSearchWindowsInPlayMode = false
+pickerAdvancedUI = false
 fetchPreview = true
 defaultFlags = 0
-keepOpen = false
+keepOpen = true
 queryFolder = "Assets"
 onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.2138236A" = ""
-	"OpenInspectorPreview.2138236A" = "0"
-	"currentGroup.2138236A" = "asset"
 }
 providers = {
-	adb = {
-		active = false
-		priority = 2500
-		defaultAction = null
-	}
 	asset = {
 		active = true
 		priority = 25
 		defaultAction = null
 	}
-	store = {
+	scene = {
 		active = true
-		priority = 100
+		priority = 50
+		defaultAction = null
+	}
+	adb = {
+		active = false
+		priority = 2500
 		defaultAction = null
 	}
 	find = {
@@ -33,13 +31,8 @@ providers = {
 		priority = 25
 		defaultAction = null
 	}
-	log = {
-		active = false
-		priority = 210
-		defaultAction = null
-	}
 	packages = {
-		active = true
+		active = false
 		priority = 90
 		defaultAction = null
 	}
@@ -53,9 +46,14 @@ providers = {
 		priority = 100
 		defaultAction = null
 	}
-	scene = {
-		active = true
-		priority = 50
+	store = {
+		active = false
+		priority = 100
+		defaultAction = null
+	}
+	log = {
+		active = false
+		priority = 210
 		defaultAction = null
 	}
 }
@@ -70,7 +68,7 @@ showSavedSearchPanel = false
 hideTabs = false
 expandedQueries = [
 ]
-queryBuilder = false
+queryBuilder = true
 ignoredProperties = "id;name;classname;imagecontentshash"
 helperWidgetCurrentArea = "all"
 disabledIndexers = ""
