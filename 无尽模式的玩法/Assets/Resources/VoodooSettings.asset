@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d7eea455e80164ebdd7da832f303de, type: 3}
+  m_Name: VoodooSettings
+  m_EditorClassIdentifier:
+  MixpanelProdToken: 0ee345c648d80db5d100d0044f3e9f1d
+  MixpanelDevToken: 0ee345c648d80db5d100d0044f3e9f1d
+  MixpanelUsersPercent: 0.25
+  MixpanelUsersPercentPerCohort: 0.25
+  MixpanelUsersPercentForPeople: 0.01
+  GameAnalyticsIosGameKey: 97c8fafae2cda70ce00b6770a47dca1d
+  GameAnalyticsIosSecretKey: 61ce009d01fcf43910925284d7e3a40f6fabaa39
+  GameAnalyticsAndroidGameKey: 4034b47933df9576871f2f62545ab7b8
+  GameAnalyticsAndroidSecretKey: b97df4bfdb1a4e041e7f3e5ff34fad9359396581
+  IosAdUnits:
+    BannerAdUnit: 6b855d136ce14c74906f2e5905058d80
+    InterstitialAdUnit: 479df8448c9446b4a7aec52161c14cca
+    RewardedVideoAdUnit: 1043c3373eb94a288448fb491fecb97e
+  AndroidAdUnits:
+    BannerAdUnit: 7e557220ff9e4c68a69194bb71c74c80
+    InterstitialAdUnit: 448f731c8c6a489bb6a9de53744e803e
+    RewardedVideoAdUnit: 70ede1fa5eb24c9aafd787113047f0e5
+  TapjoyIosSdkKey:
+  TapjoyAndroidSdkKey:
+  DelayInSecondsBeforeFirstInterstitialAd: 60
+  DelayInSecondsBetweenInterstitialAds: 30
+  MaxGamesBetweenInterstitialAds: 5
+  RunningABTests:
+  - DefaultIsNightMode
+  - DestroyPines
+  DebugForcedCohort:
+    index: 1
+  Products:
+  - _productId: chilly_noads
+    _type: 1
+    _priceInUSD: 3.49

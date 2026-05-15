@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3173f711323260a248970e14ffb8ef3b, type: 3}
+  m_Name: Settings
+  m_EditorClassIdentifier:
+  TotalMessagesSubmitted: 0
+  TotalMessagesFailed: 0
+  DesignMessagesSubmitted: 0
+  DesignMessagesFailed: 0
+  QualityMessagesSubmitted: 0
+  QualityMessagesFailed: 0
+  ErrorMessagesSubmitted: 0
+  ErrorMessagesFailed: 0
+  BusinessMessagesSubmitted: 0
+  BusinessMessagesFailed: 0
+  UserMessagesSubmitted: 0
+  UserMessagesFailed: 0
+  CustomArea:
+  gameKey:
+  - 4034b47933df9576871f2f62545ab7b8
+  - 97c8fafae2cda70ce00b6770a47dca1d
+  secretKey:
+  - b97df4bfdb1a4e041e7f3e5ff34fad9359396581
+  - 61ce009d01fcf43910925284d7e3a40f6fabaa39
+  Build:
+  - 1.0.5
+  - 1.0.5
+  SelectedPlatformStudio:
+  - Voodoo
+  - Voodoo
+  SelectedPlatformGame:
+  - Chilly Snow - Android (Acid Cousins)
+  - Chilly Snow - iOS (Acid Cousins)
+  SelectedPlatformGameID: 48A90000F4A40000
+  SelectedStudio: 0300000003000000
+  SelectedGame: 0200000001000000
+  NewVersion:
+  Changes:
+  SignUpOpen: 1
+  FirstName:
+  LastName:
+  StudioName:
+  GameName: VoodooSauce
+  PasswordConfirm:
+  EmailOptIn: 1
+  EmailGA: 'contact@acidcousins.com'
+  IntroScreen: 0
+  InfoLogEditor: 0
+  InfoLogBuild: 0
+  VerboseLogBuild: 0
+  UseManualSessionHandling: 0
+  SendExampleGameDataToMyGame: 0
+  InternetConnectivity: 0
+  CustomDimensions01: []
+  CustomDimensions02: []
+  CustomDimensions03: []
+  ResourceItemTypes: []
+  ResourceCurrencies: []
+  LastCreatedGamePlatform: 0
+  Platforms: 0B00000008000000
+  CurrentInspectorState: 3
+  ClosedHints:
+  DisplayHints: 0
+  DisplayHintsScrollState: {x: 0, y: 0}
+  Logo: {fileID: 2800000, guid: da76065db6282d92405c78bc7e5838b1, type: 3}
+  UpdateIcon: {fileID: 2800000, guid: 6309b4601c7b83804f2eac9ed6aec1c8, type: 3}
+  InfoIcon: {fileID: 2800000, guid: b1edfe19c448e79d4da5e6909e49bfae, type: 3}
+  DeleteIcon: {fileID: 2800000, guid: 23fccf25019cb7b64f981fc55efc6863, type: 3}
+  GameIcon: {fileID: 2800000, guid: 591bdbc3a51a548f471e5408f6dc8942, type: 3}
+  HomeIcon: {fileID: 2800000, guid: 6bc0fa5a6331988f4ad8f7c31d692682, type: 3}
+  InstrumentIcon: {fileID: 2800000, guid: ec7b00b4550ffe82443509af10e04261, type: 3}
+  QuestionIcon: {fileID: 2800000, guid: 75b1f3c5976337b84a023134a768f57d, type: 3}
+  UserIcon: {fileID: 2800000, guid: d0a64bc6fb8e99834cfca562f2cce035, type: 3}
+  AmazonIcon: {fileID: 0}
+  GooglePlayIcon: {fileID: 0}
+  iosIcon: {fileID: 0}
+  macIcon: {fileID: 0}
+  windowsPhoneIcon: {fileID: 0}
+  UseCustomId: 0
+  UsePlayerSettingsBuildNumber: 0
+  SubmitErrors: 1
+  MaxErrorCount: 10
+  SubmitFpsAverage: 1
+  SubmitFpsCritical: 1
+  IncludeGooglePlay: 1
+  FpsCriticalThreshold: 20
+  FpsCirticalSubmitInterval: 1
+  PlatformFoldOut: 0101
+  CustomDimensions01FoldOut: 0
+  CustomDimensions02FoldOut: 0
+  CustomDimensions03FoldOut: 0
+  ResourceItemTypesFoldOut: 0
+  ResourceCurrenciesFoldOut: 0
