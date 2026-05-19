@@ -1,0 +1,95 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Administrator" at "2026-05-14T13:31:00.4987215Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 6648, path: "C:/Program Files/Unity Hub/UnityLicensingClient_V1/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.16.1'. Current supported versions are: 1.0,1.1,1.2,1.3,1.4,1.4.1,1.5,1.6,1.7,1.8,1.9,1.10
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-Administrator"
+[Licensing::IpcConnector] LicenseClient-Administrator channel disconnected successfully.
+[Licensing::IpcConnector] Channel LicenseClient-Administrator-2022.3.56 doesn't exist
+[Licensing::Module] Successfully launched the LicensingClient (PId: 43996)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Administrator-2022.3.56" at "2026-05-14T13:31:03.8034803Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 43996, path: "C:/Program Files/Unity/Hub/Editor/2022.3.56f1c1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.16.1+e780b2e
+  Session Id:              384f17b651a4472b9b6cef594a007436
+  Correlation Id:          5b21ad3947996cbee68e3b3bdd7cf35f
+  External correlation Id: 2839325954276135710
+  Machine Id:              yWWA9TlsDVyUvRyWsAkBtYdoYzs=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-Administrator-2022.3.56" (connect: 2.93s, validation: 0.17s, handshake: 0.11s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Administrator-2022.3.56-notifications" at "2026-05-14T13:31:04.0857963Z"
+[Licensing::Module] Connected to LicensingClient (PId: 43996, launch time: 0.03, total connection time: 3.21s)
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully updated license
+Built from '2022.3/china_unity/release' branch; Version is '2022.3.56f1c1 (bb6410cfcc53) revision 12280848'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26200) 64bit Professional' Language: 'zh' Physical Memory: 16197 MB
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Serial number assigned to: "F4-3SJZ-EHDP-9BXZ-VG2E-XXXX"
+[Licensing::Module] Serial number assigned to: "1375886671898-sdlpqxzc-UnityProStuXXXX"
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Serial number assigned to: "F4-3SJZ-EHDP-9BXZ-VG2E-XXXX"
+[Licensing::Module] Serial number assigned to: "1375886671898-sdlpqxzc-UnityProStuXXXX"
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2022.3.56f1c1\Editor\Unity.exe
+-batchmode
+-nographics
+-quit
+-projectPath
+d:\Workspace\Github\chillysnow
+-logFile
+d:\Workspace\Github\chillysnow\unity_compile.log
+Successfully changed project path to: d:\Workspace\Github\chillysnow
+D:/Workspace/Github/chillysnow
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [7552]  Target information:
+
+Player connection [7552]  * "[IP] 192.168.28.83 [Port] 55505 [Flags] 2 [Guid] 1015290838 [EditorId] 1015290838 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-400IA78) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [7552]  * "[IP] 198.18.0.1 [Port] 55505 [Flags] 2 [Guid] 1015290838 [EditorId] 1015290838 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-400IA78) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [7552] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [7552] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[Package Manager] UpmClient::Connect -- Connected to IPC stream "Upm-46824" after 0.3 seconds.
+Invalid version provided - release type(a|b|f|p|x) or end of string expected, got t
+[Package Manager] Done resolving packages in 63.36 seconds
+[Licensing::Client] Successfully resolved entitlement details
+An error occurred while resolving packages:
+  Project has invalid dependencies:
+    com.unity.modules.infinity: Package [com.unity.modules.infinity@1.0.0] cannot be found
+Exiting without the bug reporter. Application will terminate with return code 1

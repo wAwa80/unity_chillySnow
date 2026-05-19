@@ -1,0 +1,192 @@
+# .cursorignore — Cursor 索引 / Agent 可读范围（gitignore 语法）
+# 顺序：构建与缓存 → IDE 产物 → 大资源与二进制扩展名 → Unity .meta（仅 Scene+Prefab 树） → 本地杂项
+# .vscode/ 未列入忽略：工作区设置见 .vscode/settings.json
+
+# === Unity 构建缓存与本地环境 ===
+Library/
+Temp/
+Logs/
+Build/
+obj/
+Obj/
+.vs/
+.idea/
+# Rider / VS / 解决方案文件
+*.sln
+*.csproj
+*.user
+*.unityproj
+*.pidb
+*.suo
+*.tmp
+*.userprefs
+*.DotSettings
+
+# Crash / 报告 / 其他本地文件
+sysinfo.txt
+*.stacktrace
+*.crash
+*.log
+
+# === 项目外层常见产物（如果存在） ===
+/Builds/
+/Exports/
+/Release/
+/Release*/ 
+/Debug/
+/Debug*/
+/ProjectSettings/
+
+# === Addressables / StreamingAssets 构建输出（如存在） ===
+**/StreamingAssets/aa/**
+**/StreamingAssets/AssetBundles/**
+**/Build*/AssetBundles/**
+
+# === 大体积资源目录：游戏资源与美术 ===
+# 保留 C# 与配置文件的可见性，主要是避免 AI 在巨大资源上浪费上下文。
+# 1. 屏蔽 GameRes 下的所有内容，但不能用 **，要用 * 配合逐级放行
+Assets/GameRes/*
+
+# 2. 单独放行 Runtime 目录，但屏蔽 Runtime 里的其他不需要的文件夹
+!Assets/GameRes/Runtime/
+Assets/GameRes/Runtime/*
+
+# 3. 彻底放行 Scenes 目录及其内部所有文件（此时 .unity 文件解除屏蔽）
+!Assets/GameRes/Runtime/Scenes/
+Assets/GameArt/**
+
+# Spine / 动画 / Shaders / Sprites / Atlas 等大资源（按需放宽）
+Assets/**/Spine/**
+Assets/**/Animations/**
+Assets/**/Animator/**
+Assets/**/Sprites/**
+Assets/**/SpriteAtlas/**
+Assets/**/Atlas/**
+Assets/**/Textures/**
+Assets/**/Materials/**
+Assets/**/Shaders/**
+
+# === 大型二进制 / 贴图 / 模型 / 声音等资源扩展名 ===
+*.png
+*.jpg
+*.jpeg
+*.tga
+*.psd
+*.tif
+*.tiff
+*.bmp
+*.gif
+*.exr
+*.hdr
+*.mat
+*.anim
+*.shader
+*.pdf
+
+
+*.fbx
+*.obj
+*.3ds
+*.blend
+*.dae
+
+*.mp3
+*.ogg
+*.wav
+*.aiff
+*.aif
+*.flac
+
+*.mp4
+*.mov
+*.avi
+
+*.ttf
+*.otf
+
+# Unity 资源与缓存类 asset（可按需要放宽）
+# 若希望 AI 仍能看到部分 .asset（比如配置 ScriptableObject），可以只忽略特定路径。
+# 这里仅示例性地排除一些明显为缓存类的 asset。
+Assets/FR2_Cache.asset
+*Cache.asset
+
+# === 第三方大体积插件（默认仍然允许 AI 读取 C#，这里只是提醒可按需收紧） ===
+# 如果你希望进一步减少上下文占用，可以取消注释以下几行，让 AI 完全忽略这些第三方目录。
+# Assets/ThirdParty/PlayMaker/**
+Assets/ThirdParty/Demigiant/DOTween/**
+Assets/ThirdParty/Demigiant/DOTweenPro/**
+Assets/ThirdParty/ThinkingAnalytics/**
+Assets/ThirdParty/TextMesh Pro/**
+Assets/UnityWebSocket/**
+
+# === 其他工具 / 本地缓存 ===
+*.bak
+*.orig
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Rider / ReSharper 等
+*.DotSettings.user
+_ReSharper.*/
+*.resharper
+*.csproj.user
+*.user
+
+# === Unity .meta：仅索引「场景 + 预制体」目录树下的 .meta，其余 Assets 下 .meta 忽略 ===
+# 先匹配 Assets/**/*.meta，再按 gitignore 用 ! 放行整棵子目录（便于遍历其中 .meta）。
+Assets/**/*.meta
+!Assets/Scene/
+!Assets/Scene/**
+!Assets/Prefab/
+!Assets/Prefab/**
+!Assets/PrefabInstance/
+!Assets/PrefabInstance/**
+
+无尽模式的玩法/Assets/**/*.meta
+!无尽模式的玩法/Assets/Scene/
+!无尽模式的玩法/Assets/Scene/**
+!无尽模式的玩法/Assets/Prefab/
+!无尽模式的玩法/Assets/Prefab/**
+!无尽模式的玩法/Assets/PrefabInstance/
+!无尽模式的玩法/Assets/PrefabInstance/**
+
+Packages/**/*.meta
+
+
+# === 忽略本地代码变更记录（仅适用于本地开发） ===
+# ----- 与仓库 .gitignore 对齐的目录/产物（减少索引与无意义 diff）-----
+ServerData/
+PlayerDataCache/
+Android/
+Test*/
+
+# 根或子项目里的构建/包（若路径存在；无则无害）
+Assetbundles/
+WebGLOnlyGzip/
+WebGLDisableGzip/
+WebGL_Br_Fallback
+PotShot/OutPut/
+PotShot/Logs/
+PotShot/Library/
+PotShot/Android/
+
+# 本地/Unity 包工具缓存（.gitignore 里有的）
+/Assets/AssetStoreTools*
+/Assets/Packages/FR2/FR2_Cache.asset
+/Assets/Packages/FR2/FR2_Cache.asset.meta
+ProjectSettings/UPRSettings.asset
+LuaScripts/EmmyLuaDebuggerConfig.lua
+LuaScripts/mobdebug.lua
+LuaScripts/Global/MyConfig.lua
+/Assets/codeandweb.com/Editor/SettingsTexturePackerImporter.txt
+/Assets/codeandweb.com/Editor/SettingsTexturePackerImporter.txt.meta
+
+# 清单/本机大文件：避免 Cursor 把整份 tree 当上下文（filetree.txt 超大量行）
+filetree.txt
+*.keystore
+hs_err_pid*.log
+
+# 编辑器用户状态（.git 常跟踪或常改；对写业务代码帮助小）
+UserSettings/

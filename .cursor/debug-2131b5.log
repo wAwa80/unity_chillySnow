@@ -1,0 +1,5 @@
+{"sessionId":"2131b5","location":"ui-server.ts:openBrowser","message":"openBrowser_enter","data":{"seq":1,"pid":51848,"url":"http://127.0.0.1:3210"},"timestamp":1778931300585,"hypothesisId":"H2"}
+{"sessionId":"2131b5","location":"ui-server.ts:openBrowser:explorerExit","message":"explorer_exit","data":{"pid":51848,"code":1,"willFallback":true,"url":"http://127.0.0.1:3210"},"timestamp":1778931302291,"hypothesisId":"H1"}
+{"sessionId":"2131b5","location":"ui-server.ts:openBrowser:fallback","message":"spawning_cmd_start_fallback","data":{"pid":51848,"explorerExitCode":1,"url":"http://127.0.0.1:3210"},"timestamp":1778931302292,"hypothesisId":"H1"}
+{"sessionId":"2131b5","location":"ui-server.ts:openBrowser","message":"openBrowser_enter","data":{"seq":1,"pid":51128,"url":"http://127.0.0.1:3210"},"timestamp":1778931462413,"hypothesisId":"H2"}
+{"sessionId":"2131b5","location":"ui-server.ts:openBrowser:explorerExit","message":"explorer_exit","data":{"pid":51128,"code":1,"willFallback":true,"fallbackTaken":false,"url":"http://127.0.0.1:3210"},"timestamp":1778931464059,"hypothesisId":"H1"}
