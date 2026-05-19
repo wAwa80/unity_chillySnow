@@ -1,31 +1,34 @@
-public sealed class Run
+namespace LevelMode
 {
-	public int level;
-
-	public int score;
-
-	public bool isBest;
-
-	public bool usedSecondChance;
-
-	public bool success;
-
-	public Run(int level, int score)
+	public sealed class Run
 	{
-		this.level = level;
-		this.score = score;
-		isBest = false;
-		usedSecondChance = false;
-		success = false;
-	}
+		public int level;
 
-	public static Run GetDefault()
-	{
-		Run currentRun = Neuron.GetCurrentRun();
-		if (currentRun != null && currentRun.success)
+		public int score;
+
+		public bool isBest;
+
+		public bool usedSecondChance;
+
+		public bool success;
+
+		public Run(int level, int score)
 		{
-			return new Run(Level.Get(), currentRun.score);
+			this.level = level;
+			this.score = score;
+			isBest = false;
+			usedSecondChance = false;
+			success = false;
 		}
-		return new Run(Level.Get(), 0);
+
+		public static Run GetDefault()
+		{
+			Run currentRun = Neuron.GetCurrentRun();
+			if (currentRun != null && currentRun.success)
+			{
+				return new Run(Level.Get(), currentRun.score);
+			}
+			return new Run(Level.Get(), 0);
+		}
 	}
 }

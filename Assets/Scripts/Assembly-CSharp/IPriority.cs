@@ -1,4 +1,7 @@
-public interface IPriority
+namespace LevelMode
 {
-	int GetPriority();
+	public interface IPriority
+	{
+		int GetPriority();
+	}
 }

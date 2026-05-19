@@ -2,102 +2,106 @@ using JuiceInternal;
 using UnityEngine;
 using UnityEngine.UI;
 
-public sealed class PremiumButton : MonoBehaviour
+namespace LevelMode
 {
-	private static PremiumButton instance;
 
-	private Button button;
-
-	private Image image;
-
-	private float t;
-
-	[SerializeField]
-	private float animationSpeed = 2f;
-
-	public static PremiumButton GetInstance()
+	public sealed class PremiumButton : MonoBehaviour
 	{
-		return instance;
-	}
+		private static PremiumButton instance;
 
-	private void Awake()
-	{
-		if (Juice.premium.IsPremium())
+		private Button button;
+
+		private Image image;
+
+		private float t;
+
+		[SerializeField]
+		private float animationSpeed = 2f;
+
+		public static PremiumButton GetInstance()
 		{
-			Module<Ads>.GetInstance().ForceNoFuckingAds();
-			Object.DestroyImmediate(base.gameObject);
-			return;
+			return instance;
 		}
-		instance = this;
-		button = GetComponent<Button>();
-		button.onClick.AddListener(OnClick);
-		image = base.transform.GetChild(0).GetComponent<Image>();
-		//Juice.store.RegisterProductBoughtEvent(OnProductBought);
-	}
 
-	private void OnClick()
-	{
-		Juice.premium.Buy();
-	}
-
-	private void OnProductBought(string product, bool newPurchase)
-	{
-		if (product == Settings.Get().premium || product == Settings.Get().premiumDeal)
+		private void Awake()
 		{
-			//Juice.store.UnregisterProductBoughtEvent(OnProductBought);
-			Module<Ads>.GetInstance().ForceNoFuckingAds();
-			Object.DestroyImmediate(base.gameObject);
-		}
-	}
-
-	public void Show()
-	{
-		button.enabled = true;
-		if (!base.enabled)
-		{
-			base.enabled = true;
-		}
-	}
-
-	public void Hide()
-	{
-		button.enabled = false;
-		if (!base.enabled)
-		{
-			base.enabled = true;
-		}
-	}
-
-	private void Update()
-	{
-		if (button.enabled)
-		{
-			t += animationSpeed * Time.deltaTime;
-			if (t >= 1f)
+			if (Juice.premium.IsPremium())
 			{
-				t = 1f;
-				base.enabled = false;
+				Module<Ads>.GetInstance().ForceNoFuckingAds();
+				Object.DestroyImmediate(base.gameObject);
+				return;
+			}
+			instance = this;
+			button = GetComponent<Button>();
+			button.onClick.AddListener(OnClick);
+			image = base.transform.GetChild(0).GetComponent<Image>();
+			//Juice.store.RegisterProductBoughtEvent(OnProductBought);
+		}
+
+		private void OnClick()
+		{
+			Juice.premium.Buy();
+		}
+
+		private void OnProductBought(string product, bool newPurchase)
+		{
+			if (product == Settings.Get().premium || product == Settings.Get().premiumDeal)
+			{
+				//Juice.store.UnregisterProductBoughtEvent(OnProductBought);
+				Module<Ads>.GetInstance().ForceNoFuckingAds();
+				Object.DestroyImmediate(base.gameObject);
 			}
 		}
-		else
+
+		public void Show()
 		{
-			t -= animationSpeed * Time.deltaTime;
-			if (t <= 0f)
+			button.enabled = true;
+			if (!base.enabled)
 			{
-				t = 0f;
-				base.enabled = false;
+				base.enabled = true;
 			}
 		}
-		float num = OneMinusSinCardNormalized(t);
-		image.transform.localScale = new Vector3(num, num, num);
-	}
 
-	private float OneMinusSinCardNormalized(float x)
-	{
-		if (x == 0f)
+		public void Hide()
 		{
-			return 0f;
+			button.enabled = false;
+			if (!base.enabled)
+			{
+				base.enabled = true;
+			}
 		}
-		return 1f - Mathf.Sin(x * 10f) * (0.1f / x - 0.1f);
+
+		private void Update()
+		{
+			if (button.enabled)
+			{
+				t += animationSpeed * Time.deltaTime;
+				if (t >= 1f)
+				{
+					t = 1f;
+					base.enabled = false;
+				}
+			}
+			else
+			{
+				t -= animationSpeed * Time.deltaTime;
+				if (t <= 0f)
+				{
+					t = 0f;
+					base.enabled = false;
+				}
+			}
+			float num = OneMinusSinCardNormalized(t);
+			image.transform.localScale = new Vector3(num, num, num);
+		}
+
+		private float OneMinusSinCardNormalized(float x)
+		{
+			if (x == 0f)
+			{
+				return 0f;
+			}
+			return 1f - Mathf.Sin(x * 10f) * (0.1f / x - 0.1f);
+		}
 	}
 }

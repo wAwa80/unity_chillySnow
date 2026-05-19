@@ -2,43 +2,47 @@ using System;
 using System.Reflection;
 using UnityEngine;
 
-public static class JuiceInitializer
+namespace LevelMode
 {
-	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-	private static void Setup()
+
+	public static class JuiceInitializer
 	{
-		if (Application.isPlaying)
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+		private static void Setup()
 		{
-			if (ShouldResetOnStart())
+			if (Application.isPlaying)
 			{
-				Data.Reset();
-			}
-			Type[] types = Assembly.GetExecutingAssembly().GetTypes();
-			foreach (Type type in types)
-			{
-				IsEssential(type)?.GetMethod("Setup").Invoke(null, null);
+				if (ShouldResetOnStart())
+				{
+					Data.Reset();
+				}
+				Type[] types = Assembly.GetExecutingAssembly().GetTypes();
+				foreach (Type type in types)
+				{
+					IsEssential(type)?.GetMethod("Setup").Invoke(null, null);
+				}
 			}
 		}
-	}
 
-	private static Type IsEssential(Type type)
-	{
-		if (type.ContainsGenericParameters)
+		private static Type IsEssential(Type type)
 		{
+			if (type.ContainsGenericParameters)
+			{
+				return null;
+			}
+			for (type = type.BaseType; type != null; type = type.BaseType)
+			{
+				if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Essential<>))
+				{
+					return type;
+				}
+			}
 			return null;
 		}
-		for (type = type.BaseType; type != null; type = type.BaseType)
-		{
-			if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Essential<>))
-			{
-				return type;
-			}
-		}
-		return null;
-	}
 
-	private static bool ShouldResetOnStart()
-	{
-		return false;
+		private static bool ShouldResetOnStart()
+		{
+			return false;
+		}
 	}
 }

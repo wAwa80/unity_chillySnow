@@ -1,42 +1,46 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public sealed class SoundButton : SingletonButton<SoundButton>
+namespace LevelMode
 {
-	private AudioSource source;
 
-	private Image onIcon;
-
-	private Image offIcon;
-
-	protected override void Awake()
+	public sealed class SoundButton : SingletonButton<SoundButton>
 	{
-		base.Awake();
-		source = GetComponent<AudioSource>();
-		onIcon = childTransform.GetChild(0).GetComponent<Image>();
-		offIcon = childTransform.GetChild(1).GetComponent<Image>();
-		SyncUI();
-	}
+		private AudioSource source;
 
-	protected override void OnClick()
-	{
-		Device.SwitchSound();
-		SyncUI();
-	}
+		private Image onIcon;
 
-	private void SyncUI()
-	{
-		if (Device.IsSoundOn())
+		private Image offIcon;
+
+		protected override void Awake()
 		{
-			source.Play();
-			onIcon.enabled = true;
-			offIcon.enabled = false;
+			base.Awake();
+			source = GetComponent<AudioSource>();
+			onIcon = childTransform.GetChild(0).GetComponent<Image>();
+			offIcon = childTransform.GetChild(1).GetComponent<Image>();
+			SyncUI();
 		}
-		else
+
+		protected override void OnClick()
 		{
-			source.Stop();
-			onIcon.enabled = false;
-			offIcon.enabled = true;
+			Device.SwitchSound();
+			SyncUI();
+		}
+
+		private void SyncUI()
+		{
+			if (Device.IsSoundOn())
+			{
+				source.Play();
+				onIcon.enabled = true;
+				offIcon.enabled = false;
+			}
+			else
+			{
+				source.Stop();
+				onIcon.enabled = false;
+				offIcon.enabled = true;
+			}
 		}
 	}
 }

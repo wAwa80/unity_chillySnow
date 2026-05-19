@@ -1,36 +1,40 @@
 using UnityEngine.UI;
 
-public sealed class VibrationsButton : SingletonButton<VibrationsButton>
+namespace LevelMode
 {
-	private Image onIcon;
 
-	private Image offIcon;
-
-	protected override void Awake()
+	public sealed class VibrationsButton : SingletonButton<VibrationsButton>
 	{
-		base.Awake();
-		onIcon = childTransform.GetChild(0).GetComponent<Image>();
-		offIcon = childTransform.GetChild(1).GetComponent<Image>();
-		SyncUI();
-	}
+		private Image onIcon;
 
-	protected override void OnClick()
-	{
-		Device.SwitchVibrations();
-		SyncUI();
-	}
+		private Image offIcon;
 
-	private void SyncUI()
-	{
-		if (Device.IsVibrationOn())
+		protected override void Awake()
 		{
-			onIcon.enabled = true;
-			offIcon.enabled = false;
+			base.Awake();
+			onIcon = childTransform.GetChild(0).GetComponent<Image>();
+			offIcon = childTransform.GetChild(1).GetComponent<Image>();
+			SyncUI();
 		}
-		else
+
+		protected override void OnClick()
 		{
-			onIcon.enabled = false;
-			offIcon.enabled = true;
+			Device.SwitchVibrations();
+			SyncUI();
+		}
+
+		private void SyncUI()
+		{
+			if (Device.IsVibrationOn())
+			{
+				onIcon.enabled = true;
+				offIcon.enabled = false;
+			}
+			else
+			{
+				onIcon.enabled = false;
+				offIcon.enabled = true;
+			}
 		}
 	}
 }

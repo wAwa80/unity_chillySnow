@@ -1,42 +1,46 @@
 using UnityEngine.UI;
 
-public class MotivationalButton : SingletonButton<MotivationalButton>
+namespace LevelMode
 {
-	private Image onIcon;
 
-	private Image offIcon;
-
-	public static bool motivationalOn { get; private set; }
-
-	protected override void Awake()
+	public class MotivationalButton : SingletonButton<MotivationalButton>
 	{
-		base.Awake();
-		onIcon = childTransform.GetChild(0).GetComponent<Image>();
-		offIcon = childTransform.GetChild(1).GetComponent<Image>();
-		motivationalOn = true;
-	}
+		private Image onIcon;
 
-	private void Start()
-	{
-		if (!Data.LoadBool("motivationalOn", defaultValue: true))
+		private Image offIcon;
+
+		public static bool motivationalOn { get; private set; }
+
+		protected override void Awake()
 		{
-			OnClick();
+			base.Awake();
+			onIcon = childTransform.GetChild(0).GetComponent<Image>();
+			offIcon = childTransform.GetChild(1).GetComponent<Image>();
+			motivationalOn = true;
 		}
-	}
 
-	protected override void OnClick()
-	{
-		motivationalOn = !motivationalOn;
-		Data.SaveBool("motivationalOn", motivationalOn);
-		if (motivationalOn)
+		private void Start()
 		{
-			onIcon.enabled = true;
-			offIcon.enabled = false;
+			if (!Data.LoadBool("motivationalOn", defaultValue: true))
+			{
+				OnClick();
+			}
 		}
-		else
+
+		protected override void OnClick()
 		{
-			onIcon.enabled = false;
-			offIcon.enabled = true;
+			motivationalOn = !motivationalOn;
+			Data.SaveBool("motivationalOn", motivationalOn);
+			if (motivationalOn)
+			{
+				onIcon.enabled = true;
+				offIcon.enabled = false;
+			}
+			else
+			{
+				onIcon.enabled = false;
+				offIcon.enabled = true;
+			}
 		}
 	}
 }

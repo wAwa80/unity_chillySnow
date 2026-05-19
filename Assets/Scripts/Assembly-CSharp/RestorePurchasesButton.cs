@@ -1,14 +1,18 @@
 using UnityEngine;
 
-public sealed class RestorePurchasesButton : MonoBehaviour
+namespace LevelMode
 {
-	private void Awake()
-	{
-		Object.DestroyImmediate(base.gameObject);
-	}
 
-	private void OnClick()
+	public sealed class RestorePurchasesButton : MonoBehaviour
 	{
-		//Juice.store.RestorePurchases();
+		private void Awake()
+		{
+			Object.DestroyImmediate(base.gameObject);
+		}
+
+		private void OnClick()
+		{
+			//Juice.store.RestorePurchases();
+		}
 	}
 }

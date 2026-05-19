@@ -1,18 +1,22 @@
 using UnityEngine;
 
-public class WoodenSign : Singleton<WoodenSign>
+namespace LevelMode
 {
-	private TextMesh textMesh;
 
-	protected override void Awake()
+	public class WoodenSign : Singleton<WoodenSign>
 	{
-		base.Awake();
-		textMesh = base.transform.GetChild(1).GetComponent<TextMesh>();
-	}
+		private TextMesh textMesh;
 
-	protected override void OnRefresh()
-	{
-		textMesh.text = Level.Get().ToString();
-		textMesh.characterSize = Mathf.Min(0.1f, 0.24f / (float)textMesh.text.Length);
+		protected override void Awake()
+		{
+			base.Awake();
+			textMesh = base.transform.GetChild(1).GetComponent<TextMesh>();
+		}
+
+		protected override void OnRefresh()
+		{
+			textMesh.text = Level.Get().ToString();
+			textMesh.characterSize = Mathf.Min(0.1f, 0.24f / (float)textMesh.text.Length);
+		}
 	}
 }

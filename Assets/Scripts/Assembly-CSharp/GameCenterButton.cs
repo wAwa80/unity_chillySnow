@@ -1,15 +1,19 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public sealed class GameCenterButton : MonoBehaviour
+namespace LevelMode
 {
-	private void Awake()
-	{
-		GetComponent<Button>().onClick.AddListener(OnClick);
-	}
 
-	private void OnClick()
+	public sealed class GameCenterButton : MonoBehaviour
 	{
-		Juice.gameCenter.Show();
+		private void Awake()
+		{
+			GetComponent<Button>().onClick.AddListener(OnClick);
+		}
+
+		private void OnClick()
+		{
+			Juice.gameCenter.Show();
+		}
 	}
 }

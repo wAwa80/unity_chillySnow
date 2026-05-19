@@ -1,11 +1,14 @@
-public enum Vibration
+namespace LevelMode
 {
-	Micro,
-	Light,
-	Medium,
-	Heavy,
-	Success,
-	Warning,
-	Failure,
-	Full
+	public enum Vibration
+	{
+		Micro,
+		Light,
+		Medium,
+		Heavy,
+		Success,
+		Warning,
+		Failure,
+		Full
+	}
 }

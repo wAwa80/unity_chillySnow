@@ -1,41 +1,45 @@
 using UnityEngine;
 
-public sealed class FinishLine : Singleton<FinishLine>
+namespace LevelMode
 {
-	private AudioSource source;
 
-	private static float distance;
-
-	private ParticleSystem[] cheers;
-
-	protected override void Awake()
+	public sealed class FinishLine : Singleton<FinishLine>
 	{
-		base.Awake();
-		source = GetComponent<AudioSource>();
-		cheers = GetComponentsInChildren<ParticleSystem>();
-	}
+		private AudioSource source;
 
-	protected override void OnRefresh()
-	{
-		distance = Parameters.TOTAL_SLIDE_DISTANCE.Sample();
-		base.transform.position = new Vector3(0f, 0f - distance, -1f * distance + 1f);
-	}
+		private static float distance;
 
-	public static float GetDistance()
-	{
-		return distance;
-	}
+		private ParticleSystem[] cheers;
 
-	protected override void OnEndRun()
-	{
-		if (Neuron.GetCurrentRun().success)
+		protected override void Awake()
 		{
-			ParticleSystem[] array = cheers;
-			foreach (ParticleSystem particleSystem in array)
+			base.Awake();
+			source = GetComponent<AudioSource>();
+			cheers = GetComponentsInChildren<ParticleSystem>();
+		}
+
+		protected override void OnRefresh()
+		{
+			distance = Parameters.TOTAL_SLIDE_DISTANCE.Sample();
+			base.transform.position = new Vector3(0f, 0f - distance, -1f * distance + 1f);
+		}
+
+		public static float GetDistance()
+		{
+			return distance;
+		}
+
+		protected override void OnEndRun()
+		{
+			if (Neuron.GetCurrentRun().success)
 			{
-				particleSystem.Play();
+				ParticleSystem[] array = cheers;
+				foreach (ParticleSystem particleSystem in array)
+				{
+					particleSystem.Play();
+				}
+				source.Play();
 			}
-			source.Play();
 		}
 	}
 }

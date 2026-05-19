@@ -1,14 +1,18 @@
 using System;
 using UnityEngine;
 
-public abstract class Essential<T> : Singleton<T> where T : Essential<T>
+namespace LevelMode
 {
-	public static void Setup()
+
+	public abstract class Essential<T> : Singleton<T> where T : Essential<T>
 	{
-		if (!((UnityEngine.Object)Singleton<T>.i != (UnityEngine.Object)null))
+		public static void Setup()
 		{
-			Type typeFromHandle = typeof(T);
-			UnityEngine.Object.DontDestroyOnLoad(new GameObject($"SYSTEM_OBJECT {typeFromHandle.ToString()}", typeFromHandle));
+			if (!((UnityEngine.Object)Singleton<T>.i != (UnityEngine.Object)null))
+			{
+				Type typeFromHandle = typeof(T);
+				UnityEngine.Object.DontDestroyOnLoad(new GameObject($"SYSTEM_OBJECT {typeFromHandle.ToString()}", typeFromHandle));
+			}
 		}
 	}
 }

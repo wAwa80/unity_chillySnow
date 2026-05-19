@@ -1,40 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public abstract class Multiton<T> : Neuron where T : Multiton<T>
+namespace LevelMode
 {
-	private static Dictionary<string, T> instances = new Dictionary<string, T>();
 
-	public abstract string Name { get; }
-
-	public static T Get(string name)
+	public abstract class Multiton<T> : Neuron where T : Multiton<T>
 	{
-		return instances[name];
-	}
+		private static Dictionary<string, T> instances = new Dictionary<string, T>();
 
-	public static int GetCount()
-	{
-		return instances.Count;
-	}
+		public abstract string Name { get; }
 
-	public static IEnumerable Enumerate()
-	{
-		foreach (T value in instances.Values)
+		public static T Get(string name)
 		{
-			yield return value;
+			return instances[name];
 		}
-	}
 
-	protected override void Awake()
-	{
-		base.Awake();
-		if (instances.ContainsKey(Name))
+		public static int GetCount()
 		{
-			instances[Name] = (T)this;
+			return instances.Count;
 		}
-		else
+
+		public static IEnumerable Enumerate()
 		{
-			instances.Add(Name, (T)this);
+			foreach (T value in instances.Values)
+			{
+				yield return value;
+			}
+		}
+
+		protected override void Awake()
+		{
+			base.Awake();
+			if (instances.ContainsKey(Name))
+			{
+				instances[Name] = (T)this;
+			}
+			else
+			{
+				instances.Add(Name, (T)this);
+			}
 		}
 	}
 }

@@ -1,66 +1,70 @@
 using UnityEngine;
 
-[RequireComponent(typeof(CanvasGroup))]
-public sealed class Tutorial : Singleton<Tutorial>
+namespace LevelMode
 {
-	private CanvasGroup canvasGroup;
 
-	private const float BLINK_SPEED = 1.5f;
-
-	private bool shouldShow;
-
-	private float timer;
-
-	private float alpha;
-
-	protected override void Awake()
+	[RequireComponent(typeof(CanvasGroup))]
+	public sealed class Tutorial : Singleton<Tutorial>
 	{
-		base.Awake();
-		canvasGroup = GetComponent<CanvasGroup>();
-	}
+		private CanvasGroup canvasGroup;
 
-	protected override void OnStartRun(Run slide)
-	{
-		Stop();
-	}
+		private const float BLINK_SPEED = 1.5f;
 
-	protected override void OnRefresh()
-	{
-		if (Level.Get() == 1)
+		private bool shouldShow;
+
+		private float timer;
+
+		private float alpha;
+
+		protected override void Awake()
 		{
-			Play();
+			base.Awake();
+			canvasGroup = GetComponent<CanvasGroup>();
 		}
-	}
 
-	private void Play()
-	{
-		alpha = 0f;
-		base.enabled = true;
-		shouldShow = true;
-	}
-
-	private void Stop()
-	{
-		shouldShow = false;
-		timer = 4.712389f;
-	}
-
-	private void Update()
-	{
-		if (shouldShow)
+		protected override void OnStartRun(Run slide)
 		{
-			timer += 1.5f * Time.deltaTime;
-			alpha = Mathf.Sin(timer) * 0.5f + 0.5f;
+			Stop();
 		}
-		else
+
+		protected override void OnRefresh()
 		{
-			alpha -= 5f * Time.deltaTime;
-			if (alpha < 0f)
+			if (Level.Get() == 1)
 			{
-				alpha = 0f;
-				base.enabled = false;
+				Play();
 			}
 		}
-		canvasGroup.alpha = alpha;
+
+		private void Play()
+		{
+			alpha = 0f;
+			base.enabled = true;
+			shouldShow = true;
+		}
+
+		private void Stop()
+		{
+			shouldShow = false;
+			timer = 4.712389f;
+		}
+
+		private void Update()
+		{
+			if (shouldShow)
+			{
+				timer += 1.5f * Time.deltaTime;
+				alpha = Mathf.Sin(timer) * 0.5f + 0.5f;
+			}
+			else
+			{
+				alpha -= 5f * Time.deltaTime;
+				if (alpha < 0f)
+				{
+					alpha = 0f;
+					base.enabled = false;
+				}
+			}
+			canvasGroup.alpha = alpha;
+		}
 	}
 }

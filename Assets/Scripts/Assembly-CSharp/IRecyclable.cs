@@ -1,4 +1,7 @@
-public interface IRecyclable
+namespace LevelMode
 {
-	void Kill();
+	public interface IRecyclable
+	{
+		void Kill();
+	}
 }

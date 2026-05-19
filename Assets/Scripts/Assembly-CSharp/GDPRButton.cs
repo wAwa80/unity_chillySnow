@@ -1,16 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public sealed class GDPRButton : MonoBehaviour
+namespace LevelMode
 {
-	private void Awake()
-	{
-		GetComponent<Button>().onClick.AddListener(OnClick);
-	}
 
-	private void OnClick()
+	public sealed class GDPRButton : MonoBehaviour
 	{
-		Juice.ShowGDPR();
-		Juice.analytics.SendDesignEvent("Player:ClickedOnGDPRPopup");
+		private void Awake()
+		{
+			GetComponent<Button>().onClick.AddListener(OnClick);
+		}
+
+		private void OnClick()
+		{
+			Juice.ShowGDPR();
+			Juice.analytics.SendDesignEvent("Player:ClickedOnGDPRPopup");
+		}
 	}
 }

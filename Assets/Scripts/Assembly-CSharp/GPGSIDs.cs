@@ -1,6 +1,9 @@
-public static class GPGSIDs
+namespace LevelMode
 {
-	public const string leaderboard_score = "CggImvWZ4ksQAhAA";
+	public static class GPGSIDs
+	{
+		public const string leaderboard_score = "CggImvWZ4ksQAhAA";
 
-	public const string leaderboard_night_mode = "CggImvWZ4ksQAhAC";
+		public const string leaderboard_night_mode = "CggImvWZ4ksQAhAC";
+	}
 }
