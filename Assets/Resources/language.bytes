@@ -84,28 +84,28 @@
         <russian>ОК</russian>
     </text>
 
-    <text value="How would you rate Chilly Snow?">
-        <french>Quelle note donnerais-tu à Chilly Snow ?</french>
-        <spanish>¿Qué te ha parecido Chilly Snow?</spanish>
-        <portuguese>Como classificarias o Chilly Snow?</portuguese>
-        <italian>Che voto daresti a Chilly Snow?</italian>
-        <german>Wie findest du Chilly Snow?</german>
-        <chinesesimplified>您要如何评价Chilly Snow？</chinesesimplified>
-        <chinesetraditional>你會為Chilly Snow評幾分呢？</chinesetraditional>
-        <japanese>Chilly Snowの評価にご協力ください！</japanese>
-        <russian>Оцените Chilly Snow!</russian>
+    <text value="How would you rate 滑雪吧兄弟?">
+        <french>Quelle note donnerais-tu à 滑雪吧兄弟 ?</french>
+        <spanish>¿Qué te ha parecido 滑雪吧兄弟?</spanish>
+        <portuguese>Como classificarias o 滑雪吧兄弟?</portuguese>
+        <italian>Che voto daresti a 滑雪吧兄弟?</italian>
+        <german>Wie findest du 滑雪吧兄弟?</german>
+        <chinesesimplified>您要如何评价滑雪吧兄弟？</chinesesimplified>
+        <chinesetraditional>你會為滑雪吧兄弟評幾分呢？</chinesetraditional>
+        <japanese>滑雪吧兄弟の評価にご協力ください！</japanese>
+        <russian>Оцените 滑雪吧兄弟!</russian>
     </text>
 
-    <text value="Thanks for your precious feedback! We will do our best to improve Chilly Snow!">
-        <french>Merci pour ton précieux retour, nous allons faire de notre mieux pour améliorer Chilly Snow !</french>
-        <spanish>¡Gracias por tu valioso comentario! ¡Nos esforzaremos por mejorar Chilly Snow!</spanish>
-        <portuguese>Obrigado pelos comentários preciosos! Faremos o que pudermos para melhorar o Chilly Snow!</portuguese>
-        <italian>Grazie per la tua opinione! Faremo del nostro meglio per migliorare Chilly Snow!</italian>
-        <german>Danke für dein Feedback! Wir geben unser Bestes, um Chilly Snow noch besser zu machen!</german>
-        <chinesesimplified>感谢您提供宝贵的反馈意见！我们将尽力完善Chilly Snow！</chinesesimplified>
-        <chinesetraditional>感謝你的寶貴意見！我們會盡全力升級Chilly Snow！</chinesetraditional>
-        <japanese>貴重なフィードバックをありがとうございます！今後ともChilly Snowの改善に取り組んでまいります！</japanese>
-        <russian>Спасибо за отзыв! Мы приложим все усилия, чтобы сделать Chilly Snow еще лучше!</russian>
+    <text value="Thanks for your precious feedback! We will do our best to improve 滑雪吧兄弟!">
+        <french>Merci pour ton précieux retour, nous allons faire de notre mieux pour améliorer 滑雪吧兄弟 !</french>
+        <spanish>¡Gracias por tu valioso comentario! ¡Nos esforzaremos por mejorar 滑雪吧兄弟!</spanish>
+        <portuguese>Obrigado pelos comentários preciosos! Faremos o que pudermos para melhorar o 滑雪吧兄弟!</portuguese>
+        <italian>Grazie per la tua opinione! Faremo del nostro meglio per migliorare 滑雪吧兄弟!</italian>
+        <german>Danke für dein Feedback! Wir geben unser Bestes, um 滑雪吧兄弟 noch besser zu machen!</german>
+        <chinesesimplified>感谢您提供宝贵的反馈意见！我们将尽力完善滑雪吧兄弟！</chinesesimplified>
+        <chinesetraditional>感謝你的寶貴意見！我們會盡全力升級滑雪吧兄弟！</chinesetraditional>
+        <japanese>貴重なフィードバックをありがとうございます！今後とも滑雪吧兄弟の改善に取り組んでまいります！</japanese>
+        <russian>Спасибо за отзыв! Мы приложим все усилия, чтобы сделать 滑雪吧兄弟 еще лучше!</russian>
     </text>
 
     <text value="Support">
@@ -324,16 +324,16 @@
 		<russian>Гора ваша!</russian>
 	</text>
 
-	<text value="Chilly Snow master!">
-		<french>Maître de Chilly Snow !</french>
-		<spanish>¡Maestro de Chilly Snow!</spanish>
-		<portuguese>Mestre do Chilly Snow!</portuguese>
-		<italian>Campione di Chilly Snow!</italian>
-		<german>Chilly Snow-Meister!</german>
-		<chinesesimplified>Chilly Snow 大师！</chinesesimplified>
-		<chinesetraditional>Chilly Snow高手！</chinesetraditional>
+	<text value="滑雪吧兄弟 master!">
+		<french>Maître de 滑雪吧兄弟 !</french>
+		<spanish>¡Maestro de 滑雪吧兄弟!</spanish>
+		<portuguese>Mestre do 滑雪吧兄弟!</portuguese>
+		<italian>Campione di 滑雪吧兄弟!</italian>
+		<german>滑雪吧兄弟-Meister!</german>
+		<chinesesimplified>滑雪吧兄弟 大师！</chinesesimplified>
+		<chinesetraditional>滑雪吧兄弟高手！</chinesetraditional>
 		<japanese>雪の支配者！</japanese>
-		<russian>Мастер Chilly Snow!</russian>
+		<russian>Мастер 滑雪吧兄弟!</russian>
 	</text>
 
 	<text value="You're on fire!">

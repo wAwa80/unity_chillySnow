@@ -8,6 +8,8 @@ public static class Translator
 
 	private static bool loaded = false;
 
+	private const string ForcedLanguage = "chinesesimplified";
+
 	public static string Translate(string baseText)
 	{
 		if (baseText.Length == 0)
@@ -31,7 +33,9 @@ public static class Translator
 			TextAsset textAsset = (TextAsset)Resources.Load("language");
 			XmlDocument xmlDocument = new XmlDocument();
 			xmlDocument.LoadXml(textAsset.text);
-			LoadLanguage(xmlDocument.FirstChild, Application.systemLanguage.ToString().ToLower());
+			// LoadLanguage(xmlDocument.FirstChild, Application.systemLanguage.ToString().ToLower());
+			LoadLanguage(xmlDocument.FirstChild, ForcedLanguage);
+
 			loaded = true;
 		}
 	}

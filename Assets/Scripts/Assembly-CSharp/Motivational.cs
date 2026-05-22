@@ -29,7 +29,7 @@ public class Motivational : Singleton<Motivational>
 		},
 		{
 			Goodness.Perfect,
-			new string[5] { "King of the mountain!", "Unstoppable!", "Mountain is yours!", "Chilly Snow master!", "You're on fire!" }
+			new string[5] { "King of the mountain!", "Unstoppable!", "Mountain is yours!", "滑雪吧兄弟 master!", "You're on fire!" }
 		}
 	};
 

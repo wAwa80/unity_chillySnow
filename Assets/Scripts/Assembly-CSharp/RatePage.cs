@@ -102,8 +102,8 @@ public class RatePage : Page<RatePage>
 	public void CallSupport()
 	{
 		Hide();
-		string text = "support@voodoo.io";
-		string text2 = MyEscapeURL("Chilly Snow Issue");
+		string text = "";
+		string text2 = MyEscapeURL("滑雪吧兄弟 Issue");
 		string empty = string.Empty;
 		Application.OpenURL("mailto:" + text + "?subject=" + text2 + "&body=" + empty);
 	}

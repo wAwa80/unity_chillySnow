@@ -3,7 +3,9 @@ using System.Collections;
 using EasyMobile;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+#if UNITY_WEIXINMINIGAME && !UNITY_EDITOR
+using WeChatWASM;
+#endif
 public sealed class App : Singleton<App>
 {
 	public enum State
@@ -14,7 +16,7 @@ public sealed class App : Singleton<App>
 		GameOver
 	}
 
-	public const string NAME = "Chilly Snow";
+	public const string NAME = "滑雪吧兄弟";
 
 	private const string IOS_APP_LINK = "https://itunes.apple.com/fr/app/chilly-snow/id1297701531";
 
@@ -34,7 +36,7 @@ public sealed class App : Singleton<App>
 
 	protected override void Awake()
 	{
-        Debug.Log("App.Awake ��ʼ");
+        Debug.Log("App.Awake ��ʼ");
         base.Awake();
 		InitializeVersion();
 		if (i == this)
@@ -47,6 +49,7 @@ public sealed class App : Singleton<App>
 			UnityEngine.Object.DontDestroyOnLoad(new GameObject("SYSTEM_OBJECT Stats Saver", typeof(Stats)));
 			UnityEngine.Object.DontDestroyOnLoad(new GameObject("SYSTEM_OBJECT Analytics", typeof(Analytics)));
 			//VoodooSauce.RegisterPurchaseDelegate(this);
+        	StartCoroutine(DelayStart());
 			if (IsRelease())
 			{
 				StartCoroutine(LaunchGameDelay());
@@ -59,8 +62,42 @@ public sealed class App : Singleton<App>
 		}
         else
         {
-            Debug.Log("App: �ظ�ʵ������ִ�г�ʼ��");
+            Debug.Log("App: �ظ�ʵ������ִ�г�ʼ��");
         }
+    }
+
+	 IEnumerator DelayStart()
+    {
+        // 等待3帧确保引擎初始化
+        for (int i = 0; i < 10; i++)
+        {
+            yield return null;
+        }
+
+        // 强制初始化SDK
+#if UNITY_WEIXINMINIGAME && !UNITY_EDITOR
+        // 1. 初始化微信SDK
+        WX.InitSDK(OnWXInitialized);
+
+
+        // 添加SDK调用防止裁剪
+        WX.GetSystemInfo(new GetSystemInfoOption());
+#endif
+    }
+
+	// 初始化完成回调
+    private void OnWXInitialized(int code)
+    {
+        Debug.Log("微信SDK初始化完成 : " + code);
+        // 这里执行需要SDK的代码
+        FetchSystemInfo();
+    }
+    // 获取系统信息
+    private void FetchSystemInfo()
+    {
+#if UNITY_WEIXINMINIGAME && !UNITY_EDITOR
+        WX.GetSystemInfo(new GetSystemInfoOption());
+#endif
     }
 
 	public void LaunchGame(string forcedABTest)
@@ -77,7 +114,10 @@ public sealed class App : Singleton<App>
 
 	public static bool IsRelease()
 	{
-		return !Debug.isDebugBuild;
+#if !UNITY_EDITOR
+		return true;
+#endif
+		return true;//!Debug.isDebugBuild!;
 	}
 
 	private void InitializeVersion()
