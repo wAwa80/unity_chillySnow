@@ -15,9 +15,18 @@ public class RatePage : Page<RatePage>
 	[SerializeField]
 	private Button[] stars;
 
+	[SerializeField]
+	private Text starPanelDescription;
+
+	[SerializeField]
+	private Text badPanelDescription;
+
 	private Image[] starIcons;
 
 	private int currentRating;
+
+	private const string STAR_PANEL_DESCRIPTION = "您如何评价<滑雪吧兄弟>?"; //How would you rate Chilly Snow?
+	private const string BAD_PANEL_DESCRIPTION = "感谢您的宝贵反馈! 我们会尽力改进<滑雪吧兄弟>!"; //Thanks for your precious feedback! We will do our best to improve Chilly Snow!
 
 	protected override void Awake()
 	{
@@ -28,6 +37,8 @@ public class RatePage : Page<RatePage>
 		{
 			starIcons[i] = stars[i].transform.GetChild(0).GetComponent<Image>();
 		}
+		starPanelDescription.text = Translator.Translate(STAR_PANEL_DESCRIPTION);
+		badPanelDescription.text = Translator.Translate(BAD_PANEL_DESCRIPTION);
 	}
 
 	protected override void OnBackToMenu()
