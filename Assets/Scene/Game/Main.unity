@@ -32807,8 +32807,8 @@ MonoBehaviour:
   - {fileID: 943}
   - {fileID: 1162}
   - {fileID: 1128}
-  starPanelDescription: {fileID: 0}
-  badPanelDescription: {fileID: 0}
+  starPanelDescription: {fileID: 1122}
+  badPanelDescription: {fileID: 1064}
 --- !u!114 &842
 MonoBehaviour:
   m_ObjectHideFlags: 0
