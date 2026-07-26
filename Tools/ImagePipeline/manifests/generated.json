@@ -1,0 +1,124 @@
+{
+  "items": {
+    "mock_home_first30_v2": {
+      "hash": "5d714f52cff61e8977ab68945f8e3724642b85088d0835a91f2f8e8f9d3dd3a0",
+      "filename": "mock_home_first30_v2.png",
+      "updated_at": "2026-07-24T09:55:33Z"
+    },
+    "concept_mode_btn_level": {
+      "hash": "8d5e9dfc98a2bd55fd48fa31c2cc0919f2438e57b981f101e667a856a243793a",
+      "filename": "concept_mode_btn_level.png",
+      "updated_at": "2026-07-24T09:55:59Z"
+    },
+    "concept_mode_btn_endless": {
+      "hash": "a3fabac688d3e285fd5beaf26e96158a5e5a3f276e9ab35b860fc68af9ce64a3",
+      "filename": "concept_mode_btn_endless.png",
+      "updated_at": "2026-07-24T09:56:31Z"
+    },
+    "concept_skins_btn": {
+      "hash": "4ce8db10d266d96155e10177f86a63f2cffa86a708c468e5dc2e905345f110b2",
+      "filename": "concept_skins_btn.png",
+      "updated_at": "2026-07-24T09:56:59Z"
+    },
+    "mock_home_first30_g4_layout": {
+      "hash": "0eb1934ffd64a3c2f36c25767c9bdbcfaa3f19de379610b685b09429be97db88",
+      "filename": "mock_home_first30_g4_layout.png",
+      "updated_at": "2026-07-24T10:08:30Z"
+    },
+    "mock_home_first30_v3_ball_endless": {
+      "hash": "638d47b4f81d546af2c10c25eda23680ffaacd055597a68000e2397b8deae85c",
+      "filename": "mock_home_first30_v3_ball_endless.png",
+      "updated_at": "2026-07-24T12:06:23Z"
+    },
+    "mock_home_first30_v3_ball_classic_pair": {
+      "hash": "7cb133831a1fba5c9a5cba3a8f4c184613ef44111b3c96b280951657813aca13",
+      "filename": "mock_home_first30_v3_ball_classic_pair.png",
+      "updated_at": "2026-07-24T12:07:15Z"
+    },
+    "mock_home_first30_v3_ball_level": {
+      "hash": "5540cba8291549710f060c4184ccf7120c33e20747bb56b774e4dec33a4d4756",
+      "filename": "mock_home_first30_v3_ball_level.png",
+      "updated_at": "2026-07-24T12:04:38Z"
+    },
+    "mock_home_first30_v3_ball_spacious": {
+      "hash": "015b462ed17a3dad658e08c8d1c03c62c9639563943e6c9316e116230249e158",
+      "filename": "mock_home_first30_v3_ball_spacious.png",
+      "updated_at": "2026-07-24T12:05:32Z"
+    },
+    "mock_home_first30_g6_01_main": {
+      "hash": "048743a3bb4969eae0ed4602bc475b03ddb050d02e5d242f1309914f6aa12012",
+      "filename": "mock_home_first30_g6_01_main.png",
+      "updated_at": "2026-07-24T12:24:59Z"
+    },
+    "mock_home_first30_g6_02_spacious": {
+      "hash": "e3d4382b2512e879c907e7e86e46605997d6803353984e37327e219d952e2f3f",
+      "filename": "mock_home_first30_g6_02_spacious.png",
+      "updated_at": "2026-07-24T12:25:47Z"
+    },
+    "mock_home_first30_g6_03_commercial": {
+      "hash": "a7b28c4b107456e857eb21363b11ce4f23258b3bfa648c1cfff162d60f4e9d84",
+      "filename": "mock_home_first30_g6_03_commercial.png",
+      "updated_at": "2026-07-24T12:26:34Z"
+    },
+    "mock_home_first30_g6_04_lowcost": {
+      "hash": "e4458963696764e58991f4c224cd891912bd95860fda399d536948189e741fce",
+      "filename": "mock_home_first30_g6_04_lowcost.png",
+      "updated_at": "2026-07-24T12:27:22Z"
+    },
+    "mock_home_first30_g6_05_level": {
+      "hash": "1bcf7705432754a679ff7429899b47eb552e20eac5b2239b46cb2a72a0b17f33",
+      "filename": "mock_home_first30_g6_05_level.png",
+      "updated_at": "2026-07-24T12:28:04Z"
+    },
+    "mock_home_first30_g6_06_endless": {
+      "hash": "c73905105b9a22735b2965684554208c5444008cf61a20be9ef3a7e67dfa34e6",
+      "filename": "mock_home_first30_g6_06_endless.png",
+      "updated_at": "2026-07-24T12:28:43Z"
+    },
+    "bg_snow_topdown_strip_01": {
+      "hash": "ec886f691b54cb2ea8691fdc020c769b7a9001c9d36738f475a8b931fa0e6828",
+      "filename": "bg_snow_topdown_strip_01.png",
+      "updated_at": "2026-07-24T12:43:04Z"
+    },
+    "bg_snow_topdown_strip_02": {
+      "hash": "f66b21cd526d9efad62abeec4ed9b4e358203ab941b3ec69ce109af7f21579a7",
+      "filename": "bg_snow_topdown_strip_02.png",
+      "updated_at": "2026-07-24T12:43:38Z"
+    },
+    "bg_snow_topdown_strip_03": {
+      "hash": "10319105500e2c24b23ffd571d2dded459ea33a9be0430d6204e25c023807b42",
+      "filename": "bg_snow_topdown_strip_03.png",
+      "updated_at": "2026-07-24T12:44:14Z"
+    },
+    "bg_snow_mountain_75_01": {
+      "hash": "4750e1fbd3f33c0c106eef44e75bc5c8edf91b300e2dce9d5dfdd8a80ff0a51b",
+      "filename": "bg_snow_mountain_75_01.png",
+      "updated_at": "2026-07-24T12:56:18Z"
+    },
+    "bg_snow_mountain_75_02": {
+      "hash": "cdf2ac0e25e994455a1659d3e72a5abc4b9cc6f8ea72e8aae3934070f4a54205",
+      "filename": "bg_snow_mountain_75_02.png",
+      "updated_at": "2026-07-24T12:56:59Z"
+    },
+    "bg_snow_mountain_75_03": {
+      "hash": "0b4faabadb7ac32481d7bd8423e515e71a19e1524c187190797043a4e089be4a",
+      "filename": "bg_snow_mountain_75_03.png",
+      "updated_at": "2026-07-24T12:57:38Z"
+    },
+    "bg_snow_cartoon_long_v01": {
+      "hash": "4f68f434e60a9c2b0ef3384ce88b134a18a590061f867576aad5d25fc67890f9",
+      "filename": "bg_snow_cartoon_long_v01.png",
+      "updated_at": "2026-07-24T13:18:12Z"
+    },
+    "bg_snow_cartoon_long_v02": {
+      "hash": "6afa4927da070371bfc65c0d37fc895b84a3a0659cb44fa12de359e925b85322",
+      "filename": "bg_snow_cartoon_long_v02.png",
+      "updated_at": "2026-07-24T13:18:39Z"
+    },
+    "bg_snow_cartoon_long_h01": {
+      "hash": "cc028c771b5106b84838801fee28a8db8743d5cf51c3531fcff5539db3a0ec73",
+      "filename": "bg_snow_cartoon_long_h01.png",
+      "updated_at": "2026-07-24T13:19:03Z"
+    }
+  }
+}

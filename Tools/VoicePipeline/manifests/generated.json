@@ -1,0 +1,292 @@
+{
+  "lines": {
+    "greeting_level_01": {
+      "hash": "56db171de9ef0662",
+      "file": "vc_greeting_level_greeting_level_01.wav",
+      "slot": "GreetingLevel",
+      "text": "准备好了吗？冲！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "greeting_level_02": {
+      "hash": "e722ab4dd0e1b744",
+      "file": "vc_greeting_level_greeting_level_02.wav",
+      "slot": "GreetingLevel",
+      "text": "稳住节奏，出发！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "greeting_level_03": {
+      "hash": "46477843b794767d",
+      "file": "vc_greeting_level_greeting_level_03.wav",
+      "slot": "GreetingLevel",
+      "text": "这关一起拿下！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "greeting_endless_01": {
+      "hash": "2a65444598b8b2c0",
+      "file": "vc_greeting_endless_greeting_endless_01.wav",
+      "slot": "GreetingEndless",
+      "text": "无尽模式，滑起来！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "greeting_endless_02": {
+      "hash": "5090aac9b267de98",
+      "file": "vc_greeting_endless_greeting_endless_02.wav",
+      "slot": "GreetingEndless",
+      "text": "能滑多远就多远！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "greeting_endless_03": {
+      "hash": "7a52022e20086d9b",
+      "file": "vc_greeting_endless_greeting_endless_03.wav",
+      "slot": "GreetingEndless",
+      "text": "放松点，开滑！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "whoosh_good_01": {
+      "hash": "36f7eeeda1595b28",
+      "file": "vc_whoosh_good_whoosh_good_01.wav",
+      "slot": "WhooshGood",
+      "text": "漂亮！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "whoosh_good_02": {
+      "hash": "00f4be8eb4e51c7d",
+      "file": "vc_whoosh_good_whoosh_good_02.wav",
+      "slot": "WhooshGood",
+      "text": "好险！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "whoosh_good_03": {
+      "hash": "262105c358fc3e98",
+      "file": "vc_whoosh_good_whoosh_good_03.wav",
+      "slot": "WhooshGood",
+      "text": "稳！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "whoosh_awesome_01": {
+      "hash": "60bb44eb59fbb02b",
+      "file": "vc_whoosh_awesome_whoosh_awesome_01.wav",
+      "slot": "WhooshAwesome",
+      "text": "漂亮连擦！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "whoosh_awesome_02": {
+      "hash": "b38d1537adb3cd5a",
+      "file": "vc_whoosh_awesome_whoosh_awesome_02.wav",
+      "slot": "WhooshAwesome",
+      "text": "手感来了！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "whoosh_awesome_03": {
+      "hash": "9bc00ea57efea220",
+      "file": "vc_whoosh_awesome_whoosh_awesome_03.wav",
+      "slot": "WhooshAwesome",
+      "text": "继续冲！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "whoosh_exquisite_01": {
+      "hash": "e42ed5544b351956",
+      "file": "vc_whoosh_exquisite_whoosh_exquisite_01.wav",
+      "slot": "WhooshExquisite",
+      "text": "太秀了！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "whoosh_exquisite_02": {
+      "hash": "905ce6bf96e57554",
+      "file": "vc_whoosh_exquisite_whoosh_exquisite_02.wav",
+      "slot": "WhooshExquisite",
+      "text": "这波操作绝了！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "whoosh_exquisite_03": {
+      "hash": "9db72903844da12d",
+      "file": "vc_whoosh_exquisite_whoosh_exquisite_03.wav",
+      "slot": "WhooshExquisite",
+      "text": "停不下来！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "whoosh_perfect_01": {
+      "hash": "e70fde7e451a60bf",
+      "file": "vc_whoosh_perfect_whoosh_perfect_01.wav",
+      "slot": "WhooshPerfect",
+      "text": "雪道之王！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "whoosh_perfect_02": {
+      "hash": "9c16b17882312351",
+      "file": "vc_whoosh_perfect_whoosh_perfect_02.wav",
+      "slot": "WhooshPerfect",
+      "text": "无敌了！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "whoosh_perfect_03": {
+      "hash": "df523fd917ce4ba2",
+      "file": "vc_whoosh_perfect_whoosh_perfect_03.wav",
+      "slot": "WhooshPerfect",
+      "text": "你就是高手！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "fever_01": {
+      "hash": "edfd9e61473000d8",
+      "file": "vc_fever_fever_01.wav",
+      "slot": "Fever",
+      "text": "Fever 来了！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "fever_02": {
+      "hash": "1ba88e44cb3b434c",
+      "file": "vc_fever_fever_02.wav",
+      "slot": "Fever",
+      "text": "燃起来了！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "fever_03": {
+      "hash": "035696c9213eaa08",
+      "file": "vc_fever_fever_03.wav",
+      "slot": "Fever",
+      "text": "高光时刻！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "milestone_01": {
+      "hash": "beee1aaf5f641e16",
+      "file": "vc_milestone_milestone_01.wav",
+      "slot": "Milestone",
+      "text": "过半了，稳住！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "milestone_02": {
+      "hash": "f28a1b3892d2d809",
+      "file": "vc_milestone_milestone_02.wav",
+      "slot": "Milestone",
+      "text": "五十米，不错！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "milestone_03": {
+      "hash": "216705b89d4d18a2",
+      "file": "vc_milestone_milestone_03.wav",
+      "slot": "Milestone",
+      "text": "距离在涨，冲！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "idle_nudge_01": {
+      "hash": "477de81898b5f0e3",
+      "file": "vc_idle_nudge_idle_nudge_01.wav",
+      "slot": "IdleNudge",
+      "text": "找缝擦一把！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "idle_nudge_02": {
+      "hash": "2919fd7d6a8a73e3",
+      "file": "vc_idle_nudge_idle_nudge_02.wav",
+      "slot": "IdleNudge",
+      "text": "别光滑，擦树加分！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "idle_nudge_03": {
+      "hash": "0553a56d4884517c",
+      "file": "vc_idle_nudge_idle_nudge_03.wav",
+      "slot": "IdleNudge",
+      "text": "靠近点树试试！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "fail_01": {
+      "hash": "0831145a9579a689",
+      "file": "vc_fail_fail_01.wav",
+      "slot": "Fail",
+      "text": "差一点点！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "fail_02": {
+      "hash": "a6105a08f0e3e350",
+      "file": "vc_fail_fail_02.wav",
+      "slot": "Fail",
+      "text": "下把稳住。",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "fail_03": {
+      "hash": "687fead3fce0285f",
+      "file": "vc_fail_fail_03.wav",
+      "slot": "Fail",
+      "text": "没事，再来一局！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "clear_01": {
+      "hash": "866baa249864f15f",
+      "file": "vc_clear_clear_01.wav",
+      "slot": "Clear",
+      "text": "过关啦！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "clear_02": {
+      "hash": "973db1953d16ac4f",
+      "file": "vc_clear_clear_02.wav",
+      "slot": "Clear",
+      "text": "漂亮通关！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "clear_03": {
+      "hash": "eefe9d42375df326",
+      "file": "vc_clear_clear_03.wav",
+      "slot": "Clear",
+      "text": "下一关继续冲！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "continue_01": {
+      "hash": "c2dadaddb50d3ef5",
+      "file": "vc_continue_continue_01.wav",
+      "slot": "Continue",
+      "text": "回来了，冲！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "continue_02": {
+      "hash": "3288558b67e64682",
+      "file": "vc_continue_continue_02.wav",
+      "slot": "Continue",
+      "text": "连击还在，加油！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    },
+    "continue_03": {
+      "hash": "f56cbdc9ad61af59",
+      "file": "vc_continue_continue_03.wav",
+      "slot": "Continue",
+      "text": "二次机会，稳住！",
+      "speaker": "zh_female_vv_uranus_bigtts",
+      "resource_id": "seed-tts-2.0"
+    }
+  }
+}

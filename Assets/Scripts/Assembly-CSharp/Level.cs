@@ -123,20 +123,48 @@ namespace LevelMode
 			bestTickBox.anchorMax = bestTickBox.anchorMin;
 			bestProgression.fillAmount = num;
 			levelCompleteMessage.enabled = false;
+			// 开局清零；FinishLine 尚未 Refresh 时距离为 0，若此时跑 Update 会除零产生 NaN，进度条永久卡死
+			lastProgression = -1;
+			SetProgression(0f);
+			// 无尽：禁 Update 进度（HUD_Level 由 UIHudTransition 隐藏）；关卡才开
+			base.enabled = GameMode.IsLevel;
+		}
+
+		protected override void OnStartRun(Run slide)
+		{
+			if (GameMode.IsEndless)
+			{
+				base.enabled = false;
+				return;
+			}
+			lastProgression = -1;
+			SetProgression(0f);
 			base.enabled = true;
 		}
 
 		protected override void OnContinue()
 		{
+			// 无尽续命早退，避免误开进度条 Update
+			if (GameMode.IsEndless)
+			{
+				base.enabled = false;
+				return;
+			}
 			base.enabled = true;
 		}
 
 		protected override void OnEndRun()
 		{
 			base.enabled = false;
+			// 无尽不结算关卡进度 / 不升关
+			if (GameMode.IsEndless)
+			{
+				return;
+			}
+			float total = FinishLine.GetDistance();
 			if (!Neuron.GetCurrentRun().success)
 			{
-				float num = (0f - Skier.GetY()) / FinishLine.GetDistance();
+				float num = (total > 0.01f) ? Mathf.Clamp01((0f - Skier.GetY()) / total) : 0f;
 				int num2 = Mathf.RoundToInt(num * 100f);
 				SetProgression(num);
 				if (num2 > best)
@@ -162,11 +190,33 @@ namespace LevelMode
 
 		private void Update()
 		{
-			SetProgression(progression.fillAmount + ((0f - Skier.GetY()) / FinishLine.GetDistance() - progression.fillAmount) * 5f * Time.deltaTime);
+			// 无尽哨兵距离极大，禁止用其驱动进度条
+			if (GameMode.IsEndless)
+			{
+				return;
+			}
+			// Level 优先级 -1，早于 FinishLine Refresh；距离未就绪前禁止除法，否则 fillAmount/锚点变 NaN
+			float total = FinishLine.GetDistance();
+			if (total < 0.01f || progression == null)
+			{
+				return;
+			}
+			float current = progression.fillAmount;
+			if (float.IsNaN(current) || float.IsInfinity(current))
+			{
+				current = 0f;
+			}
+			float target = Mathf.Clamp01((0f - Skier.GetY()) / total);
+			SetProgression(current + (target - current) * 5f * Time.deltaTime);
 		}
 
 		private void SetProgression(float percentage)
 		{
+			if (float.IsNaN(percentage) || float.IsInfinity(percentage))
+			{
+				percentage = 0f;
+			}
+			percentage = Mathf.Clamp01(percentage);
 			progression.fillAmount = percentage;
 			currentTickBox.anchorMin = new Vector2(percentage, 0f);
 			currentTickBox.anchorMax = currentTickBox.anchorMin;

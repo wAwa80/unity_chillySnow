@@ -19,6 +19,8 @@ namespace LevelMode
 			onIcon = childTransform.GetChild(0).GetComponent<Image>();
 			offIcon = childTransform.GetChild(1).GetComponent<Image>();
 			SyncUI();
+			// SettingsBar 展开后靠父 CanvasGroup 控制可点性；按钮本身必须 enabled
+			Show();
 		}
 
 		protected override void OnClick()

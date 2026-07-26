@@ -82,7 +82,8 @@ namespace JuiceInternal
 				hasTranslations = true;
 				XmlDocument xmlDocument = new XmlDocument();
 				xmlDocument.LoadXml(textAsset.text);
-				LoadLanguage(xmlDocument.FirstChild, Application.systemLanguage.ToString().ToLower());
+				// 强制默认简体中文，忽略设备系统语言
+				LoadLanguage(xmlDocument.FirstChild, "chinesesimplified");
 			}
 		}
 

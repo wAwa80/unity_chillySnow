@@ -22,13 +22,14 @@ namespace JuiceInternal
 
 		protected override void OnGameStarted()
 		{
-			if (!isPremium)
+			if (!JuiceConsentGates.EnablePremium || isPremium)
 			{
-				GameObject gameObject = Object.Instantiate(Resources.Load<GameObject>("DealPopup"));
-				gameObject.name = "JUICE MODULE Deal Popup";
-				Object.DontDestroyOnLoad(gameObject);
-				dealPopup = gameObject.GetComponent<DealPopup>();
+				return;
 			}
+			GameObject gameObject = Object.Instantiate(Resources.Load<GameObject>("DealPopup"));
+			gameObject.name = "JUICE MODULE Deal Popup";
+			Object.DontDestroyOnLoad(gameObject);
+			dealPopup = gameObject.GetComponent<DealPopup>();
 		}
 
 		public bool IsPremium()
@@ -38,11 +39,19 @@ namespace JuiceInternal
 
 		public void Buy()
 		{
+			if (!JuiceConsentGates.EnablePremium)
+			{
+				return;
+			}
 			Module<Store>.GetInstance().Buy(Settings.Get().premium);
 		}
 
 		public void TryShowDeal()
 		{
+			if (!JuiceConsentGates.EnablePremium)
+			{
+				return;
+			}
 			if (!isNotFirstTryShow)
 			{
 				isNotFirstTryShow = true;

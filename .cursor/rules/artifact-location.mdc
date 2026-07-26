@@ -1,0 +1,30 @@
+---
+description: 计划、AI 生成图片与音频的统一落盘路径
+alwaysApply: true
+---
+
+# 产物落盘路径规范
+
+共用约定：禁止写到用户主目录、临时目录或其他项目外路径；目录不存在则先创建；文件名应有意义（可用中文或英文 snake_case）。
+
+## A) 计划文件 → `.cursor/plans/`
+
+- 所有开发计划、技术方案、`.plan.md` 必须写入本仓库的 `.cursor/plans/` 目录。
+- 文件名建议：`主题_简述.plan.md`。
+- 计划相关的辅助脚本/JSON 也放在同一目录下。
+- 若用户说「把计划放到项目里」，默认路径就是 `.cursor/plans/`。
+
+## B) AI 生成图片 → `Assets/TestImage/`
+
+- 所有由 AI 生成/导出的图片（GenerateImage、设计稿、测试图、splash 重设计等）必须写入本仓库的 `Assets/TestImage/` 目录。
+- 禁止写到 Cursor assets 缓存目录作为最终交付位置；若工具先写到别处，必须再复制/移动到 `Assets/TestImage/`。
+- 文件名建议：`主题_简述.png`。
+- 若用户说「把图放到项目里」，默认路径就是 `Assets/TestImage/`。
+
+## C) AI / Pipeline 生成音频 → `Assets/TestAudio/`
+
+- 所有由 AI 或制作期 Pipeline 生成/导出的音频（TTS 预生成、试听音、语音包 wav/mp3 等）必须写入本仓库的 `Assets/TestAudio/` 目录。
+- 禁止写到用户主目录、临时目录或 Cursor 缓存目录作为最终交付位置；若工具先写到 `Tools/*/out/`，交付前必须再复制到 `Assets/TestAudio/`。
+- 文件名建议：`vc_{event}_{tier}_{nn}.wav` 或 `主题_简述.wav`。
+- 若用户说「把音频放到项目里」，默认路径就是 `Assets/TestAudio/`。
+- 正式游戏引用仍由 User 在编辑器中从该目录拖入 Catalog / AudioSource（Agent 不改场景 meta）。

@@ -29,7 +29,11 @@ namespace LevelMode
 		{
 			MeterPlusOne,
 			Whoosh,
-			Continue
+			Continue,
+			// 对齐无尽 App.State.Pause / NightModeSwitched；用 canPause 收窄 EndRun 后仍 IsPlaying 的窗口
+			Pause,
+			Unpause,
+			NightModeSwitched
 		}
 
 		private static readonly Dictionary<string, SystemEvent> systemEventNames;
@@ -47,6 +51,12 @@ namespace LevelMode
 		private static Run currentRun;
 
 		private static bool isPlaying;
+
+		/// <summary>局内暂停（timeScale / 输入门控）。</summary>
+		private static bool isPaused;
+
+		/// <summary>仅 StartRun→EndRun 之间可暂停，避免结算/Continue 期间误暂停。</summary>
+		private static bool canPause;
 
 		static Neuron()
 		{
@@ -131,6 +141,16 @@ namespace LevelMode
 			return isPlaying;
 		}
 
+		public static bool IsPaused()
+		{
+			return isPaused;
+		}
+
+		public static bool CanPause()
+		{
+			return canPause;
+		}
+
 		protected virtual void OnInternetStateChanged(bool hasInternet)
 		{
 		}
@@ -207,6 +227,7 @@ namespace LevelMode
 		{
 			currentRun = run;
 			isPlaying = true;
+			canPause = true;
 			foreach (Neuron item in baseNeurons[BaseEvent.StartRun])
 			{
 				item.OnStartRun(run);
@@ -215,6 +236,9 @@ namespace LevelMode
 
 		public static void EndRun()
 		{
+			// 先解暂停，避免 GameCamera.Invoke 等 scaled 定时器被冻住
+			Unpause();
+			canPause = false;
 			foreach (Neuron item in baseNeurons[BaseEvent.EndRun])
 			{
 				item.OnEndRun();
@@ -223,12 +247,14 @@ namespace LevelMode
 
 		public static void Refresh()
 		{
+			Unpause();
 			isPlaying = false;
+			canPause = false;
 			foreach (Neuron item in baseNeurons[BaseEvent.Refresh])
 			{
 				item.OnRefresh();
 			}
-			GC.Collect();
+			// 禁止同步 GC.Collect：与刷树同帧会尖峰；改由菜单/系统时机回收
 		}
 
 		protected virtual void OnMeterPlusOne()
@@ -243,9 +269,75 @@ namespace LevelMode
 		{
 		}
 
+		protected virtual void OnPause()
+		{
+		}
+
+		protected virtual void OnUnpause()
+		{
+		}
+
+		protected virtual void OnNightModeSwitched(bool enabled)
+		{
+		}
+
+		/// <summary>
+		/// 局内暂停。无 PausePage 时直接 timeScale=0（降级）；有则由 PausePage 淡入后置 0。
+		/// </summary>
+		public static void Pause()
+		{
+			if (!canPause || isPaused)
+			{
+				return;
+			}
+			isPaused = true;
+			foreach (Neuron item in gameNeurons[GameEvent.Pause])
+			{
+				item.OnPause();
+			}
+			// 场景未挂 PausePage 时的降级：立即冻结
+			if (PausePage.i == null)
+			{
+				Time.timeScale = 0f;
+			}
+		}
+
+		/// <summary>
+		/// 恢复滑行；可重入（EndRun/Refresh 安全调用）。始终校正 timeScale。
+		/// </summary>
+		public static void Unpause()
+		{
+			Time.timeScale = 1f;
+			if (!isPaused)
+			{
+				return;
+			}
+			isPaused = false;
+			foreach (Neuron item in gameNeurons[GameEvent.Unpause])
+			{
+				item.OnUnpause();
+			}
+		}
+
+		public static void NightModeSwitched(bool enabled)
+		{
+			foreach (Neuron item in gameNeurons[GameEvent.NightModeSwitched])
+			{
+				item.OnNightModeSwitched(enabled);
+			}
+		}
+
 		public static void MeterPlusOne()
 		{
-			currentRun.score += Level.Get();
+			// 关卡：每米加关卡号倍率；无尽：每米 +1（与关卡号解耦）
+			if (GameMode.IsEndless)
+			{
+				currentRun.score += 1;
+			}
+			else
+			{
+				currentRun.score += Level.Get();
+			}
 			foreach (Neuron item in gameNeurons[GameEvent.MeterPlusOne])
 			{
 				item.OnMeterPlusOne();

@@ -38,7 +38,13 @@ namespace EndlessMode
 
 		private bool NeedsToShow()
 		{
-			return Stats.GetTop().score < 30 || Stats.GetQuickPresses() < 3 || Stats.GetLongPresses() < 3;
+			// Stats 未就绪时暂不显示，避免 Awake 时序空引用；回菜单时会再判定
+			Stats.Game top = Stats.GetTop();
+			if (top == null)
+			{
+				return false;
+			}
+			return top.score < 30 || Stats.GetQuickPresses() < 3 || Stats.GetLongPresses() < 3;
 		}
 
 		private void Play()

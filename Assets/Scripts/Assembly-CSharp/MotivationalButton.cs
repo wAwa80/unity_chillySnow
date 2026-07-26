@@ -17,6 +17,9 @@ namespace LevelMode
 			onIcon = childTransform.GetChild(0).GetComponent<Image>();
 			offIcon = childTransform.GetChild(1).GetComponent<Image>();
 			motivationalOn = true;
+			// SingletonButton.Awake 会 ApplyHiddenVisualState（Button/Image 禁用、子节点 scale=0）；
+			// Settings 面板里的按钮需立刻 Show，实际显隐由父 CanvasGroup 控制
+			Show();
 		}
 
 		private void Start()

@@ -56,53 +56,53 @@ Assets/GameRes/Runtime/*
 Assets/GameArt/**
 
 # Spine / 动画 / Shaders / Sprites / Atlas 等大资源（按需放宽）
-Assets/**/Spine/**
-Assets/**/Animations/**
-Assets/**/Animator/**
-Assets/**/Sprites/**
-Assets/**/SpriteAtlas/**
-Assets/**/Atlas/**
-Assets/**/Textures/**
-Assets/**/Materials/**
-Assets/**/Shaders/**
+# Assets/**/Spine/**
+# Assets/**/Animations/**
+# Assets/**/Animator/**
+# Assets/**/Sprites/**
+# Assets/**/SpriteAtlas/**
+# Assets/**/Atlas/**
+# Assets/**/Textures/**
+# Assets/**/Materials/**
+# Assets/**/Shaders/**
 
 # === 大型二进制 / 贴图 / 模型 / 声音等资源扩展名 ===
-*.png
-*.jpg
-*.jpeg
-*.tga
-*.psd
-*.tif
-*.tiff
-*.bmp
-*.gif
-*.exr
-*.hdr
-*.mat
-*.anim
-*.shader
-*.pdf
+# *.png
+# *.jpg
+# *.jpeg
+# *.tga
+# *.psd
+# *.tif
+# *.tiff
+# *.bmp
+# *.gif
+# *.exr
+# *.hdr
+# *.mat
+# *.anim
+# *.shader
+# *.pdf
 
 
-*.fbx
-*.obj
-*.3ds
-*.blend
-*.dae
+# *.fbx
+# *.obj
+# *.3ds
+# *.blend
+# *.dae
 
-*.mp3
-*.ogg
-*.wav
-*.aiff
-*.aif
-*.flac
+# *.mp3
+# *.ogg
+# *.wav
+# *.aiff
+# *.aif
+# *.flac
 
-*.mp4
-*.mov
-*.avi
+# *.mp4
+# *.mov
+# *.avi
 
-*.ttf
-*.otf
+# *.ttf
+# *.otf
 
 # Unity 资源与缓存类 asset（可按需要放宽）
 # 若希望 AI 仍能看到部分 .asset（比如配置 ScriptableObject），可以只忽略特定路径。
@@ -136,7 +136,7 @@ _ReSharper.*/
 
 # === Unity .meta：仅索引「场景 + 预制体」目录树下的 .meta，其余 Assets 下 .meta 忽略 ===
 # 先匹配 Assets/**/*.meta，再按 gitignore 用 ! 放行整棵子目录（便于遍历其中 .meta）。
-Assets/**/*.meta
+# Assets/**/*.meta
 !Assets/Scene/
 !Assets/Scene/**
 !Assets/Prefab/
@@ -151,6 +151,7 @@ Assets/**/*.meta
 !无尽模式的玩法/Assets/Prefab/**
 !无尽模式的玩法/Assets/PrefabInstance/
 !无尽模式的玩法/Assets/PrefabInstance/**
+无尽模式的玩法/*
 
 Packages/**/*.meta
 

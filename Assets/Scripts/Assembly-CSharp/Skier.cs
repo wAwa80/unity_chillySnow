@@ -11,6 +11,16 @@ namespace LevelMode
 
 		private SpriteRenderer shadow;
 
+		/// <summary>
+		/// 夜间光晕；缺 Prefab 节点时为 null（降级）。
+		/// // TODO: [User Action] 在 Skier 下增加名为 Glow 的子节点并挂 SpriteRenderer。
+		/// </summary>
+		private SpriteRenderer glow;
+
+		private Color glowBaseColor = Color.white;
+
+		private float glowIntensity = 1f;
+
 		private TrailRenderer trail;
 
 		private AudioSource source;
@@ -57,7 +67,7 @@ namespace LevelMode
 
 		private readonly ParticleSystem.MinMaxCurve powderSpreadNotEmitting = new ParticleSystem.MinMaxCurve(0f);
 
-		private readonly ParticleSystem.MinMaxCurve powderSpreadEmitting = new ParticleSystem.MinMaxCurve(100f);
+		private ParticleSystem.MinMaxCurve powderSpreadEmitting;
 
 		private float soundVolume;
 
@@ -74,6 +84,12 @@ namespace LevelMode
 			base.Awake();
 			spriteRenderer = GetComponent<SpriteRenderer>();
 			shadow = base.transform.GetChild(0).GetComponent<SpriteRenderer>();
+			glow = ResolveGlowRenderer();
+			if (glow != null)
+			{
+				glowBaseColor = glow.color;
+				glow.enabled = false;
+			}
 			trail = GetComponent<TrailRenderer>();
 			source = GetComponent<AudioSource>();
 			speedParticles = base.transform.GetChild(1).GetComponent<ParticleSystem>();
@@ -83,7 +99,21 @@ namespace LevelMode
 			powderSpread = base.transform.GetChild(3).GetComponent<ParticleSystem>();
 			deathParticles = base.transform.GetChild(4).GetComponent<ParticleSystem>();
 			deathSound = deathParticles.GetComponent<AudioSource>();
+			powderSpreadEmitting = new ParticleSystem.MinMaxCurve(WxPerf.GetPowderRate());
 			base.enabled = false;
+		}
+
+		/// <summary>
+		/// 按名解析 Glow，兼容缺节点（月光树影依赖 GetGlowIntensity）。
+		/// </summary>
+		private SpriteRenderer ResolveGlowRenderer()
+		{
+			Transform named = base.transform.Find("Glow");
+			if (named != null)
+			{
+				return named.GetComponent<SpriteRenderer>();
+			}
+			return null;
 		}
 
 		protected override void OnRefresh()
@@ -93,13 +123,14 @@ namespace LevelMode
 			y = 0f;
 			meters = 0;
 			spriteRenderer.enabled = true;
-			shadow.enabled = true;
+			glowIntensity = 1f;
 			speedParticles.Stop();
 			ResetPhysics();
 			StopPowderSpread();
 			ResetPowderSpreadSound();
 			SetInFever(fever: false);
 			SetSkierColor(Level.GetSkierColor());
+			ApplyNightVisuals(NightModeButton.IsOn);
 			ParticleSystem.MainModule main = powderSpread.main;
 			main.startColor = Level.GetBackgroundColor() * 0.9f;
 			autoPlay = false;
@@ -113,8 +144,10 @@ namespace LevelMode
 			isPressing = true;
 			trail.enabled = true;
 			base.enabled = true;
+			glowIntensity = 1f;
 			soundVolume = 0.025f;
 			source.volume = soundVolume;
+			ApplyNightVisuals(NightModeButton.IsOn);
 		}
 
 		protected override void OnEndRun()
@@ -126,7 +159,15 @@ namespace LevelMode
 				return;
 			}
 			spriteRenderer.enabled = false;
-			shadow.enabled = false;
+			if (shadow != null)
+			{
+				shadow.enabled = false;
+			}
+			if (glow != null)
+			{
+				glow.enabled = false;
+			}
+			glowIntensity = 0f;
 			speedParticles.Stop();
 			StopPowderSpread();
 			ResetPowderSpreadSound();
@@ -141,7 +182,6 @@ namespace LevelMode
 		protected override void OnContinue()
 		{
 			holdOnContinue = true;
-			shadow.enabled = true;
 			x = 0f;
 			base.transform.position = new Vector3(x, y, base.transform.position.z);
 			speedParticles.Stop();
@@ -150,14 +190,109 @@ namespace LevelMode
 			ResetPowderSpreadSound();
 			SetInFever(fever: false);
 			SetSkierColor(Level.GetSkierColor());
+			glowIntensity = 1f;
+			ApplyNightVisuals(NightModeButton.IsOn);
 			ParticleSystem.MainModule main = powderSpread.main;
 			main.startColor = Level.GetBackgroundColor() * 0.9f;
 			autoPlay = false;
 			base.transform.position = new Vector3(0f, base.transform.position.y, base.transform.position.z);
-			meters = 0;
+			// 契约 3A（写死）：续命同步 meters 为当前深度，禁止 meters=0。
+			// 否则恢复 Update 后会按深度一次性补发 MeterPlusOne（无尽每米+1 / 关卡×关卡号刷分）。
+			meters = Mathf.Max(0, Mathf.FloorToInt((0f - y) * 0.7f));
 			trail.Clear();
 			trail.enabled = false;
 			spriteRenderer.enabled = true;
+		}
+
+		protected override void OnNightModeSwitched(bool enabled)
+		{
+			ApplyNightVisuals(enabled);
+		}
+
+		protected override void OnPause()
+		{
+			if (source != null && source.isPlaying)
+			{
+				source.Pause();
+			}
+		}
+
+		protected override void OnUnpause()
+		{
+			if (source != null && Neuron.IsPlaying() && base.enabled)
+			{
+				source.UnPause();
+			}
+		}
+
+		/// <summary>
+		/// 夜间：开 glow、关地面影；日间相反。缺 Glow 时仅切 shadow。
+		/// </summary>
+		private void ApplyNightVisuals(bool night)
+		{
+			if (night)
+			{
+				if (shadow != null)
+				{
+					shadow.enabled = false;
+				}
+				if (glow != null)
+				{
+					SyncGlowColor();
+					glow.enabled = spriteRenderer != null && spriteRenderer.enabled;
+				}
+			}
+			else
+			{
+				if (glow != null)
+				{
+					glow.enabled = false;
+				}
+				if (shadow != null && spriteRenderer != null && spriteRenderer.enabled)
+				{
+					shadow.enabled = true;
+				}
+			}
+		}
+
+		private void SyncGlowColor()
+		{
+			if (glow == null)
+			{
+				return;
+			}
+			Color c = color;
+			c.a = glowBaseColor.a;
+			glowBaseColor = c;
+			if (glowBaseColor.r < 0.2f)
+			{
+				glowBaseColor.r = 0.2f;
+			}
+			if (glowBaseColor.g < 0.2f)
+			{
+				glowBaseColor.g = 0.2f;
+			}
+			if (glowBaseColor.b < 0.2f)
+			{
+				glowBaseColor.b = 0.2f;
+			}
+			float max = Mathf.Max(glowBaseColor.r, glowBaseColor.g, glowBaseColor.b);
+			if (max < 1f && max > 0f)
+			{
+				float inv = 1f / max;
+				glowBaseColor.r *= inv;
+				glowBaseColor.g *= inv;
+				glowBaseColor.b *= inv;
+			}
+			glow.color = glowBaseColor;
+		}
+
+		/// <summary>
+		/// 月光树影光强（对齐无尽 Player.GetGlowIntensity）。
+		/// </summary>
+		public float GetGlowIntensity()
+		{
+			return glowIntensity;
 		}
 
 		protected override void OnTap()
@@ -190,6 +325,10 @@ namespace LevelMode
 			trail.startColor = c;
 			c.a = 0f;
 			trail.endColor = c;
+			if (NightModeButton.IsOn)
+			{
+				SyncGlowColor();
+			}
 		}
 
 		public static float GetX()
@@ -232,12 +371,16 @@ namespace LevelMode
 
 		private void Update()
 		{
-			if (trail.time < 5f)
+			if (Neuron.IsPaused())
+			{
+				return;
+			}
+			if (trail.time < WxPerf.GetTrailTimeMax())
 			{
 				trail.time += 0.9f * Time.deltaTime;
-				if (trail.time > 5f)
+				if (trail.time > WxPerf.GetTrailTimeMax())
 				{
-					trail.time = 5f;
+					trail.time = WxPerf.GetTrailTimeMax();
 				}
 			}
 			float num = Parameters.SKIER_MANIABILITY_RELATIVE_TO_OLD_CHILLY_SNOW.Sample() * 400f;
@@ -379,9 +522,13 @@ namespace LevelMode
 			}
 			x = base.transform.position.x;
 			y = base.transform.position.y;
-			if (!autoPlay && y <= 0f - FinishLine.GetDistance())
+			// 仅局内 + 关卡模式可触达终点；distance==0（未 Refresh）时不判定，避免菜单态空引用刷屏
+			Run run = Neuron.GetCurrentRun();
+			float finishDistance = FinishLine.GetDistance();
+			if (Neuron.IsPlaying() && !autoPlay && GameMode.IsLevel && run != null &&
+				finishDistance > 0.01f && y <= 0f - finishDistance)
 			{
-				Neuron.GetCurrentRun().success = true;
+				run.success = true;
 				Neuron.EndRun();
 				Device.Vibrate(Vibration.Success);
 			}
@@ -389,6 +536,7 @@ namespace LevelMode
 
 		private void PlayPowderSpread()
 		{
+			powderSpreadEmitting = new ParticleSystem.MinMaxCurve(WxPerf.GetPowderRate());
 			ParticleSystem.EmissionModule emission = powderSpread.emission;
 			emission.rateOverTime = powderSpreadEmitting;
 		}
@@ -481,6 +629,8 @@ namespace LevelMode
 				SetSkierColor(Level.GetFeverColor());
 				feverParticles.Play();
 				feverSound.Play();
+				// 陪玩语音：仅在进入 Fever 边沿通知一次（退出不播）
+				VoiceCompanion.NotifyFeverEntered();
 				if (!pulsing)
 				{
 					StartCoroutine(Pulse());

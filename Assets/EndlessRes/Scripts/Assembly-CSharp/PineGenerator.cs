@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,13 +30,22 @@ namespace EndlessMode
 
 		private Vector2 seed;
 
-		private float nextZ;
+		/// <summary>
+		/// 替换 ResetZ：每棵树递增序号，用 %1000 微偏移保证叠画顺序。
+		/// </summary>
+		private static int pineSerial;
 
 		private const float SQR_SIZE = 0.0225f;
 
 		private const float WHOOSH_DISTANCE = 1f;
 
 		private const float SQR_WHOOSH_DISTANCE = 1f;
+
+		private const float SPAWN_AHEAD = 12f;
+
+		private const int MAX_LINES_PER_FRAME = 4;
+
+		private const int BURST_MAX_LINES = 12;
 
 		private float wd;
 
@@ -45,8 +55,20 @@ namespace EndlessMode
 		{
 			wd = 1f;
 			swd = 1f;
-			OnBackToMenu();
 			base.enabled = false;
+			StartCoroutine(InitEndlessPines());
+		}
+
+		/// <summary>
+		/// 必须先 WarmUp 再 OnBackToMenu（内含 Spawn），禁止先刷树再预热。
+		/// </summary>
+		private IEnumerator InitEndlessPines()
+		{
+			if (Recyclable<Pine>.PoolCount < 80)
+			{
+				yield return StartCoroutine(Recyclable<Pine>.WarmUpInactiveCoroutine(80, 20));
+			}
+			OnBackToMenu();
 		}
 
 		public override int GetPriority()
@@ -62,7 +84,7 @@ namespace EndlessMode
 			CleanPineQueue(comingPines);
 			base.transform.position = new Vector3(0f, -7f, base.transform.position.z);
 			seed = new Vector2(10f * Random.value, 10f * Random.value);
-			nextZ = 0f;
+			pineSerial = 0;
 			SpawnPines();
 		}
 
@@ -113,8 +135,12 @@ namespace EndlessMode
 			{
 				num++;
 				Pine pine = pines.Dequeue();
-				float num2 = pine.transform.position.x - Singleton<Player>.i.transform.position.x;
-				float num3 = pine.transform.position.y - Singleton<Player>.i.transform.position.y;
+				if (pine == null)
+				{
+					continue;
+				}
+				float num2 = pine.GetX() - Singleton<Player>.i.transform.position.x;
+				float num3 = pine.GetY() - Singleton<Player>.i.transform.position.y;
 				float num4 = num2 * num2 + num3 * num3;
 				if (num4 < 2.25f)
 				{
@@ -129,14 +155,18 @@ namespace EndlessMode
 
 		private void SpawnPines()
 		{
-			float num = base.transform.position.y;
-			float num2 = Singleton<GameCamera>.i.transform.position.y - 12f;
-			while (num > num2)
+			float cursor = base.transform.position.y;
+			float targetY = Singleton<GameCamera>.i.transform.position.y - SPAWN_AHEAD;
+			float deficit = (cursor - targetY) / 0.3f;
+			int maxLines = deficit > 20f ? BURST_MAX_LINES : MAX_LINES_PER_FRAME;
+			int lines = 0;
+			while (cursor > targetY && lines < maxLines)
 			{
-				GeneratePineLine(num);
-				num -= 0.3f;
+				GeneratePineLine(cursor);
+				cursor -= 0.3f;
+				lines++;
 			}
-			base.transform.position = new Vector3(0f, num, base.transform.position.z);
+			base.transform.position = new Vector3(0f, cursor, base.transform.position.z);
 		}
 
 		private void GeneratePineLine(float y)
@@ -155,37 +185,18 @@ namespace EndlessMode
 				if (Random.value < num6)
 				{
 					Pine pine = Recyclable<Pine>.Get();
-					pine.transform.position = new Vector3(num4, y, base.transform.position.z - nextZ);
-					comingPines.Enqueue(pine);
-					nextZ += 0.001f;
-					if (nextZ >= 1f)
+					if (pine == null)
 					{
-						ResetZ();
+						vector.x += num;
+						continue;
 					}
+					pineSerial++;
+					float worldZ = base.transform.position.z - (pineSerial % 1000) * 0.001f;
+					pine.Place(num4, y, worldZ);
+					comingPines.Enqueue(pine);
 				}
 				vector.x += num;
 			}
-		}
-
-		private void ResetZ()
-		{
-			foreach (Pine comingPine in comingPines)
-			{
-				comingPine.transform.position = new Vector3(comingPine.transform.position.x, comingPine.transform.position.y, comingPine.transform.position.z + nextZ);
-			}
-			foreach (Pine dangerousPine in dangerousPines)
-			{
-				dangerousPine.transform.position = new Vector3(dangerousPine.transform.position.x, dangerousPine.transform.position.y, dangerousPine.transform.position.z + nextZ);
-			}
-			foreach (Pine whooshablePine in whooshablePines)
-			{
-				whooshablePine.transform.position = new Vector3(whooshablePine.transform.position.x, whooshablePine.transform.position.y, whooshablePine.transform.position.z + nextZ);
-			}
-			foreach (Pine item in pendingDelete)
-			{
-				item.transform.position = new Vector3(item.transform.position.x, item.transform.position.y, item.transform.position.z + nextZ);
-			}
-			nextZ = 0f;
 		}
 
 		public float GetDistance()
@@ -195,23 +206,45 @@ namespace EndlessMode
 
 		private void CheckPines()
 		{
-			while (comingPines.Count > 0 && comingPines.Peek().transform.position.y > Singleton<Player>.i.transform.position.y - 0.3f)
+			while (comingPines.Count > 0)
 			{
-				dangerousPines.Enqueue(comingPines.Dequeue());
+				Pine peek = comingPines.Peek();
+				if (peek == null)
+				{
+					comingPines.Dequeue();
+					continue;
+				}
+				if (peek.GetY() > Singleton<Player>.i.transform.position.y - 0.3f)
+				{
+					dangerousPines.Enqueue(comingPines.Dequeue());
+					continue;
+				}
+				break;
 			}
-			while (dangerousPines.Count > 0 && dangerousPines.Peek().transform.position.y > Singleton<Player>.i.transform.position.y)
+			while (dangerousPines.Count > 0)
 			{
-				whooshablePines.Enqueue(dangerousPines.Dequeue());
+				Pine peek = dangerousPines.Peek();
+				if (peek == null)
+				{
+					dangerousPines.Dequeue();
+					continue;
+				}
+				if (peek.GetY() > Singleton<Player>.i.transform.position.y)
+				{
+					whooshablePines.Enqueue(dangerousPines.Dequeue());
+					continue;
+				}
+				break;
 			}
 			Vector3 position = Singleton<Player>.i.transform.position;
 			foreach (Pine dangerousPine in dangerousPines)
 			{
-				if (dangerousPine.IsDestroyed())
+				if (dangerousPine == null || dangerousPine.IsDestroyed())
 				{
 					continue;
 				}
-				float num = dangerousPine.transform.position.x - position.x;
-				float num2 = dangerousPine.transform.position.y - position.y;
+				float num = dangerousPine.GetX() - position.x;
+				float num2 = dangerousPine.GetY() - position.y;
 				float num3 = num * num + num2 * num2;
 				if (num3 < 0.0225f)
 				{
@@ -231,16 +264,32 @@ namespace EndlessMode
 					Neuron.Whoosh();
 				}
 			}
-			while (whooshablePines.Count > 0 && whooshablePines.Peek().transform.position.y > Singleton<Player>.i.transform.position.y + wd)
+			while (whooshablePines.Count > 0)
 			{
-				pendingDelete.Enqueue(whooshablePines.Dequeue());
+				Pine peek = whooshablePines.Peek();
+				if (peek == null)
+				{
+					whooshablePines.Dequeue();
+					continue;
+				}
+				if (peek.GetY() > Singleton<Player>.i.transform.position.y + wd)
+				{
+					pendingDelete.Enqueue(whooshablePines.Dequeue());
+					continue;
+				}
+				break;
 			}
 			foreach (Pine whooshablePine in whooshablePines)
 			{
+				// Fever DestroyPine 后不得再 Pass/Whoosh
+				if (whooshablePine == null || whooshablePine.IsDestroyed())
+				{
+					continue;
+				}
 				if (!whooshablePine.IsPassed())
 				{
-					float num4 = whooshablePine.transform.position.x - position.x;
-					float num5 = whooshablePine.transform.position.y - position.y;
+					float num4 = whooshablePine.GetX() - position.x;
+					float num5 = whooshablePine.GetY() - position.y;
 					float num6 = num4 * num4 + num5 * num5;
 					if (num6 < swd)
 					{
@@ -249,9 +298,20 @@ namespace EndlessMode
 					}
 				}
 			}
-			while (pendingDelete.Count > 0 && pendingDelete.Peek().transform.position.y > Singleton<GameCamera>.i.transform.position.y + 10f)
+			while (pendingDelete.Count > 0)
 			{
-				pendingDelete.Dequeue().Kill();
+				Pine peek = pendingDelete.Peek();
+				if (peek == null)
+				{
+					pendingDelete.Dequeue();
+					continue;
+				}
+				if (peek.GetY() > Singleton<GameCamera>.i.transform.position.y + 10f)
+				{
+					pendingDelete.Dequeue().Kill();
+					continue;
+				}
+				break;
 			}
 		}
 
@@ -259,6 +319,10 @@ namespace EndlessMode
 		{
 			foreach (Pine item in queue)
 			{
+				if (item == null)
+				{
+					continue;
+				}
 				item.Kill();
 			}
 			queue.Clear();

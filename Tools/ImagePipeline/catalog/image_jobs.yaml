@@ -1,0 +1,387 @@
+# 即梦图片 4.6 任务清单（制作期 → Assets/TestImage/）
+# 文档：https://docs.volcengine.com/docs/85621/2275082?lang=zh
+# req_key 固定：jimeng_seedream46_cvtob
+# scale：整数 1~100，默认 50
+# 参考图缺失时脚本会 warning 并降级为纯文生图（不中断整批）。
+# 勿在 prompt 写「生成 N 张 / 四宫格」；多方案请拆多条 job。
+#
+# Round：首页 v3（小球角色 + 拉开层级，修正 g4 拥挤）
+# 跑法：python scripts/generate.py --only mock_home_first30_v3_ball_level
+#       或 --only 前缀匹配多条：见 README；也可 --force 全量
+
+jobs:
+  # ---------- 首页 g6：按四组视觉结论生成 6 张候选 ----------
+  - id: mock_home_first30_g6_01_main
+    filename: mock_home_first30_g6_01_main.png
+    width: 936
+    height: 1664
+    force_single: true
+    scale: 55
+    prompt: >
+      Chilly Snow 首页UI，竖屏单张。三组软萌3D商业质感为主，四组清晰雪道结构为辅。
+      中央青绿色小球角色，禁止人物滑雪者；大字 TAP TO PLAY 最强。
+      底左橙MODE、底右绿SKINS成对方钮；顶左设置、顶右去广告、顶中青色关卡HUD。
+      奶油雪地、圆润松树、留白充足，勿拥挤。
+    refs:
+      - path: Assets/TestImage/concept_refs/g1_01_ui_language.png
+      - path: Assets/TestImage/concept_refs/g3_02_cute_ip.png
+      - path: Assets/TestImage/concept_refs/g3_04_gameplay_buttons.png
+      - path: Assets/TestImage/concept_refs/g4_04_playable_slope.png
+      - path: Assets/TestImage/mock_hud_mode_btn_level.png
+
+  - id: mock_home_first30_g6_02_spacious
+    filename: mock_home_first30_g6_02_spacious.png
+    width: 936
+    height: 1664
+    force_single: true
+    scale: 52
+    prompt: >
+      Chilly Snow 疏朗首页UI，竖屏单张。大面积奶油雪坡留白，远处低多边形雪山。
+      中央小青球，TAP TO PLAY 清晰居中。底部MODE与SKINS小于主CTA，左右对称。
+      顶栏只保留设置、去广告、细青色HUD。软萌但轻量，禁止全屏风景壁纸化。
+    refs:
+      - path: Assets/TestImage/concept_refs/g2_01_snow_mountain.png
+      - path: Assets/TestImage/concept_refs/g3_01_snow_track.png
+      - path: Assets/TestImage/concept_refs/g4_01_lowpoly_slope.png
+      - path: Assets/TestImage/concept_refs/g4_04_playable_slope.png
+      - path: Assets/TestImage/mock_hud_level_mode.png
+
+  - id: mock_home_first30_g6_03_commercial
+    filename: mock_home_first30_g6_03_commercial.png
+    width: 936
+    height: 1664
+    force_single: true
+    scale: 58
+    prompt: >
+      Chilly Snow 商业化首页UI，竖屏单张。突出皮肤系统潜力：软萌装备按钮、滑雪板/护目镜元素。
+      仍保持TAP TO PLAY最大焦点；底部橙MODE和绿SKINS成对，SKINS可稍有装备感。
+      中央青绿色小球，不要人物；雪地温暖、按钮软糖质感、适合微信小游戏。
+    refs:
+      - path: Assets/TestImage/concept_refs/g3_02_cute_ip.png
+      - path: Assets/TestImage/concept_refs/g3_03_gear_icons.png
+      - path: Assets/TestImage/concept_refs/g3_04_gameplay_buttons.png
+      - path: Assets/TestImage/concept_refs/g4_03_menu_ui.png
+      - path: Assets/TestImage/mock_hud_mode_btn_level.png
+
+  - id: mock_home_first30_g6_04_lowcost
+    filename: mock_home_first30_g6_04_lowcost.png
+    width: 936
+    height: 1664
+    force_single: true
+    scale: 48
+    prompt: >
+      Chilly Snow 低成本Unity落地首页UI，竖屏单张。四组低多边形雪坡和简洁按钮为主。
+      不要复杂光照和毛绒材质；中间青绿色小球，TAP TO PLAY 大而清楚。
+      顶栏极简，底部MODE/SKINS成对方钮，布局可直接拆成UGUI和Sprite。
+    refs:
+      - path: Assets/TestImage/concept_refs/g4_01_lowpoly_slope.png
+      - path: Assets/TestImage/concept_refs/g4_02_skier_silhouette.png
+      - path: Assets/TestImage/concept_refs/g4_04_playable_slope.png
+      - path: Assets/TestImage/concept_refs/g3_04_gameplay_buttons.png
+      - path: Assets/TestImage/mock_hud_level_mode.png
+
+  - id: mock_home_first30_g6_05_level
+    filename: mock_home_first30_g6_05_level.png
+    width: 936
+    height: 1664
+    force_single: true
+    scale: 55
+    prompt: >
+      Chilly Snow 关卡模式首页UI，竖屏单张。顶中显示青色关卡进度条1到2和皇冠分。
+      中央青绿色小球；TAP TO PLAY为主焦点。底左橙MODE按钮底条显示关卡状态，
+      底右绿SKINS按钮；按钮像软糖圆角方块。清晰层级，勿生成三按钮拥挤底栏。
+    refs:
+      - path: Assets/TestImage/concept_refs/g1_01_ui_language.png
+      - path: Assets/TestImage/concept_refs/g3_04_gameplay_buttons.png
+      - path: Assets/TestImage/concept_refs/g4_04_playable_slope.png
+      - path: Assets/TestImage/mock_hud_mode_btn_level.png
+      - path: Assets/TestImage/mock_hud_level_mode.png
+
+  - id: mock_home_first30_g6_06_endless
+    filename: mock_home_first30_g6_06_endless.png
+    width: 936
+    height: 1664
+    force_single: true
+    scale: 55
+    prompt: >
+      Chilly Snow 无尽模式首页UI，竖屏单张。顶中不是关卡条，而是Best皇冠分和无尽距离感。
+      中央青绿色小球，TAP TO PLAY最大；底左橙MODE按钮底条显示无尽状态，底右绿SKINS。
+      雪道可向远方延伸，轻量低多边形背景，软萌3D按钮，勿像宣传壁纸。
+    refs:
+      - path: Assets/TestImage/concept_refs/g2_02_snow_mountain.png
+      - path: Assets/TestImage/concept_refs/g3_01_snow_track.png
+      - path: Assets/TestImage/concept_refs/g4_01_lowpoly_slope.png
+      - path: Assets/TestImage/concept_refs/g3_04_gameplay_buttons.png
+      - path: Assets/TestImage/mock_hud_mode_btn_endless.png
+
+  # ---------- 首页 v3：关卡局外（主推）----------
+  # 注意：style_prefix ≈358 字，job prompt 须 ≤441，总长硬限 800
+  - id: mock_home_first30_v3_ball_level
+    filename: mock_home_first30_v3_ball_level.png
+    width: 936
+    height: 1664
+    force_single: true
+    scale: 52
+    prompt: >
+      Chilly Snow 竖屏首页，单张。角色必须是青绿色实心小球，禁止人物滑雪者。
+      顶左橙设置圆钮，顶右绿去广告圆钮，顶中青色关卡进度条+小皇冠分。
+      中央小球留白大；下方深灰大字 TAP TO PLAY 为最强 CTA。
+      底左橙 MODE 方钮、底右绿 SKINS 方钮，明显小于 TAP，底边留白，勿三钮挤底。
+      勿顶部六宫格玻璃图标。奶油雪坡、极简松树。
+    refs:
+      - path: Assets/Texture2D/ball.png
+      - path: Assets/TestImage/mock_hud_mode_btn_level.png
+      - path: Assets/TestImage/mock_home_first30_g4_layout.png
+
+  # ---------- 首页 v3：更疏朗层级 ----------
+  - id: mock_home_first30_v3_ball_spacious
+    filename: mock_home_first30_v3_ball_spacious.png
+    width: 936
+    height: 1664
+    force_single: true
+    scale: 50
+    prompt: >
+      Portrait Chilly Snow home. Player MUST be solid teal ball, no human skier.
+      Only 2 top circles: orange gear left, green no-ads right; thin teal level bar.
+      Center ball with lots of cream empty space; large dark TAP TO PLAY strongest.
+      Bottom: medium orange MODE + green SKINS squares, secondary, clear margins.
+      No 6 glass icons, no stacked bottom pills. Soft snowy hills, simple pines.
+    refs:
+      - path: Assets/Texture2D/ball.png
+      - path: Assets/TestImage/mock_hud_level_mode.png
+      - path: Assets/TestImage/mock_home_first30_g4_layout.png
+
+  # ---------- 首页 v3：无尽局外 HUD ----------
+  - id: mock_home_first30_v3_ball_endless
+    filename: mock_home_first30_v3_ball_endless.png
+    width: 936
+    height: 1664
+    force_single: true
+    scale: 52
+    prompt: >
+      Chilly Snow 无尽局外首页，单张。角色必须是青绿色小球，禁止人物。
+      顶左橙设置、顶右绿去广告；顶中 Best 皇冠分，无关卡条。
+      中央小球+大字 TAP TO PLAY 主焦点；底左橙 MODE、底右绿 SKINS，次级留白。
+      勿六宫格顶栏、勿三钮挤底。奶油雪坡极简松树。
+    refs:
+      - path: Assets/Texture2D/ball.png
+      - path: Assets/TestImage/mock_hud_endless_mode.png
+      - path: Assets/TestImage/mock_home_first30_g4_layout.png
+
+  # ---------- 首页 v3：贴近现网截图语言（MODE/SKINS 方钮）----------
+  - id: mock_home_first30_v3_ball_classic_pair
+    filename: mock_home_first30_v3_ball_classic_pair.png
+    width: 936
+    height: 1664
+    force_single: true
+    scale: 55
+    prompt: >
+      Portrait Chilly Snow home. Cream snow, center teal ball NOT human skier,
+      TAP TO PLAY under ball; orange MODE square bottom-left (swap arrows),
+      green SKINS square bottom-right; small orange gear / green no-ads top;
+      thin teal level bar. Paired squares not wide pills; TAP strongest; soft 3D.
+    refs:
+      - path: Assets/Texture2D/ball.png
+      - path: Assets/TestImage/mock_hud_mode_btn_level.png
+      - path: Assets/TestImage/mock_hud_level_mode.png
+      - path: Assets/TestImage/mock_home_first30_g4_layout.png
+
+  # ---------- 历史任务（可保留增量；不强制重跑）----------
+  - id: mock_home_first30_g4_layout
+    filename: mock_home_first30_g4_layout.png
+    width: 936
+    height: 1664
+    force_single: true
+    scale: 55
+    prompt: >
+      Concept only. Chilly Snow WeChat minigame home, playable snowy slope,
+      cute skier, clear TAP TO PLAY, bottom-left orange MODE, bottom-right green SKINS,
+      soft rounded cream UI, blue/orange accents. Prefer group4 layout refs,
+      group1 UI language refs, group3 light character mood only.
+      Not wallpaper. Keep CTA. No RPG UI. Portrait single image.
+    refs:
+      - path: Assets/TestImage/concept_refs/g1_01_ui_language.png
+      - path: Assets/TestImage/concept_refs/g4_01_layout.png
+      - path: Assets/TestImage/concept_refs/g4_02_layout.png
+      - path: Assets/TestImage/concept_refs/g4_04_layout.png
+      - path: Assets/TestImage/concept_refs/g3_01_skin_ip.png
+
+  - id: mock_home_first30_v2
+    filename: mock_home_first30_v2.png
+    width: 936
+    height: 1664
+    force_single: true
+    scale: 50
+    prompt: >
+      Mobile game home screen first 30 seconds, portrait 9:16.
+      Center large TAP TO PLAY CTA, bottom MODE and SKINS paired buttons,
+      light snow ski slope background, Chilly Snow hyper-casual look.
+      Keep reference HUD layout language if provided; refine clarity and hierarchy.
+      Single image only.
+    refs:
+      - path: Assets/TestImage/_img_preview/mock_hud_level_mode.png
+
+  - id: concept_mode_btn_level
+    filename: concept_mode_btn_level.png
+    width: 2048
+    height: 2048
+    force_single: true
+    scale: 55
+    prompt: >
+      Single MODE button concept for Level mode selected state.
+      Preserve reference button layout and proportions; improve soft 3D material,
+      orange accent, white icon readability, short LEVEL label.
+      Transparent-friendly edges, no collage, single image only.
+    refs:
+      - path: Assets/TestImage/_img_preview/slice_btn_level.png
+      - path: Assets/TestImage/_img_preview/slice_btn_level_on.png
+
+  - id: concept_mode_btn_endless
+    filename: concept_mode_btn_endless.png
+    width: 2048
+    height: 2048
+    force_single: true
+    scale: 55
+    prompt: >
+      Single MODE button concept for Endless mode selected state.
+      Preserve reference button layout and proportions; improve soft 3D material,
+      cyan/orange contrast for endless identity, white icon readability, short ENDLESS label.
+      Transparent-friendly edges, no collage, single image only.
+    refs:
+      - path: Assets/TestImage/_img_preview/slice_btn_endless.png
+      - path: Assets/TestImage/_img_preview/slice_btn_endless_on.png
+
+  - id: concept_skins_btn
+    filename: concept_skins_btn.png
+    width: 2048
+    height: 2048
+    force_single: true
+    scale: 55
+    prompt: >
+      Single SKINS shop button concept paired with MODE button language.
+      Use reference as UI language anchor (rounded square, soft 3D, white icon).
+      Green accent for SKINS, short SKINS label, clean hyper-casual look.
+      Transparent-friendly edges, single image only.
+    refs:
+      - path: Assets/TestImage/_img_preview/slice_btn_level.png
+
+  # ---------- 长局/无尽：75°俯视低面雪山竖条（方案 C v2）----------
+  # 最终提示词核心：低面几何雪山 + 75°前上方俯视 + 仅雪山与蓝天
+  # 跑法：python scripts/generate.py --force --only bg_snow_mountain_75_01
+  - id: bg_snow_mountain_75_01
+    filename: bg_snow_mountain_75_01.png
+    width: 1024
+    height: 3072
+    force_single: true
+    skip_style_prefix: true
+    scale: 58
+    min_ratio: 0.25
+    max_ratio: 4.0
+    prompt: >
+      Chilly Snow endless scroll background, strip A.
+      Low-poly 3D snow mountain ONLY, match reference mountain: sharp geometric triangular facets,
+      matte clay snow, soft daylight, cool blue shadows, cream-white highlights.
+      Camera: 75-degree high bird's-eye from front-above, looking down the snow ridges; tall vertical frame.
+      Scene: only snow-covered mountain peaks/ridges + clear pale blue sky. Continuous descending ridge forms for stitch.
+      FORBIDDEN: trees, forest, skier, people, orange props, red ball, UI, text, buttons, collage.
+      Single tall image.
+    refs:
+      - path: Assets/TestImage/concept_refs/g_ref_lowpoly_snow_mountain.png
+      - path: Assets/TestImage/concept_refs/g2_01_snow_mountain.png
+      - path: Assets/TestImage/concept_refs/g4_01_lowpoly_slope.png
+
+  - id: bg_snow_mountain_75_02
+    filename: bg_snow_mountain_75_02.png
+    width: 1024
+    height: 3072
+    force_single: true
+    skip_style_prefix: true
+    scale: 58
+    min_ratio: 0.25
+    max_ratio: 4.0
+    prompt: >
+      Chilly Snow endless scroll background, strip B.
+      Same low-poly faceted snow mountain style as reference: geometric planes, soft sun, blue-tinted snow shadows.
+      Camera: 75-degree front-above bird's-eye over mid ridge section; tall vertical composition.
+      Scene: only snow mountains + clear pale blue sky. Slightly denser ridge folds than strip A, same lighting.
+      FORBIDDEN: trees, forest, skier, people, orange props, red ball, UI, text, buttons, collage.
+      Identical art style to strip A/C. Single tall image.
+    refs:
+      - path: Assets/TestImage/concept_refs/g_ref_lowpoly_snow_mountain.png
+      - path: Assets/TestImage/concept_refs/g2_01_snow_mountain.png
+      - path: Assets/TestImage/concept_refs/g4_01_lowpoly_slope.png
+
+  - id: bg_snow_mountain_75_03
+    filename: bg_snow_mountain_75_03.png
+    width: 1024
+    height: 3072
+    force_single: true
+    skip_style_prefix: true
+    scale: 58
+    min_ratio: 0.25
+    max_ratio: 4.0
+    prompt: >
+      Chilly Snow endless scroll background, strip C.
+      Same low-poly faceted snow mountain style as reference: sharp snow planes, matte clay look, soft daylight.
+      Camera: 75-degree front-above bird's-eye over lower ridge/valley snow; tall vertical composition.
+      Scene: only snow mountains + clear pale blue sky. Calm broader snow faces, stitch-friendly top edge.
+      FORBIDDEN: trees, forest, skier, people, orange props, red ball, UI, text, buttons, collage.
+      Identical art style to strip A/B. Single tall image.
+    refs:
+      - path: Assets/TestImage/concept_refs/g_ref_lowpoly_snow_mountain.png
+      - path: Assets/TestImage/concept_refs/g2_01_snow_mountain.png
+      - path: Assets/TestImage/concept_refs/g4_01_lowpoly_slope.png
+
+  # ---------- 简约卡通雪山长图（基于用户满意的 v1 参考，再简化）----------
+  # 跑法：python scripts/generate.py --force --only bg_snow_cartoon_long_v
+  - id: bg_snow_cartoon_long_v01
+    filename: bg_snow_cartoon_long_v01.png
+    width: 1024
+    height: 3072
+    force_single: true
+    skip_style_prefix: true
+    scale: 48
+    min_ratio: 0.25
+    max_ratio: 4.0
+    prompt: >
+      Keep the same snow mountain composition and 75-degree front-above view as the reference,
+      but make it simpler and more cartoon: smoother soft snow, fewer rocks, larger clean shapes,
+      softer pastel blue shadows, clean pale blue sky. Tall vertical long image for scroll background.
+      Only snow mountain and sky. No trees, no people, no tracks, no low-poly, no sharp geometric facets.
+      Soft stylized 3D cartoon look, bright and minimal.
+    refs:
+      - path: Assets/TestImage/concept_refs/ref_cartoon_snow_mountain_v1.png
+
+  - id: bg_snow_cartoon_long_v02
+    filename: bg_snow_cartoon_long_v02.png
+    width: 1024
+    height: 3072
+    force_single: true
+    skip_style_prefix: true
+    scale: 42
+    min_ratio: 0.25
+    max_ratio: 4.0
+    prompt: >
+      Same mountain and camera angle as reference, even more simplified cartoon style.
+      Very smooth powder snow ridges, minimal surface detail, soft rounded peaks, gentle blue shade valleys,
+      clear light blue sky. Tall vertical long snow mountain banner. Clean mobile game background.
+      Only snow mountain and sky. No trees, no rocks clutter, no people, no tracks, no low-poly facets.
+    refs:
+      - path: Assets/TestImage/concept_refs/ref_cartoon_snow_mountain_v1.png
+
+  - id: bg_snow_cartoon_long_h01
+    filename: bg_snow_cartoon_long_h01.png
+    width: 3072
+    height: 1024
+    force_single: true
+    skip_style_prefix: true
+    scale: 48
+    min_ratio: 0.25
+    max_ratio: 4.0
+    prompt: >
+      Keep the same snow mountain and 75-degree overhead view as the reference, make it simpler cartoon.
+      Wide horizontal long panorama of smooth snow peaks and valleys, soft pastel blue shadows,
+      clean pale blue sky, fewer rocks, large readable shapes. Soft stylized 3D cartoon, bright minimal.
+      Only snow mountain and sky. No trees, no people, no tracks, no low-poly geometric facets.
+    refs:
+      - path: Assets/TestImage/concept_refs/ref_cartoon_snow_mountain_v1.png

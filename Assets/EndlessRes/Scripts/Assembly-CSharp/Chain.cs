@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -50,6 +51,48 @@ namespace EndlessMode
 			public Link GetNext()
 			{
 				return next;
+			}
+		}
+
+		/// <summary>
+		/// struct 枚举器：foreach 走具体类型零堆分配；
+		/// 同时实现 IEnumerator&lt;T&gt; / IEnumerator / IDisposable，
+		/// 使显式接口 GetEnumerator 返回值可隐式转为非泛型 IEnumerator。
+		/// </summary>
+		public struct Enumerator : IEnumerator<T>, IEnumerator, IDisposable
+		{
+			private Link _next;
+
+			private T _current;
+
+			// 构造参数用 public Chain（勿传 private Link），避免 CS0051；嵌套类型可读外层 first
+			internal Enumerator(Chain<T> chain)
+			{
+				_next = chain.first;
+				_current = default(T);
+			}
+
+			public T Current => _current;
+
+			object IEnumerator.Current => _current;
+
+			public bool MoveNext()
+			{
+				if (_next == null)
+				{
+					return false;
+				}
+				Link cur = _next;
+				_next = cur.GetNext();
+				_current = cur.GetItem();
+				return true;
+			}
+
+			public void Dispose() { }
+
+			void IEnumerator.Reset()
+			{
+				throw new NotSupportedException();
 			}
 		}
 
@@ -110,12 +153,14 @@ namespace EndlessMode
 			}
 		}
 
-		public IEnumerator<T> GetEnumerator()
+		public Enumerator GetEnumerator()
 		{
-			for (Link current = first; current != null; current = current.GetNext())
-			{
-				yield return current.GetItem();
-			}
+			return new Enumerator(this);
+		}
+
+		IEnumerator<T> IEnumerable<T>.GetEnumerator()
+		{
+			return GetEnumerator();
 		}
 
 		IEnumerator IEnumerable.GetEnumerator()

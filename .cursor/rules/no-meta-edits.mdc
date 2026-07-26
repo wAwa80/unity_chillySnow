@@ -1,0 +1,33 @@
+---
+description: 严禁 Agent 擅自修改 Unity .meta 文件（GUID、fileID、导入设置等）
+alwaysApply: true
+---
+
+# 🚫 禁止擅自修改 .meta
+
+Unity 的 `.meta` 文件（含 GUID、fileID、Importer 设置）属于**引擎序列化资产**，归 **User** 在 Unity Editor 内管理。详见 [`human-ai-boundary.mdc`](human-ai-boundary.mdc)。
+
+## 绝对禁止
+
+- 新建、重写、批量生成任何 `.meta` 文件
+- 修改已有 `.meta` 中的 `guid:`、`fileID`、Importer 字段、`assetBundleName` 等
+- 为「修编译」「让资源显示」「对齐引用」而手写或替换 GUID
+- 复制其他项目的 `.meta` 或伪造 GUID（必须是 **32 位小写十六进制**，如 `94dd072cfa2d4db34e6a3b36588f85ce`）
+
+## 怀疑 meta 有问题时
+
+1. **只向 User 说明**现象与可能原因（如 GUID 格式非法、重复 GUID、引用丢失）
+2. **给出 Unity 内操作步骤**，例如：删除损坏的 `.meta` → 回到 Editor → `Assets > Refresh`，由 Unity 自动重建
+3. **不得**自行删改 `.meta` 来「帮用户修复」
+
+## 唯一例外
+
+仅当 User **明确要求修改某一个具体 `.meta` 文件**（给出路径与要改的内容）时，方可执行；仍优先建议用户在 Unity 内完成。
+
+## 正确分工示例
+
+| 场景 | Agent | User |
+|------|-------|------|
+| 新 C# 脚本需挂到 Prefab | 写 `.cs` + `// TODO: [User Action] …` | 在 Inspector 拖拽赋值，Unity 生成 `.cs.meta` |
+| Pipeline 产出 PNG 到 `Assets/TestImage/` | 只写图片本体（`.png` 等） | Unity 导入后自动生成 `.meta` |
+| Project 窗口看不到某文件夹 | 报告「`.meta` GUID 非法」 | 删坏 meta → Refresh |

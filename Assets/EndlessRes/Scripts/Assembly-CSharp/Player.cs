@@ -52,7 +52,16 @@ namespace EndlessMode
 
 		private readonly ParticleSystem.MinMaxCurve powderSpreadNotEmitting = new ParticleSystem.MinMaxCurve(0f);
 
-		private readonly ParticleSystem.MinMaxCurve powderSpreadEmitting = new ParticleSystem.MinMaxCurve(100f);
+		private ParticleSystem.MinMaxCurve powderSpreadEmitting;
+
+		/// <summary>
+		/// SyncTrailColor 复用，避免每帧 new Gradient/数组。
+		/// </summary>
+		private readonly Gradient trailGradient = new Gradient();
+
+		private readonly GradientColorKey[] trailColorKeys = new GradientColorKey[2];
+
+		private readonly GradientAlphaKey[] trailAlphaKeys = new GradientAlphaKey[2];
 
 		private ParticleSystem feverParticles;
 
@@ -115,6 +124,9 @@ namespace EndlessMode
 			feverColor = Utility.HexToColor("#ffad00");
 			megaFeverColor = Utility.HexToColor("#d7331c");
 			IsABTestDestroyPines = Analytics.GetCohort() == "DestroyPines";
+			powderSpreadEmitting = new ParticleSystem.MinMaxCurve(WxPerf.GetPowderRate());
+			trailAlphaKeys[0] = new GradientAlphaKey(0.39f, 0f);
+			trailAlphaKeys[1] = new GradientAlphaKey(0f, 1f);
 	        Logger.Log("Player Awake 2");
 	    }
 
@@ -359,6 +371,7 @@ namespace EndlessMode
 		{
 			if (App.IsRelease() || !DebugPage.dontThrowPowder)
 			{
+				powderSpreadEmitting = new ParticleSystem.MinMaxCurve(WxPerf.GetPowderRate());
 				ParticleSystem.EmissionModule emission = powderSpread.emission;
 				emission.rateOverTime = powderSpreadEmitting;
 			}
@@ -466,6 +479,7 @@ namespace EndlessMode
 		{
 			trail.enabled = false;
 			trail.Clear();
+			trail.time = WxPerf.GetTrailTimeMax();
 		}
 
 		private void UpdateFever()
@@ -606,22 +620,10 @@ namespace EndlessMode
 
 		private void SyncTrailColor(Color c)
 		{
-			GradientColorKey[] colorKeys = new GradientColorKey[2]
-			{
-				new GradientColorKey(c, 0f),
-				new GradientColorKey(c, 1f)
-			};
-			GradientAlphaKey[] alphaKeys = new GradientAlphaKey[2]
-			{
-				new GradientAlphaKey(0.39f, 0f),
-				new GradientAlphaKey(0f, 1f)
-			};
-			trail.colorGradient = new Gradient
-			{
-				mode = GradientMode.Blend,
-				colorKeys = colorKeys,
-				alphaKeys = alphaKeys
-			};
+			trailColorKeys[0] = new GradientColorKey(c, 0f);
+			trailColorKeys[1] = new GradientColorKey(c, 1f);
+			trailGradient.SetKeys(trailColorKeys, trailAlphaKeys);
+			trail.colorGradient = trailGradient;
 		}
 
 		public float GetGlowIntensity()

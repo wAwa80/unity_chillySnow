@@ -1,0 +1,132 @@
+# 陪玩语音文案真相源（V1）
+# slot 须与 VoiceCatalog / VoiceSlot 枚举一致；每槽至少 2 句，text ≤18 字
+
+version: 1
+persona: chilly_buddy
+default_lang: zh-CN
+
+lines:
+  # —— 开局 ——
+  - id: greeting_level_01
+    slot: GreetingLevel
+    text: "准备好了吗？冲！"
+  - id: greeting_level_02
+    slot: GreetingLevel
+    text: "稳住节奏，出发！"
+  - id: greeting_level_03
+    slot: GreetingLevel
+    text: "这关一起拿下！"
+
+  - id: greeting_endless_01
+    slot: GreetingEndless
+    text: "无尽模式，滑起来！"
+  - id: greeting_endless_02
+    slot: GreetingEndless
+    text: "能滑多远就多远！"
+  - id: greeting_endless_03
+    slot: GreetingEndless
+    text: "放松点，开滑！"
+
+  # —— 擦树连击 ——
+  - id: whoosh_good_01
+    slot: WhooshGood
+    text: "漂亮！"
+  - id: whoosh_good_02
+    slot: WhooshGood
+    text: "好险！"
+  - id: whoosh_good_03
+    slot: WhooshGood
+    text: "稳！"
+
+  - id: whoosh_awesome_01
+    slot: WhooshAwesome
+    text: "漂亮连擦！"
+  - id: whoosh_awesome_02
+    slot: WhooshAwesome
+    text: "手感来了！"
+  - id: whoosh_awesome_03
+    slot: WhooshAwesome
+    text: "继续冲！"
+
+  - id: whoosh_exquisite_01
+    slot: WhooshExquisite
+    text: "太秀了！"
+  - id: whoosh_exquisite_02
+    slot: WhooshExquisite
+    text: "这波操作绝了！"
+  - id: whoosh_exquisite_03
+    slot: WhooshExquisite
+    text: "停不下来！"
+
+  - id: whoosh_perfect_01
+    slot: WhooshPerfect
+    text: "雪道之王！"
+  - id: whoosh_perfect_02
+    slot: WhooshPerfect
+    text: "无敌了！"
+  - id: whoosh_perfect_03
+    slot: WhooshPerfect
+    text: "你就是高手！"
+
+  # —— Fever ——
+  - id: fever_01
+    slot: Fever
+    text: "Fever 来了！"
+  - id: fever_02
+    slot: Fever
+    text: "燃起来了！"
+  - id: fever_03
+    slot: Fever
+    text: "高光时刻！"
+
+  # —— 里程碑 / 冷场 ——
+  - id: milestone_01
+    slot: Milestone
+    text: "过半了，稳住！"
+  - id: milestone_02
+    slot: Milestone
+    text: "五十米，不错！"
+  - id: milestone_03
+    slot: Milestone
+    text: "距离在涨，冲！"
+
+  - id: idle_nudge_01
+    slot: IdleNudge
+    text: "找缝擦一把！"
+  - id: idle_nudge_02
+    slot: IdleNudge
+    text: "别光滑，擦树加分！"
+  - id: idle_nudge_03
+    slot: IdleNudge
+    text: "靠近点树试试！"
+
+  # —— 失败 / 通关 / 续命 ——
+  - id: fail_01
+    slot: Fail
+    text: "差一点点！"
+  - id: fail_02
+    slot: Fail
+    text: "下把稳住。"
+  - id: fail_03
+    slot: Fail
+    text: "没事，再来一局！"
+
+  - id: clear_01
+    slot: Clear
+    text: "过关啦！"
+  - id: clear_02
+    slot: Clear
+    text: "漂亮通关！"
+  - id: clear_03
+    slot: Clear
+    text: "下一关继续冲！"
+
+  - id: continue_01
+    slot: Continue
+    text: "回来了，冲！"
+  - id: continue_02
+    slot: Continue
+    text: "连击还在，加油！"
+  - id: continue_03
+    slot: Continue
+    text: "二次机会，稳住！"

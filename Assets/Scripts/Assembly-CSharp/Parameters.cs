@@ -75,7 +75,7 @@ namespace LevelMode
 
 		public static readonly Sampler ROLLING_STONE_MAX_SPEED = new Sampler(Level.GetFloat, 1f, 3.5f, 1000f, 6f);
 
-		public static readonly Sampler ROLLING_STONE_PROBABILITY = new Sampler(Level.GetFloat, 1f, 0f, 2f, 0f, 3f, 0.005f, 4f, 0.006f, 20f, 0.012f, 100f, 0.018f, 1000f, 0.021f);
+		public static readonly Sampler ROLLING_STONE_PROBABILITY = new Sampler(Level.GetFloat, 1f, 0.005f, 2f, 0.005f, 3f, 0.005f, 4f, 0.006f, 20f, 0.012f, 100f, 0.018f, 1000f, 0.021f);
 
 		public static readonly Sampler ROLLING_STONE_PROBABILITY_MULTIPLIER = new Sampler(PineGenerator.GetDistance, 0f, 1f, 1f, 1.4f);
 

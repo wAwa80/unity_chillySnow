@@ -1,0 +1,4 @@
+# ImagePipeline 统一风格前缀（拼到每条 job prompt 前面；# 行为注释，不会送进 API）
+Keep: light snow background, hyper-casual ski game UI, soft 3D rounded buttons, orange/green accents, white icons, clean readable labels.
+Improve: clear primary CTA, MODE/SKINS bottom pair, mode state readable at a glance.
+Must not: complex RPG UI, heavy particles, multi-panel collage, generating multiple images, treating concept as final nine-slice atlas.

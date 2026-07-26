@@ -50,6 +50,20 @@ namespace EndlessMode
 
 		private bool destroyed;
 
+		/// <summary>
+		/// Place 写入的缓存坐标；CheckPines 必须用 GetX/GetY，禁止混读 transform。
+		/// </summary>
+		private float x;
+
+		private float y;
+
+		/// <summary>
+		/// Pass 加分文本缓存，避免每帧 ToString 分配。
+		/// </summary>
+		private static int cachedPlusPoints = int.MinValue;
+
+		private static string cachedPlusText;
+
 		protected override void Awake()
 		{
 			base.Awake();
@@ -62,6 +76,8 @@ namespace EndlessMode
 			bonusPointsText = base.transform.GetChild(3).GetComponent<TextMesh>();
 			nightShadow.enabled = false;
 			shadow.enabled = false;
+			// 池内默认禁用 Update，避免 NightMode 空转
+			enabled = false;
 		}
 
 		protected override void OnEnabled()
@@ -82,6 +98,8 @@ namespace EndlessMode
 			base.transform.localScale = new Vector3(size, size, size);
 			passed = -2f;
 			destroyed = false;
+			// Kill/WarmUp 会关脚本；取出后必须重开，Whoosh/NightMode 动画依赖 Update
+			enabled = true;
 		}
 
 		protected override void OnDisabled()
@@ -92,6 +110,27 @@ namespace EndlessMode
 			bonusEffect.enabled = false;
 			bonusPoints.enabled = false;
 			passed = -2f;
+			enabled = false;
+		}
+
+		public float GetX()
+		{
+			return x;
+		}
+
+		public float GetY()
+		{
+			return y;
+		}
+
+		/// <summary>
+		/// 无尽 Place：第三参为 worldZ（与关卡 zBias 公式不同，禁止混用）。
+		/// </summary>
+		public void Place(float x, float y, float worldZ)
+		{
+			this.x = x;
+			this.y = y;
+			base.transform.position = new Vector3(x, y, worldZ);
 		}
 
 		public static int GetWhooshPoints()
@@ -140,7 +179,7 @@ namespace EndlessMode
 				whooshCombo++;
 			}
 			lastWhooshTime = Time.time;
-			bonusPointsText.text = $"+{whooshPoints.ToString()}";
+			bonusPointsText.text = FormatPlusText(whooshPoints);
 			bonusPointsText.color = Singleton<Player>.i.GetFeverColor(Singleton<Player>.i.NextFeverState());
 			passed = 0f;
 			if (App.IsRelease() || !DebugPage.dontAnimatePine)
@@ -161,10 +200,25 @@ namespace EndlessMode
 			{
 				Device.Vibrate(Device.Vibration.Medium);
 			}
+			// 注意：Neuron.Whoosh 仍由 CheckPines 在 Pass 之后调用，禁止在此重复
+		}
+
+		private static string FormatPlusText(int points)
+		{
+			if (points != cachedPlusPoints)
+			{
+				cachedPlusPoints = points;
+				cachedPlusText = $"+{points.ToString()}";
+			}
+			return cachedPlusText;
 		}
 
 		private void Update()
 		{
+			if (destroyed)
+			{
+				return;
+			}
 			if (passed >= 0f)
 			{
 				passed += Time.deltaTime;
@@ -218,6 +272,11 @@ namespace EndlessMode
 
 		protected override void OnNightModeSwitched(bool enabled)
 		{
+			// WarmUp 常驻链上的闲置树必须 early-out
+			if (!IsAlive || destroyed)
+			{
+				return;
+			}
 			if (!enabled)
 			{
 				spriteRenderer.color = Color.white;
@@ -246,8 +305,13 @@ namespace EndlessMode
 		{
 			OnDisabled();
 			destroyed = true;
+			enabled = false;
 			Singleton<Player>.i.PineDestroyed();
 			PineDestroyedEffect pineDestroyedEffect = Recyclable<PineDestroyedEffect>.Get();
+			if (pineDestroyedEffect == null)
+			{
+				return;
+			}
 			pineDestroyedEffect.SetColor(Skin.GetSelected(Skin.Type.Pine).GetColor());
 			pineDestroyedEffect.transform.position = base.transform.position;
 			pineDestroyedEffect.transform.localScale = base.transform.localScale;

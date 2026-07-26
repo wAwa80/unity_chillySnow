@@ -5,6 +5,11 @@ public sealed class GDPRButton : MonoBehaviour
 {
 	private void Awake()
 	{
+		if (!JuiceInternal.JuiceConsentGates.EnableGdpr)
+		{
+			base.gameObject.SetActive(value: false);
+			return;
+		}
 		GetComponent<Button>().onClick.AddListener(OnClick);
 	}
 

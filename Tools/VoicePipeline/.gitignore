@@ -1,0 +1,5 @@
+# 本目录可放本地 .env（勿提交）
+# VOLC_TTS_API_KEY=...
+.env
+*.pyc
+__pycache__/

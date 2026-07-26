@@ -22,6 +22,11 @@ public sealed class PremiumButton : MonoBehaviour
 
 	private void Awake()
 	{
+		if (!JuiceConsentGates.EnablePremium)
+		{
+			Object.DestroyImmediate(base.gameObject);
+			return;
+		}
 		if (Juice.premium.IsPremium())
 		{
 			Module<Ads>.GetInstance().ForceNoFuckingAds();

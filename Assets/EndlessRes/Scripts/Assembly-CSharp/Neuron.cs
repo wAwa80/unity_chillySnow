@@ -31,11 +31,13 @@ namespace EndlessMode
 		static Neuron()
 		{
 			eventNames = new Dictionary<string, Event>();
+			neurons = new Dictionary<Event, Chain<Neuron>>();
+			// 预建每个 Event 的空 Chain，避免首次广播 KeyNotFound
 			foreach (Event value in Enum.GetValues(typeof(Event)))
 			{
 				eventNames.Add($"On{value.ToString()}", value);
+				neurons.Add(value, new Chain<Neuron>());
 			}
-			neurons = new Dictionary<Event, Chain<Neuron>>();
 		}
 
 		public virtual int GetPriority()
@@ -51,15 +53,19 @@ namespace EndlessMode
 				if (methodInfo.IsVirtual && methodInfo.DeclaringType != typeof(Neuron) && eventNames.ContainsKey(methodInfo.Name))
 				{
 					Event key = eventNames[methodInfo.Name];
-					if (neurons.ContainsKey(key))
-					{
-						neurons[key].Add(this);
-						continue;
-					}
-					Chain<Neuron> chain = new Chain<Neuron>();
-					chain.Add(this);
-					neurons.Add(key, chain);
+					neurons[key].Add(this);
 				}
+			}
+		}
+
+		/// <summary>
+		/// 销毁时从所有事件链退订，防止域不重载/切场景后残留死引用。
+		/// </summary>
+		protected virtual void OnDestroy()
+		{
+			foreach (Chain<Neuron> value in neurons.Values)
+			{
+				value.Remove(this);
 			}
 		}
 
@@ -167,7 +173,19 @@ namespace EndlessMode
 		{
 			foreach (Neuron item in neurons[Event.BackToMenu])
 			{
-				item.OnBackToMenu();
+				// 已销毁实例跳过；单订阅者异常不得中断后续（含 PineGenerator.Spawn）
+				if (item == null)
+				{
+					continue;
+				}
+				try
+				{
+					item.OnBackToMenu();
+				}
+				catch (Exception ex)
+				{
+					Debug.LogException(ex);
+				}
 			}
 		}
 

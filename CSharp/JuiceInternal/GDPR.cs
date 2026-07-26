@@ -166,6 +166,16 @@ namespace JuiceInternal
 
 		private static void Setup()
 		{
+			// 功能开关关闭：不实例化 GDPR 弹窗，视为已同意条款，避免 Ads/Analytics 被默认 false 阻塞
+			if (!JuiceConsentGates.EnableGdpr)
+			{
+				m_TermsConsent = true;
+				m_PersonalizedAdsConsent = LoadKey("22943788165955326078", defaultValue: true);
+				m_AnalyticsConsent = LoadKey("05640878948078746958", defaultValue: true);
+				loaded = true;
+				Log.Message("GDPR", "Feature disabled via JuiceConsentGates.EnableGdpr — popup skipped, terms treated as accepted.");
+				return;
+			}
 			if (!loaded)
 			{
 				m_TermsConsent = LoadKey("94653784192657574819", defaultValue: false);
@@ -225,6 +235,10 @@ namespace JuiceInternal
 
 		internal static void Open()
 		{
+			if (!JuiceConsentGates.EnableGdpr || instance == null)
+			{
+				return;
+			}
 			instance._Open();
 		}
 

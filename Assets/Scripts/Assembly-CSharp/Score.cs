@@ -6,10 +6,6 @@ namespace LevelMode
 
 	public sealed class Score : Singleton<Score>
 	{
-		private const string BEST_SCORE_KEY = "ioruhfiuerhf";
-
-		private const string CURRENT_SCORE_KEY = "fgreuyfghbuybruy";
-
 		private static int bestScore;
 
 		private CanvasGroup scoreAlpha;
@@ -26,10 +22,15 @@ namespace LevelMode
 
 		private float timer;
 
+		/// <summary>
+		/// 相同分数不重复写 UI 文本，开局必须重置。
+		/// </summary>
+		private int lastDisplayedScore = int.MinValue;
+
 		protected override void Awake()
 		{
 			base.Awake();
-			bestScore = Data.LoadInt("ioruhfiuerhf");
+			ReloadLevelBestFromDisk();
 			bestScoreText = base.transform.GetChild(0).GetComponent<Text>();
 			bestScoreAlpha = bestScoreText.GetComponent<CanvasGroup>();
 			scoreText = base.transform.GetChild(1).GetComponent<Text>();
@@ -39,43 +40,68 @@ namespace LevelMode
 
 		protected override void OnRefresh()
 		{
-			bestScoreText.text = $"\n{bestScore}";
+			lastDisplayedScore = int.MinValue;
+			// 无尽 / 关卡各读各的 best key；Refresh 时从盘重载，避免静态缓存与 PlayerPrefs 不一致
+			int displayBest = GameMode.IsEndless ? GameMode.GetEndlessBest() : ReloadLevelBestFromDisk();
+			bestScoreText.text = $"\n{displayBest}";
 			Hide();
 		}
 
 		protected override void OnStartRun(Run slide)
 		{
-			scoreText.text = slide.score.ToString();
+			lastDisplayedScore = int.MinValue;
+			SetScoreText(slide.score);
 			Show();
 		}
 
 		protected override void OnMeterPlusOne()
 		{
-			scoreText.text = Neuron.GetCurrentRun().score.ToString();
+			SetScoreText(Neuron.GetCurrentRun().score);
 		}
 
 		protected override void OnWhoosh(int points)
 		{
-			scoreText.text = Neuron.GetCurrentRun().score.ToString();
+			SetScoreText(Neuron.GetCurrentRun().score);
+		}
+
+		private void SetScoreText(int score)
+		{
+			if (score == lastDisplayedScore)
+			{
+				return;
+			}
+			lastDisplayedScore = score;
+			scoreText.text = score.ToString();
 		}
 
 		protected override void OnEndRun()
 		{
 			int score = Neuron.GetCurrentRun().score;
-			if (score > bestScore)
+			if (GameMode.IsEndless)
 			{
-				bestScore = score;
-				Data.SaveInt("ioruhfiuerhf", bestScore);
+				// 无尽结算写独立 key，并立刻刷新文案（避免只写盘界面仍旧值）
+				GameMode.SaveEndlessBestIfHigher(score);
+				bestScoreText.text = $"\n{GameMode.GetEndlessBest()}";
+				return;
 			}
+			// 关卡：单关分数结算进 LEVEL_BEST_KEY；SaveLevelBestIfHigher 内已 Data.Save()
+			GameMode.SaveLevelBestIfHigher(score);
+			bestScoreText.text = $"\n{ReloadLevelBestFromDisk()}";
+		}
+
+		/// <summary>
+		/// 从 PlayerPrefs 重载关卡 best 到静态缓存，并返回最新值（供 HUD 展示）。
+		/// </summary>
+		private static int ReloadLevelBestFromDisk()
+		{
+			bestScore = GameMode.GetLevelBest();
+			return bestScore;
 		}
 
 		public static void SetBestScore(int newBestScore)
 		{
-			if (newBestScore > bestScore)
-			{
-				bestScore = newBestScore;
-				Data.SaveInt("ioruhfiuerhf", bestScore);
-			}
+			GameMode.SaveLevelBestIfHigher(newBestScore);
+			ReloadLevelBestFromDisk();
 		}
 
 		private void Show()

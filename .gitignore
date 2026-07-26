@@ -70,6 +70,11 @@ sysinfo.txt
 /Assets/codeandweb.com/Editor/SettingsTexturePackerImporter.txt.meta
 
 
+# Local secrets (API keys) — never commit
+.env
+**/.env
+Tools/.env
+
 # Cache
 /Assets/Packages/FR2/FR2_Cache.asset
 /Assets/Packages/FR2/FR2_Cache.asset.meta

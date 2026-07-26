@@ -61,7 +61,16 @@ namespace JuiceInternal
 			//Advertisement.SetMetaData(metaData);
 			//IronSource.Agent.init(Settings.Get().ironSourceAndroidAppID);
 			//IronSource.Agent.shouldTrackNetworkState(track: true);
-			Object.DontDestroyOnLoad(Object.Instantiate(Resources.Load<GameObject>("IronSourceEventsPrefab")));
+			// IronSource 事件预制体可能未放入 Resources，缺资源时跳过，避免 Instantiate(null) 抛 ArgumentException
+			GameObject ironSourceEventsPrefab = Resources.Load<GameObject>("IronSourceEventsPrefab");
+			if (ironSourceEventsPrefab != null)
+			{
+				Object.DontDestroyOnLoad(Object.Instantiate(ironSourceEventsPrefab));
+			}
+			else
+			{
+				Module<Ads>.LogMessage("Resources.Load(\"IronSourceEventsPrefab\") 返回 null，跳过广告事件预制体实例化。// TODO: [User Action] 若需 IronSource，请将 IronSourceEventsPrefab 放入 Resources");
+			}
 			if (Module<Premium>.GetInstance().IsPremium() || forceNoFuckingAds)
 			{
 				Module<Ads>.LogMessage("User is premium : not initializing banners and interstitials");

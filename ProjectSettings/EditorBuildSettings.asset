@@ -5,15 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scene/Game/MainLevelMode.unity
     guid: 1836a65df101318d4f34e5101473a1e6
-  - enabled: 1
-    path: Assets/EndlessRes/Scene/Game/Launch.unity
-    guid: ba28585d50a50fb4593a710e95b22b55
-  - enabled: 1
-    path: Assets/EndlessRes/Scene/Game/MainEndlessMode.unity
-    guid: aae7e3f4615f9664783beaf779776def
   m_BuildProfiles: []
   m_configObjects: {}
   m_SlimFeaturesWeixinMiniGame:

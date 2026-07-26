@@ -29,6 +29,12 @@ namespace LevelMode
 
 		protected override void OnRefresh()
 		{
+			// 无尽不自动播关卡教程
+			if (GameMode.IsEndless)
+			{
+				Stop();
+				return;
+			}
 			if (Level.Get() == 1)
 			{
 				Play();

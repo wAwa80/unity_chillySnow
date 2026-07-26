@@ -144,6 +144,7 @@ namespace EndlessMode
 
 		public static Game GetTop()
 		{
+			EnsureGamesCreated();
 			if (NightModeButton.nightModeOn)
 			{
 				return topNight;
@@ -153,21 +154,40 @@ namespace EndlessMode
 
 		public static Game GetNormalTop()
 		{
+			EnsureGamesCreated();
 			return top;
 		}
 
 		public static Game GetNightTop()
 		{
+			EnsureGamesCreated();
 			return topNight;
 		}
 
 		public static Game GetCurrent()
 		{
+			EnsureGamesCreated();
 			if (NightModeButton.nightModeOn)
 			{
 				return currentGameNight;
 			}
 			return currentGame;
+		}
+
+		/// <summary>
+		/// Stats 由 App 动态创建，其它脚本可能更早调用 GetTop/GetCurrent。
+		/// 未 Awake 前返回默认 0 分实例，避免空引用；Awake 会 Load 覆盖数值。
+		/// </summary>
+		private static void EnsureGamesCreated()
+		{
+			if (top != null)
+			{
+				return;
+			}
+			top = new Game("Stats");
+			topNight = new Game("StatsNight");
+			currentGame = new Game("Last");
+			currentGameNight = new Game("LastNight");
 		}
 
 		protected override void Awake()
@@ -177,13 +197,10 @@ namespace EndlessMode
 			secondChancesUsed = Data.LoadInt("statsSecondChancesUsed");
 			quickPresses = Data.LoadInt("statsQuickPresses");
 			longPresses = Data.LoadInt("statsLongPresses");
-			top = new Game("Stats");
+			EnsureGamesCreated();
 			top.Load();
-			topNight = new Game("StatsNight");
 			topNight.Load();
-			currentGame = new Game("Last");
 			currentGame.Load();
-			currentGameNight = new Game("LastNight");
 			currentGameNight.Load();
 		}
 

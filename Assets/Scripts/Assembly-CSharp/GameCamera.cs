@@ -166,23 +166,50 @@ namespace LevelMode
 			transiting = true;
 			transitionTimer = 0.5f;
 			y = Skier.GetY() + -3f;
-			thisCamera.backgroundColor = Level.GetBackgroundColor();
-			transitionCover.color = Level.GetBackgroundColor();
+			ApplyBackgroundForNightState();
 			dontFollow = false;
 			continued = false;
 			Juice.LevelBreak();
 		}
 
+		/// <summary>
+		/// 日间用关卡底色，夜间固定暗色（对齐无尽 #0A0226）。
+		/// </summary>
+		private void ApplyBackgroundForNightState()
+		{
+			Color day = Level.GetBackgroundColor();
+			Color bg = NightModeButton.IsOn ? Utility.HexToColor("0A0226") : day;
+			thisCamera.backgroundColor = bg;
+			if (transitionCover != null)
+			{
+				transitionCover.color = bg;
+			}
+		}
+
+		protected override void OnNightModeSwitched(bool enabled)
+		{
+			ApplyBackgroundForNightState();
+		}
+
 		protected override void OnStartRun(Run run)
 		{
-			Juice.LevelStarts(run.level.ToString());
+			// 无尽埋点用固定标签，勿用 run.level（可能仍是关卡号）
+			if (GameMode.IsEndless)
+			{
+				Juice.LevelStarts("endless");
+			}
+			else
+			{
+				Juice.LevelStarts(run.level.ToString());
+			}
 		}
 
 		protected override void OnEndRun()
 		{
+			// dontFollow 仅通关：无尽永不 success，故不会误跟哨兵距离
 			if (Neuron.GetCurrentRun().success)
 			{
-				transitionCover.color = Level.GetBackgroundColor();
+				ApplyBackgroundForNightState();
 				dontFollow = true;
 				wasSuccess = true;
 				Invoke("InitiateRefresh", 3f);

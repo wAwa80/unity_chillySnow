@@ -14,16 +14,28 @@ namespace JuiceInternal
 
 		protected override void OnSetup()
 		{
+			if (!JuiceConsentGates.EnableAppRater)
+			{
+				return;
+			}
 			ticks = PlayerPrefs.GetInt("01956855734958154650", 0);
 		}
 
 		private void Start()
 		{
+			if (!JuiceConsentGates.EnableAppRater)
+			{
+				return;
+			}
 			InitRateBox();
 		}
 
 		private void OnApplicationPause(bool pause)
 		{
+			if (!JuiceConsentGates.EnableAppRater)
+			{
+				return;
+			}
 			if (pause)
 			{
 				rateBoxReady = false;
@@ -36,6 +48,10 @@ namespace JuiceInternal
 
 		public void TryShow()
 		{
+			if (!JuiceConsentGates.EnableAppRater)
+			{
+				return;
+			}
 			ticks++;
 			int ratingShowsAtTick = Settings.Get().ratingShowsAtTick;
 			if (ticks >= ratingShowsAtTick)
@@ -59,6 +75,10 @@ namespace JuiceInternal
 
 		public void ForceShow()
 		{
+			if (!JuiceConsentGates.EnableAppRater)
+			{
+				return;
+			}
 			try
 			{
 				DisplayAppRater();
@@ -74,7 +94,7 @@ namespace JuiceInternal
 
 		private void InitRateBox()
 		{
-			if (rateBoxReady)
+			if (!JuiceConsentGates.EnableAppRater || rateBoxReady)
 			{
 				return;
 			}

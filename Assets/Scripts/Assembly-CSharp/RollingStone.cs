@@ -10,6 +10,11 @@ namespace LevelMode
 	{
 		private static readonly HashSet<RollingStone> stones = new HashSet<RollingStone>();
 
+		/// <summary>
+		/// KillAll 快照，避免遍历时 OnDisabled 修改 stones 导致枚举器异常。
+		/// </summary>
+		private static readonly List<RollingStone> killSnapshot = new List<RollingStone>();
+
 		private TrailRenderer trail;
 
 		private SpriteRenderer stone;
@@ -38,11 +43,16 @@ namespace LevelMode
 
 		public static void KillAll()
 		{
-			foreach (RollingStone stone in stones)
-			{
-				stone.Kill();
-			}
+			killSnapshot.Clear();
+			killSnapshot.AddRange(stones);
 			stones.Clear();
+			for (int i = 0; i < killSnapshot.Count; i++)
+			{
+				if (killSnapshot[i] != null)
+				{
+					killSnapshot[i].Kill();
+				}
+			}
 		}
 
 		public static bool Collides(float x, float y)
@@ -76,7 +86,7 @@ namespace LevelMode
 			stones.Add(this);
 			size = 0.6f + 0.5f * UnityEngine.Random.value;
 			base.transform.localScale = new Vector3(size, size, size);
-			SetSpeed();
+			// 速度改在 SetTargetY 内计算一次，避免 OnEnabled 与注入重载双次 Random。
 			Color color = Level.GetBackgroundColor() * 0.9f;
 			ParticleSystem.MainModule main = powderSpread.main;
 			main.startColor = color;
@@ -89,6 +99,8 @@ namespace LevelMode
 
 		protected override void OnDisabled()
 		{
+			// 必须先从活跃集合移除，否则 WarmUp/Kill 后可能留下隐形石碰撞
+			stones.Remove(this);
 			trail.enabled = false;
 			powderSpread.Stop();
 			stone.enabled = false;
@@ -96,7 +108,26 @@ namespace LevelMode
 			base.enabled = false;
 		}
 
+		/// <summary>
+		/// 契约：Recyclable.Get() 之后必须同帧调用本方法（或带速度重载），否则速度未初始化。
+		/// 使用 Parameters 原版速度取样（无尽 / 关卡 Override 关闭）。
+		/// </summary>
 		public void SetTargetY(float y)
+		{
+			SetSpeed(Parameters.ROLLING_STONE_MIN_SPEED.Sample(), Parameters.ROLLING_STONE_MAX_SPEED.Sample());
+			ApplyTargetPlacement(y);
+		}
+
+		/// <summary>
+		/// 关卡难度覆盖开启时注入速度范围；内部只 Random 一次。
+		/// </summary>
+		public void SetTargetY(float y, float minSpeed, float maxSpeed)
+		{
+			SetSpeed(minSpeed, maxSpeed);
+			ApplyTargetPlacement(y);
+		}
+
+		private void ApplyTargetPlacement(float y)
 		{
 			targetY = y;
 			if (speedX > 0f)
@@ -141,11 +172,16 @@ namespace LevelMode
 			stone.transform.eulerAngles = eulerAngles;
 		}
 
-		private void SetSpeed()
+		private void SetSpeed(float minSpeed, float maxSpeed)
 		{
+			if (maxSpeed < minSpeed)
+			{
+				float swap = minSpeed;
+				minSpeed = maxSpeed;
+				maxSpeed = swap;
+			}
 			float num = 20f + 40f * UnityEngine.Random.value;
-			float num2 = Parameters.ROLLING_STONE_MIN_SPEED.Sample();
-			num2 += (Parameters.ROLLING_STONE_MAX_SPEED.Sample() - num2) * UnityEngine.Random.value;
+			float num2 = minSpeed + (maxSpeed - minSpeed) * UnityEngine.Random.value;
 			speedY = num2 * Mathf.Sin(num * ((float)Math.PI / 180f));
 			if (UnityEngine.Random.value > 0.5f)
 			{

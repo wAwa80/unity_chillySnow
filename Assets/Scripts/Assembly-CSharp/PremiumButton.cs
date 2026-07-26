@@ -25,6 +25,12 @@ namespace LevelMode
 
 		private void Awake()
 		{
+			// 功能开关关闭：隐藏场景右上角 Premium 购买按钮
+			if (!JuiceConsentGates.EnablePremium)
+			{
+				Object.DestroyImmediate(base.gameObject);
+				return;
+			}
 			if (Juice.premium.IsPremium())
 			{
 				Module<Ads>.GetInstance().ForceNoFuckingAds();

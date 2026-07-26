@@ -25,5 +25,17 @@ namespace EndlessMode
 			system.Play();
 			Invoke("Kill", system.main.duration);
 		}
+
+		/// <summary>
+		/// 入池前必须取消挂起的 Kill Invoke，防止复用后误杀新实例。
+		/// </summary>
+		protected override void OnDisabled()
+		{
+			CancelInvoke();
+			if (system != null)
+			{
+				system.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+			}
+		}
 	}
 }

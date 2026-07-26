@@ -1,0 +1,6 @@
+# 本目录可放本地 .env（勿提交）
+.env
+*.pyc
+__pycache__/
+out/*
+!out/.gitkeep

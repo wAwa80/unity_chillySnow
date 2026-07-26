@@ -21,6 +21,10 @@ public static class Juice
 
 	public static void ShowGDPR()
 	{
+		if (!JuiceConsentGates.EnableGdpr)
+		{
+			return;
+		}
 		GDPR.Open();
 	}
 
@@ -34,7 +38,7 @@ public static class Juice
 		levelMetadata = metadata;
 		analytics.SendProgressionEvent(GAProgressionStatus.Start, metadata);
 		analytics.SendDesignEvent("Game:Played:" + metadata);
-		if (PremiumButton.GetInstance() != null)
+		if (JuiceConsentGates.EnablePremium && PremiumButton.GetInstance() != null)
 		{
 			PremiumButton.GetInstance().Hide();
 		}
@@ -61,10 +65,16 @@ public static class Juice
 
 	public static void LevelBreak()
 	{
-		Module<AppRater>.GetInstance().TryShow();
-		Module<Premium>.GetInstance().TryShowDeal();
+		if (JuiceConsentGates.EnableAppRater)
+		{
+			Module<AppRater>.GetInstance().TryShow();
+		}
+		if (JuiceConsentGates.EnablePremium)
+		{
+			Module<Premium>.GetInstance().TryShowDeal();
+		}
 		Stats.CheckDayStreak();
-		if (PremiumButton.GetInstance() != null)
+		if (JuiceConsentGates.EnablePremium && PremiumButton.GetInstance() != null)
 		{
 			PremiumButton.GetInstance().Show();
 		}

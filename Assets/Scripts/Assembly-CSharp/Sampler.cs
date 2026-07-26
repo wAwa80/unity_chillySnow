@@ -53,7 +53,14 @@ namespace LevelMode
 
 		public float Sample()
 		{
-			float num = GetValue();
+			return SampleAt(GetValue());
+		}
+
+		/// <summary>
+		/// 按指定标量插值（供难度覆盖喂入虚拟关卡号；Sample 复用本方法）。
+		/// </summary>
+		public float SampleAt(float num)
+		{
 			if (num < leftKey)
 			{
 				return leftValue;

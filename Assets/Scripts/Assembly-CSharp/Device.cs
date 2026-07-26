@@ -132,7 +132,8 @@ namespace LevelMode
 			{
 				if (vibration == Vibration.Full)
 				{
-					Handheld.Vibrate();
+					// Handheld 仅 iOS/Android；微信小游戏(WebGL)无此 API，见 TryHandheldVibrate。
+					TryHandheldVibrate();
 				}
 				else if (IsHapticFeedbackSupported())
 				{
@@ -140,9 +141,19 @@ namespace LevelMode
 				}
 				else if (replaceIfNoHapticFeedbackSupported)
 				{
-					Handheld.Vibrate();
+					TryHandheldVibrate();
 				}
 			}
+		}
+
+		/// <summary>
+		/// Unity Handheld.Vibrate 仅原生移动端可用；微信小游戏 / WebGL / Editor 编译期排除，避免 CS0103。
+		/// </summary>
+		private static void TryHandheldVibrate()
+		{
+#if UNITY_ANDROID || UNITY_IOS
+			Handheld.Vibrate();
+#endif
 		}
 
 		public static bool IsVibrationSupported()
